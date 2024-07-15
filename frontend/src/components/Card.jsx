@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
-function Card({ sushiPic, chineseName, japaneseName, englishName }) {
+import styles from "./Card.module.css";
+function Card({ sushiPic, chineseName, japaneseName, englishName, price }) {
   const [chosenFood, setChosenFood] = useState([]);
 
   function addFood() {
@@ -9,15 +9,18 @@ function Card({ sushiPic, chineseName, japaneseName, englishName }) {
     });
   }
   return (
-    <div onClick={addFood} className="productBox">
+    <div className={styles.container}>
+    <div onClick={addFood} className={styles.productBox}>
       <div>
-        <img className="productPic" src={sushiPic} alt="" />
+        <img className={styles.productPic} src={sushiPic} alt="" />
       </div>
       <div>
-        <p>{chineseName}</p>
-        <p>{japaneseName}</p>
-        <p>{englishName}</p>
+        <p className={styles.japaneseName}>{japaneseName}</p>
+        <p className={styles.chineseName}>{chineseName}</p>
+        <p className={styles.englishName}>{englishName}</p>
+        <p className={styles.price}> ${price}</p>
       </div>
+    </div>
     </div>
   );
 }

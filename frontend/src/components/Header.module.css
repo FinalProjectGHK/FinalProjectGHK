@@ -1,0 +1,13 @@
+/* Header.css */
+.link {
+    color: #705B38; /* text-yellow-900 */
+    padding: 0.25rem 3rem; /* py-1 px-12 */
+    background-color: #D1CABD; /* bg-orange-50 */
+    border-radius: 0.5rem; /* rounded-lg */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .link:hover {
+    background-color: #8D7A5B; /* hover:bg-yellow-900 */
+    color: #ffffff; /* hover:text-white */
+  }
