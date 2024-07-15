@@ -1,4 +1,4 @@
-
+import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 const Header = () => {
     return <div >
@@ -15,12 +15,12 @@ const Header = () => {
     
         </div>
         <div className="cat">
-            <Link to='/sushi' className="text-yellow-900 py-1 px-12 bg-orange-50 rounded-lg hover:bg-yellow-900 hover:text-white">壽司</Link>
-            <Link to='/roll' className="text-yellow-900 py-1 px-12 bg-orange-50 rounded-lg hover:bg-yellow-900 hover:text-white ">卷物。軍艦</Link>
-            <Link to='/soup' className="text-yellow-900 py-1 px-12 bg-orange-50 rounded-lg hover:bg-yellow-900 hover:text-white">湯類</Link>
-            <Link to='/side' className="text-yellow-900 py-1 px-12 bg-orange-50 rounded-lg hover:bg-yellow-900 hover:text-white">副餐類</Link>
-            <Link to='/dessert' className="text-yellow-900 py-1 px-12 bg-orange-50 rounded-lg hover:bg-yellow-900 hover:text-white">甜品</Link>
-            <Link to='/drinks' className="text-yellow-900 py-1 px-12 bg-orange-50 rounded-lg hover:bg-yellow-900 hover:text-white">飲品</Link>
+            <Link to='/sushi' className={styles.link}>壽司</Link>
+            <Link to='/roll' className={styles.link}>卷物。軍艦</Link>
+            <Link to='/soup' className={styles.link}>湯類</Link>
+            <Link to='/side' className={styles.link}>副餐類</Link>
+            <Link to='/dessert' className={styles.link}>甜品</Link>
+            <Link to='/drinks' className={styles.link}>飲品</Link>
         </div>
     </div>
 }
