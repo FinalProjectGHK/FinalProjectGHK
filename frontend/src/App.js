@@ -8,6 +8,12 @@ import Drinks from './Drinks';
 import Soup from './Soup';
 import Cart from './Cart';
 import Side from './Side';
+import Login from './Login';
+import Register from './Register';
+import Record from './Record';
+import Location from './Location';
+import About from './About';
+
 
 const router = createBrowserRouter([
   {
@@ -18,20 +24,22 @@ const router = createBrowserRouter([
       { path: '/soup', element: <Soup/> },
       { path: '/side', element: <Side/> },
       { path: '/dessert', element: <Dessert/> },
-      { path: '/drinks', element: <Drinks/> },
-      { path: '/cart', element: <Cart/> }
+      { path: '/drinks', element: <Drinks/> }
     ]
-  }
+  },
+  { path: '/cart', element: <Cart/> },
+  { path: '/login', element: <Login/> },
+  { path: '/register', element: <Register/> },
+  { path: '/record', element: <Record/> },
+  { path: '/location', element: <Location/> },
+  { path: '/about', element: <About/> },
 ])
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-
         <RouterProvider router={router} />
-
-
       </header>
     </div>
   );
