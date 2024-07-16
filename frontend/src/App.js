@@ -1,28 +1,31 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 import Root from './Root';
-import Sushi from './Sushi';
-import Roll from './Roll';
-import Dessert from './Dessert';
-import Drinks from './Drinks';
-import Soup from './Soup';
-import Cart from './Cart';
-import Side from './Side';
-import Login from './Login';
-import Register from './Register';
-import Record from './Record';
-import Location from './Location';
-import About from './About';
+import Favorite from './main_routers/Favorite';
+import Rice from './main_routers/Rice';
+import Dessert from './main_routers/Dessert';
+import Drinks from './main_routers/Drinks';
+import Pasta from './main_routers/Pasta';
+import Cart from './navbar_routers/Cart';
+import Noodle from './main_routers/Noodle';
+import Login from './navbar_routers/Login';
+import Register from './navbar_routers/Register';
+import Record from './navbar_routers/Record';
+import Location from './navbar_routers/Location';
+import About from './navbar_routers/About';
+import Vegan from './main_routers/Vegan';
+
 
 
 const router = createBrowserRouter([
-  {
+  { // favorite, rice, pasta, noodle, dessert, drink, vegan, 
     path: '/', element: <Root />,
     children: [
-      { path: '/sushi', element: <Sushi/> },
-      { path: '/roll', element: <Roll/> },
-      { path: '/soup', element: <Soup/> },
-      { path: '/side', element: <Side/> },
+      { path: '/favorite', element: <Favorite/> },
+      { path: '/rice', element: <Rice/> },
+      { path: '/pasta', element: <Pasta/> },
+      { path: '/noodle', element: <Noodle/> },
+      { path: '/vegan', element: <Vegan/> },
       { path: '/dessert', element: <Dessert/> },
       { path: '/drinks', element: <Drinks/> }
     ]

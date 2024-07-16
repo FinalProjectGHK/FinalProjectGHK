@@ -34,12 +34,13 @@ const Header = () => {
                 </div>
             </div>
             <div className="cat">
-                <Link to='/sushi' className={styles.link}>壽司</Link>
-                <Link to='/roll' className={styles.link}>卷物。軍艦</Link>
-                <Link to='/soup' className={styles.link}>湯類</Link>
-                <Link to='/side' className={styles.link}>副餐類</Link>
-                <Link to='/dessert' className={styles.link}>甜品</Link>
-                <Link to='/drinks' className={styles.link}>飲品</Link>
+                <Link to='/favorite' className={styles.link}>Favorite</Link>
+                <Link to='/vegan' className={styles.link}>Vegan</Link>
+                <Link to='/rice' className={styles.link}>Rice</Link>
+                <Link to='/pasta' className={styles.link}>Pasta</Link>
+                <Link to='/noodle' className={styles.link}>Noodle</Link>
+                <Link to='/dessert' className={styles.link}>Dessert</Link>
+                <Link to='/drinks' className={styles.link}>Drinks</Link>
             </div>
         </div>
     );

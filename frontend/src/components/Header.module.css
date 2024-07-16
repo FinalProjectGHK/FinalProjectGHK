@@ -1,9 +1,9 @@
 /* Header.css */
 .link {
-    color: #705B38; /* text-yellow-900 */
-    padding: 0.25rem 3rem; /* py-1 px-12 */
-    background-color: #D1CABD; /* bg-orange-50 */
-    border-radius: 0.5rem; /* rounded-lg */
+    color: #705B38; 
+    padding: 0.25rem 2rem; 
+    background-color: #D1CABD; 
+    border-radius: 0.5rem; 
     transition: background-color 0.3s, color 0.3s;
   }
 
@@ -11,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:10px; /* Optional: Add padding for spacing */
+    padding:8px; 
    
 }
 
