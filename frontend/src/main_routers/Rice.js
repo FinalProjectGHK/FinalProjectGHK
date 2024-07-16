@@ -1,8 +1,8 @@
-import sushii from "./sushii";
-import Card from "./components/Card";
-import styles from "./Sushi.module.css";
+import sushii from "../sushi_json";    // json act as database
+import Card from "../components/Card";
+import styles from "./Rice.module.css";
 
-const Sushi = () => {
+const Rice = () => {
     return (
         <div className={styles.container}>
             
@@ -30,4 +30,4 @@ const Sushi = () => {
     );
 }
 
-export default Sushi;
+export default Rice;
