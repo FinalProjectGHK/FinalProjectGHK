@@ -1,9 +1,10 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import Carousel from "./carousel";
+/* import Carousel3 from "./carousel3"; */
 
 const Header = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+   /*  const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const items = document.querySelectorAll('[data-carousel-item]');
@@ -30,7 +31,7 @@ const Header = () => {
             document.querySelector('[data-carousel-next]').removeEventListener('click', handleNext);
             document.querySelector('[data-carousel-prev]').removeEventListener('click', handlePrev);
         };
-    }, [currentIndex]);
+    }, [currentIndex]); */
 
     return (
         <div>
@@ -41,37 +42,37 @@ const Header = () => {
                 </div>
             </div>
             <div className="ad">
-                <div>
-                    <div id="carouselExample" className="relative" data-carousel="static">
-                        <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-                            <div className="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://sushirohk.com.hk/attachment/news/16958926314kg8Z.png" className="block w-full" alt="Slide 1" />
-                            </div>
-                            <div className="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://sushirohk.com.hk/attachment/news/1695892639fJnCb.png" className="block w-full" alt="Slide 2" />
-                            </div>
-                            <div className="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://sushirohk.com.hk/attachment/news/16958926314kg8Z.png" className="block w-full" alt="Slide 3" />
-                            </div>
+                {/* <Carousel/> */}
+                <Carousel/>
+                {/* <div id="carouselExample" className="relative" data-carousel="static">
+                    <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+                        <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="https://sushirohk.com.hk/attachment/news/16958926314kg8Z.png" className="block w-full" alt="Slide 1" />
                         </div>
-                        <button type="button" className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-                                <svg aria-hidden="true" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-                                </svg>
-                                <span className="sr-only">Previous</span>
-                            </span>
-                        </button>
-                        <button type="button" className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-                                <svg aria-hidden="true" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                                <span className="sr-only">Next</span>
-                            </span>
-                        </button>
+                        <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="https://sushirohk.com.hk/attachment/news/1695892639fJnCb.png" className="block w-full" alt="Slide 2" />
+                        </div>
+                        <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="https://sushirohk.com.hk/attachment/news/16958926314kg8Z.png" className="block w-full" alt="Slide 3" />
+                        </div>
                     </div>
-                </div>
+                    <button type="button" className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                            <svg aria-hidden="true" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            <span className="sr-only">Previous</span>
+                        </span>
+                    </button>
+                    <button type="button" className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                            <svg aria-hidden="true" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                            <span className="sr-only">Next</span>
+                        </span>
+                    </button>
+                </div> */}
             </div>
             <div className="cat">
                 <Link to='/sushi' className={styles.link}>壽司</Link>
