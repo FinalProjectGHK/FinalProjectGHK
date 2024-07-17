@@ -16,6 +16,7 @@ const Header = () => {
                         <div className={styles.sidebar}>
                             <Link to='/login'>會員登入</Link>
                             <Link to='/register'>會員登記</Link>
+                            <Link to='/account'>帳戶資料</Link>
                             <Link to='/record'>訂單紀錄</Link>
                             <Link to='/location'>分店位置</Link>
                             <Link to='/about'>關於我們</Link>

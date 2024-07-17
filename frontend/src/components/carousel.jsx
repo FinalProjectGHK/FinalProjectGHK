@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 export default function Carousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [timer_autoSlide, setTimer_autoSlide] = useState(() => {});
+    const [isAutoSlide, setIsAutoSlide] = useState(false);
     
     /* const listItemss = itemss.map(item =>
         <li
@@ -24,7 +25,7 @@ export default function Carousel() {
     const items = ['', '', '', '', '']
 
     useEffect(() => {
-        clearTimeout(timer_autoSlide);
+        setIsAutoSlide(false)
         const items = document.querySelectorAll('[data-carousel-item]');
         const showItem = (index) => {
             items.forEach((item, i) => {
@@ -33,7 +34,8 @@ export default function Carousel() {
             });
         };
         showItem(currentIndex);
-
+        
+        clearTimeout(timer_autoSlide);
         setTimer_autoSlide(setTimeout(() => {
             //console.log('useEffect run twice at start')
             //console.log(items)
@@ -72,7 +74,7 @@ export default function Carousel() {
             document.querySelector('[data-carousel-next]').removeEventListener('click', handleNext);
             document.querySelector('[data-carousel-prev]').removeEventListener('click', handlePrev);
         }; */
-    }, [currentIndex]);
+    }, [currentIndex, isAutoSlide]);
 
     function handleNext(){
         clearTimeout(timer_autoSlide);
@@ -117,10 +119,23 @@ export default function Carousel() {
     function handleImg5() {
         console.log('img5')
     }
+    const btn_prev = document.querySelector('[data-carousel-prev]');
+    const btn_next = document.querySelector('[data-carousel-next]');
+    function handleMouseOver() {
+        clearTimeout(timer_autoSlide);
+        btn_prev.classList.toggle('hidden');
+        btn_next.classList.toggle('hidden');
+    }
+    function handleMouseOut() {
+        /* setCurrentIndex(currentIndex); */
+        setIsAutoSlide(true)
+        btn_prev.classList.toggle('hidden');
+        btn_next.classList.toggle('hidden');
+    }
 
     return(
-        <div id="carouselExample" className="h-full w-full relative" data-carousel="slide" carouselExample>
-            <div className="h-full w-full relative overflow-hidden rounded-lg cursor-pointer">
+        <div className="h-full w-full relative" data-carousel="slide" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+            <div className="h-full w-full relative overflow-hidden rounded-lg cursor-pointer" >
                 <div className="hidden duration-700 ease-in-out" data-carousel-item>
                     <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg" className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Slide 1" onClick={handleImg1}/>
                 </div>
@@ -144,8 +159,8 @@ export default function Carousel() {
                 <button type="button" className="w-3 h-3 rounded-full bg-gray-400 hover:bg-white" aria-current="false" aria-label="Slide 4" data-carousel-slide-to onClick={handleDot4}></button>
                 <button type="button" className="w-3 h-3 rounded-full bg-gray-400 hover:bg-white" aria-current="false" aria-label="Slide 5" data-carousel-slide-to onClick={handleDot5}></button>
             </div>
-            <div className="p-4 absolute top-1/2 left-0 -translate-y-1/2 z-1">
-                <button type="button" className="flex items-center justify-center cursor-pointer group focus:outline-none" data-carousel-prev onClick={handlePrev}>
+            <div data-carousel-prev className="hidden absolute top-1/2 left-3 -translate-y-1/2 z-1">
+                <button type="button" className="flex items-center justify-center cursor-pointer group focus:outline-none" onClick={handlePrev}>
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
                         <svg aria-hidden="true" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
@@ -154,8 +169,8 @@ export default function Carousel() {
                     </span>
                 </button>
             </div>
-            <div className="p-4 absolute top-1/2 right-0 -translate-y-1/2 z-1">
-                <button type="button" className=" flex items-center justify-center cursor-pointer group focus:outline-none" data-carousel-next onClick={handleNext}>
+            <div data-carousel-next className="hidden absolute top-1/2 right-3 -translate-y-1/2 z-1">
+                <button type="button" className=" flex items-center justify-center cursor-pointer group focus:outline-none" onClick={handleNext}>
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
                         <svg aria-hidden="true" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>

@@ -10,6 +10,7 @@ import Cart from './navbar_routers/Cart';
 import Noodle from './main_routers/Noodle';
 import Login from './navbar_routers/Login';
 import Register from './navbar_routers/Register';
+import Account from './navbar_routers/Account';
 import Record from './navbar_routers/Record';
 import Location from './navbar_routers/Location';
 import About from './navbar_routers/About';
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
   { path: '/cart', element: <Cart/> },
   { path: '/login', element: <Login/> },
   { path: '/register', element: <Register/> },
+  { path: '/account', element: <Account/> },
   { path: '/record', element: <Record/> },
   { path: '/location', element: <Location/> },
   { path: '/about', element: <About/> },
