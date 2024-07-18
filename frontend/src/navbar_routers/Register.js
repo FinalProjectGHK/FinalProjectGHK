@@ -4,6 +4,7 @@ import RememberMeIcon from "@mui/icons-material/RememberMe";
 import React from "react";
 import Alert from "@mui/material/Alert";
 import registerPic from "../image/registerPage.png";
+import Headbar from "../components/Headbar";
 
 function Register() {
   const [input, setInput] = useState({
@@ -75,6 +76,7 @@ function Register() {
   }
 
   return (
+    <div><Headbar/>
     <div className={styles.container}>
       <div className={styles.regBox}>
         <h1>
@@ -201,6 +203,7 @@ function Register() {
         ) : null}
       </div>
       <img src={registerPic}></img>
+    </div>
     </div>
   );
 }
