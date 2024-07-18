@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import Carousel from "./carousel";
 import DrawerComponent from "./DrawerComponent";
+import CategoryLinks from './CategoryLinks';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,7 @@ const Header = () => {
         <div className="ad">
           <Carousel />
         </div>
-        <div className="cat">
+        {/* <div className="cat">
           <Link to="/favorite" className={styles.link}>
             Favorite
           </Link>
@@ -68,7 +69,8 @@ const Header = () => {
           <Link to="/drinks" className={styles.link}>
             Drinks
           </Link>
-        </div>
+        </div> */}
+          <CategoryLinks />
       </div>
 
       <div onClick={openPreview}>

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Record.module.css";
+import Headbar from "../components/Headbar";
 
 function Record() {
   return (
+    <div>
+            <div><Headbar /></div>
     <div className={styles.container}>
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
@@ -171,6 +174,7 @@ function Record() {
           </a>
         </div>
       </div>
+    </div>
     </div>
   );
 }

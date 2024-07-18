@@ -1,5 +1,6 @@
 import styles from "./Account.module.css";
 import { useState } from "react";
+import Headbar from "../components/Headbar";
 
 function Account() {
     const [inputs, setInputs] = useState({});
@@ -7,7 +8,7 @@ function Account() {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}))
+        setInputs(values => ({ ...values, [name]: value }))
     }
 
     const handleSubmit = (event) => {
@@ -15,9 +16,11 @@ function Account() {
         console.log(inputs);// test
     }
 
-    return(
-        <div className={styles.bg_container}>
-            {/* <form className={styles.regForm} onSubmit={handleSubmit}>
+    return (
+        <div>
+            <div><Headbar /></div>
+            <div className={styles.bg_container}>
+                {/* <form className={styles.regForm} onSubmit={handleSubmit}>
                 <div className={styles.div_text}>Join Member</div>
                 <div >
                     <label className={styles.lbl_title}>UserID:</label>
@@ -47,6 +50,7 @@ function Account() {
                     <input type="submit" value="Sign Up"/>
                 </div>
             </form> */}
+            </div>
         </div>
     );
 }
