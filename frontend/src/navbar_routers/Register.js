@@ -3,6 +3,7 @@ import { useState } from "react";
 import RememberMeIcon from "@mui/icons-material/RememberMe";
 import React from "react";
 import Alert from "@mui/material/Alert";
+import registerPic from "../image/registerPage.png";
 
 function Register() {
   const [input, setInput] = useState({
@@ -83,6 +84,7 @@ function Register() {
         <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
           <div className="mb-5">
             <label
+              style={{ display: "flex" }}
               for="email"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
@@ -92,13 +94,14 @@ function Register() {
               value={input["name"]}
               onChange={handleNameChange}
               type="text"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
               required
             />
           </div>
 
           <div className="mb-5">
             <label
+              style={{ display: "flex" }}
               for="email"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
@@ -108,13 +111,14 @@ function Register() {
               value={input["email"]}
               onChange={handleEmailChange}
               type="email"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
               required
             />
           </div>
 
           <div className="mb-5">
             <label
+              style={{ display: "flex" }}
               for="email"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
@@ -124,13 +128,14 @@ function Register() {
               value={input["tel"]}
               onChange={handleTelChange}
               type="text"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
               required
             />
           </div>
 
           <div className="mb-5">
             <label
+              style={{ display: "flex" }}
               for="password"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
@@ -140,12 +145,13 @@ function Register() {
               value={input["password"]}
               onChange={handlePwChange}
               type="password"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
               required
             />
           </div>
           <div className="mb-5">
             <label
+              style={{ display: "flex" }}
               for="repeat-password"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
@@ -155,7 +161,7 @@ function Register() {
               value={input["confirmPassword"]}
               onChange={handleConfirmPwChange}
               type="password"
-              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:shadow-sm-light"
               required
             />
           </div>
@@ -166,7 +172,7 @@ function Register() {
                 id="terms"
                 type="checkbox"
                 value=""
-                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-gray-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                 required
               />
             </div>
@@ -177,7 +183,7 @@ function Register() {
               I agree with the{" "}
               <a
                 href="#"
-                className="text-blue-600 hover:underline dark:text-blue-500"
+                className="text-gray-600 hover:underline dark:text-gray-500"
               >
                 terms and conditions
               </a>
@@ -185,7 +191,7 @@ function Register() {
           </div>
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
           >
             Register new account
           </button>
@@ -194,6 +200,7 @@ function Register() {
           <Alert severity="error">Password mismatch, please re-enter.</Alert>
         ) : null}
       </div>
+      <img src={registerPic}></img>
     </div>
   );
 }
