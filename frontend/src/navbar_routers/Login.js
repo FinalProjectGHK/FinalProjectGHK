@@ -1,61 +1,132 @@
-import React, { useState } from 'react';
-import styles from './Login.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import styles from "./Login.module.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
+import loginPic from "../image/loginPage.png";
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+function Login() {
+  const [tel, setTel] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
-  };
+  function handleTelChange(ev) {
+    setTel(ev.target.value);
+  }
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  function handlePwChange(ev) {
+    setPassword(ev.target.value);
+  }
+
+  function handleSubmit(ev) {
+    ev.preventDefault();
+  }
+
+  function togglePwVis() {
+    setShowPassword((prevState) => {
+      return !prevState;
+    });
+  }
 
   return (
-    <div className={styles.loginContainer}>
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
-        <h1>歡迎回來</h1>
-        <div>
-          <label htmlFor="username" className={styles.label}>帳戶</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder='請輸入帳戶'
-            required
-          />
-        </div>
-        <div className={styles.passwordContainer}>
-          <label htmlFor="password" className={styles.label}>密碼</label>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder='請輸入密碼'
-            required
-          />
+    <div className={styles.container}>
+      <div className={styles.loginBox}>
+        <form onSubmit={handleSubmit} class="space-y-6" action="#">
+          <h1>
+            Welcome Back
+            <DinnerDiningIcon style={{ marginLeft: "5px" }} fontSize="large" />
+          </h1>
+          <div>
+            <label
+              style={{ display: "flex" }}
+              for="tel"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Your Telephone
+            </label>
+            <input
+              style={{ width: "250px" }}
+              onChange={handleTelChange}
+              type="text"
+              name="tel"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              required
+            />
+          </div>
+          <div>
+            <label
+              style={{ display: "flex" }}
+              for="password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Your Password
+            </label>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <input
+                style={{ width: "250px" }}
+                onChange={handlePwChange}
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="••••••••"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                required
+              />
+              <div onClick={togglePwVis} style={{ marginLeft: "10px" }}>
+                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </div>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  value=""
+                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-gray-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                  required
+                />
+              </div>
+              <label
+                for="remember"
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Remember me
+              </label>
+            </div>
+            <a
+              href="#"
+              class="ms-auto text-sm text-gray-700 hover:underline dark:text-gray-500"
+            >
+              Lost Password?
+            </a>
+          </div>
           <button
-            type="button"
-            className={styles.togglePasswordButton}
-            onClick={togglePasswordVisibility}
+            type="submit"
+            class="w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
           >
-            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+            Login to your account
           </button>
-        </div>
-        <button className={styles.loginButton} type="submit">登 入</button>
-      </form>
+          <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+            Not registered?{" "}
+            <a
+              href="#"
+              class="text-gray-700 hover:underline dark:text-gray-500"
+            >
+              Create account
+            </a>
+          </div>
+        </form>
+      </div>
+      <img src={loginPic}></img>
     </div>
   );
-};
+}
 
 export default Login;

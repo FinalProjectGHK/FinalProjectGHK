@@ -1,83 +1,22 @@
-.loginContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  border-radius: 20px;
+  padding: 30px;
+  background-image: url("https://blog.macsales.com/wp-content/uploads/2018/06/Mojave-Day_preview.jpeg");
+  background-size: cover;
+  gap: 20px;
+  box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 
-.loginForm {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
 }
-
-.loginForm h1 {
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 30px;
-}
-
-.loginForm div {
-    margin-bottom: 15px;
-}
-
-
-
-.loginForm input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    
-}
-
-.loginButton {
-    width: 50%;
-    padding: 5px;
-    background-color: #8D7A5B;
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 20px;
-}
-
-.loginForm input:focus {
-    box-shadow: 0 0 0 2px #8D7A5B;
-  }
-
-.loginButton:hover {
-    background-color: #EDE9E3;
-}
-
-.togglePasswordButton {
-    position: absolute;
-    right: 10px;
-    top: 82%;
-    transform: translateY(-80%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    color: #8D7A5B;
-    
-}
-
-
-
-.passwordContainer {
-    position: relative;
-    width: 100%;
-}
-
-.label {
-    text-align: left;
-    display: block;
-    font-size: 18px;
-    padding-bottom: 10px;
-  }
