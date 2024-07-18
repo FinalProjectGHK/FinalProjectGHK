@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import Carousel from "./carousel";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function openPreview() {
+    setIsOpen((prevState) => {
+      return !prevState;
+    });
+  }
   return (
     <div>
       <div>
