@@ -14,8 +14,7 @@ import Record from './navbar_routers/Record';
 import Location from './navbar_routers/Location';
 import About from './navbar_routers/About';
 import Vegan from './main_routers/Vegan';
-
-
+import Whatsapp from './components/Whatsapp';
 
 const router = createBrowserRouter([
   { // favorite, rice, pasta, noodle, dessert, drink, vegan, 
@@ -43,6 +42,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <RouterProvider router={router} />
+        <Whatsapp />
+        
       </header>
     </div>
   );
