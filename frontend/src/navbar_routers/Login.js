@@ -32,13 +32,18 @@ function Login() {
 
   return (
     <div>
-      <div><Headbar /></div>
+      <div>
+        <Headbar />
+      </div>
       <div className={styles.container}>
         <div className={styles.loginBox}>
           <form onSubmit={handleSubmit} class="space-y-6" action="#">
             <h1>
               Welcome Back
-              <DinnerDiningIcon style={{ marginLeft: "5px" }} fontSize="large" />
+              <DinnerDiningIcon
+                style={{ marginLeft: "5px" }}
+                fontSize="large"
+              />
             </h1>
             <div>
               <label
