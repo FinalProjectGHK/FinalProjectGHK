@@ -1,6 +1,5 @@
 const Cart = () => {
-    return <div>購物車</div>
-
-}
+  return;
+};
 
 export default Cart;
