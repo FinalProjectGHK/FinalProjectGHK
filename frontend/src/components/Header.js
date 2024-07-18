@@ -61,55 +61,30 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="ad">
-        <div className="cat">
-          <Link to="/favorite" className={styles.link}>
-            Favorite
-          </Link>
-          <Link to="/vegan" className={styles.link}>
-            Vegan
-          </Link>
-          <Link to="/rice" className={styles.link}>
-            Rice
-          </Link>
-          <Link to="/pasta" className={styles.link}>
-            Pasta
-          </Link>
-          <Link to="/noodle" className={styles.link}>
-            Noodle
-          </Link>
-          <Link to="/dessert" className={styles.link}>
-            Dessert
-          </Link>
-          <Link to="/drinks" className={styles.link}>
-            Drinks
-          </Link>
-        </div>
-        <div onClick={openPreview}>
-          <div
-            style={{
-              width: isOpen ? "1200px" : "40px",
-              left: isOpen ? "580px" : "1750px",
-            }}
-            className={styles.previewBox}
-          ></div>
+      <div onClick={openPreview}>
+        <div
+          style={{
+            width: isOpen ? "1200px" : "40px",
+            left: isOpen ? "580px" : "1750px",
+          }}
+          className={styles.previewBox}
+        ></div>
 
-          <div
-            style={{
-              width: isOpen ? "1150px" : null,
-              left: isOpen ? "610px" : "1750px",
-            }}
-            className={styles.previewInsideBox1}
-          ></div>
+        <div
+          style={{
+            width: isOpen ? "1150px" : null,
+            left: isOpen ? "610px" : "1750px",
+          }}
+          className={styles.previewInsideBox1}
+        ></div>
 
-          <div
-            style={{
-              width: isOpen ? "1150px" : null,
-              left: isOpen ? "610px" : "1750px",
-            }}
-            className={styles.previewInsideBox2}
-          ></div>
-        </div>
+        <div
+          style={{
+            width: isOpen ? "1150px" : null,
+            left: isOpen ? "610px" : "1750px",
+          }}
+          className={styles.previewInsideBox2}
+        ></div>
       </div>
     </div>
   );
