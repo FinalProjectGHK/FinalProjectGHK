@@ -18,18 +18,21 @@ import Vegan from './main_routers/Vegan';
 import Whatsapp from './components/Whatsapp';
 
 const router = createBrowserRouter([
-  { // favorite, rice, pasta, noodle, dessert, drink, vegan, 
-    path: '/', element: <Root />,
+  {
+    // favorite, rice, pasta, noodle, dessert, drink, vegan,
+    path: "/",
+    element: <Root />,
     children: [
-      { path: '/favorite', element: <Favorite/> },
-      { path: '/rice', element: <Rice/> },
-      { path: '/pasta', element: <Pasta/> },
-      { path: '/noodle', element: <Noodle/> },
-      { path: '/vegan', element: <Vegan/> },
-      { path: '/dessert', element: <Dessert/> },
-      { path: '/drinks', element: <Drinks/> }
-    ]
+      { path: "/favorite", element: <Favorite /> },
+      { path: "/rice", element: <Rice /> },
+      { path: "/pasta", element: <Pasta /> },
+      { path: "/noodle", element: <Noodle /> },
+      { path: "/vegan", element: <Vegan /> },
+      { path: "/dessert", element: <Dessert /> },
+      { path: "/drinks", element: <Drinks /> },
+    ],
   },
+<<<<<<< HEAD
   { path: '/cart', element: <Cart/> },
   { path: '/login', element: <Login/> },
   { path: '/register', element: <Register/> },
@@ -38,6 +41,16 @@ const router = createBrowserRouter([
   { path: '/location', element: <Location/> },
   { path: '/about', element: <About/> },
 ])
+=======
+
+  { path: "/cart", element: <Cart /> },
+  { path: "/login", element: <Login /> },
+  { path: "/register", element: <Register /> },
+  { path: "/record", element: <Record /> },
+  { path: "/location", element: <Location /> },
+  { path: "/about", element: <About /> },
+]);
+>>>>>>> d226e53 (version 1)
 
 function App() {
   return (
