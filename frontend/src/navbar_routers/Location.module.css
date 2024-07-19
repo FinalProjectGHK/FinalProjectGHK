@@ -1,0 +1,69 @@
+.mapContainer {
+    height: 635px;
+    width: 100%;
+    border-radius: 15px; 
+    /* border: 2px solid #705b38; */
+    /* filter: hue-rotate(5deg); */
+}
+
+.infoContainer {
+    margin-top: 20px;
+    padding: 30px;
+    
+    border-radius: 30px;
+    background-color: #f9f9f9;
+    text-align: left;
+    width: 40%;
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    z-index: 1000;
+    box-shadow: rgba(61, 47, 16, 0.649) 5px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.infoContainer {
+    max-height: 300px;
+    overflow-y: scroll;
+    
+}
+
+.infoContainer::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.infoContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.infoContainer::-webkit-scrollbar-thumb {
+    background: #a69a86;
+    border-radius: 10px;
+}
+
+.infoContainer::-webkit-scrollbar-thumb:hover {
+    background: #705b38;
+}
+
+.location {
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: rgba(61, 47, 16, 0.931) 0px 0px 3px;
+    font-size: 1em;
+    color: #2d2517;
+
+}
+.name {
+    padding: 5px;
+}
