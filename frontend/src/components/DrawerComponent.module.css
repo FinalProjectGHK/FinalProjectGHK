@@ -1,18 +1,9 @@
-.menuContainer {
-
-}
-
-.menuButton {
-
-
-}
-
 .sidebar {
-    padding: 20px;
-    background-color: #f0f0f0;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
 .drawerPaper {
-  background-color: #D1CABD; 
-  width: 250px; 
+  background-color: #d1cabd;
+  width: 250px;
 }
