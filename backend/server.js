@@ -38,28 +38,31 @@ const membersSchema = new mongoose.Schema({
 
 const Members = mongoose.model("members", membersSchema);
 
-async function getProducts() {
+async function getProducts(category) {
   try {
     await client.connect();
-    const db = client.db("sushi_db"); //sample_mflix
-    const userResult = await db.collection("sushi").find().toArray(); //comments //
+    const db = client.db("restaurant_db");
+    const userResult = await db
+      .collection("menu")
+      .find({ category: category })
+      .toArray();
     console.log(userResult);
     return userResult;
   } catch (err) {
-    //console.dir;
     console.log(err);
   } finally {
     await client.close();
   }
 }
+
+// http://localhost:3001/products/?category=rice -> getting all the items with the category being "rice"
 app.get("/products", async (req, res) => {
-  const result = await getProducts();
-  //console.log(`app.get: ${result}`)
-  //res.send(result);
+  const result = await getProducts(req.query.category);
   res.json(result);
 });
 
-app.post("/", async (req, res) => {
+// Posting member registration details to database
+app.post("/register", async (req, res) => {
   let member = new Members(req.body);
   let result = await member.save();
   res.send(result);
