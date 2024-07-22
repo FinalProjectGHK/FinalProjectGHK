@@ -1,8 +1,9 @@
 import styles from "./shoppingCart.module.css";
-import * as React from "react";
+import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
-export default function ShoppingCart() {
-  const [isOpen, setIsOpen] = React.useState(false);
+import ShoppingCartList from "./ShoppingCartList";
+export default function ShoppingCart({ chosenFoods }) {
+  const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -12,6 +13,7 @@ export default function ShoppingCart() {
     }
     setIsOpen(open);
   };
+
   return (
     <div className={styles.bgContainer}>
       <div className={styles.div_shoppingCart}>
@@ -32,7 +34,15 @@ export default function ShoppingCart() {
           open={isOpen}
           onClose={toggleDrawer(false)}
         >
-          <div className={styles.drawerContent}></div>
+          <div className={styles.drawerContent}>
+            {chosenFoods.map((item) => (
+              <ShoppingCartList
+                chineseName={item["chineseName"]}
+                foodPic={item["foodPic"]}
+                price={item["price"]}
+              />
+            ))}
+          </div>
         </Drawer>
       </div>
     </div>

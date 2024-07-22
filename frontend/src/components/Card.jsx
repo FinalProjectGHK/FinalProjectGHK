@@ -5,8 +5,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import Zoom from "@mui/material/Zoom";
+import { useOutletContext } from "react-router-dom";
 
 function Card({ foodPic, chineseName, englishName, price }) {
+  const [addFood] = useOutletContext();
   const [isFav, setIsFav] = useState(false);
   function favFood() {
     setIsFav((prevState) => {
@@ -35,7 +37,7 @@ function Card({ foodPic, chineseName, englishName, price }) {
             </div>
             <Zoom in={true}>
               <Fab size="small" aria-label="add">
-                <AddIcon />
+                <AddIcon onClick={() => addFood(chineseName, price, foodPic)} />
               </Fab>
             </Zoom>
           </div>

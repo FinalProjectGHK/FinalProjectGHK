@@ -31,7 +31,7 @@ function Login() {
       console.log("User log in successfully!");
       setSuccessLogin(true);
       setinvalidLogin(false);
-      setTimeout(() => (window.location.href = "/"), 2000);
+      setTimeout(() => (window.location.href = "/home"), 2000);
     } catch (error) {
       console.log(error.message);
       setinvalidLogin(true);
