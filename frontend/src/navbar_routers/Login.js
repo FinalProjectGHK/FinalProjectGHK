@@ -6,22 +6,37 @@ import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import loginPic from "../image/loginPage.png";
 import { Link } from "react-router-dom";
 import Headbar from "../components/Headbar";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../components/firebase";
+import Alert from "@mui/material/Alert";
 
 function Login() {
-  const [tel, setTel] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [invalidLogin, setinvalidLogin] = useState(false);
+  const [successLogin, setSuccessLogin] = useState(false);
 
-  function handleTelChange(ev) {
-    setTel(ev.target.value);
+  function handleEmailChange(ev) {
+    setEmail(ev.target.value);
   }
 
   function handlePwChange(ev) {
     setPassword(ev.target.value);
   }
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("User log in successfully!");
+      setSuccessLogin(true);
+      setinvalidLogin(false);
+      setTimeout(() => (window.location.href = "/"), 2000);
+    } catch (error) {
+      console.log(error.message);
+      setinvalidLogin(true);
+    }
   }
 
   function togglePwVis() {
@@ -51,13 +66,14 @@ function Login() {
                 for="tel"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Your Telephone
+                Your Email
               </label>
               <input
+                value={email}
                 style={{ width: "250px" }}
-                onChange={handleTelChange}
-                type="text"
-                name="tel"
+                onChange={handleEmailChange}
+                type="email"
+                name="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required
               />
@@ -78,6 +94,7 @@ function Login() {
                 }}
               >
                 <input
+                  value={password}
                   style={{ width: "250px" }}
                   onChange={handlePwChange}
                   type={showPassword ? "text" : "password"}
@@ -122,6 +139,14 @@ function Login() {
             >
               Login to your account
             </button>
+            {invalidLogin ? (
+              <Alert severity="warning">Invalid email / password.</Alert>
+            ) : null}
+
+            {successLogin ? (
+              <Alert severity="success">Log In Successfully.</Alert>
+            ) : null}
+
             <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
               Not registered?{" "}
               <Link
@@ -133,7 +158,7 @@ function Login() {
             </div>
           </form>
         </div>
-        <img src={loginPic}></img>
+        <img src={loginPic} alt="loginPic"></img>
       </div>
     </div>
   );
