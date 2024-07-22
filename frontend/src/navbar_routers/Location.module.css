@@ -1,5 +1,5 @@
 .mapContainer {
-    height: 635px;
+    height: 630px;
     width: 100%;
     border-radius: 15px; 
     /* border: 2px solid #705b38; */
@@ -9,7 +9,6 @@
 .infoContainer {
     margin-top: 20px;
     padding: 30px;
-    
     border-radius: 30px;
     background-color: #f9f9f9;
     text-align: left;
@@ -25,7 +24,7 @@
 }
 
 .infoContainer {
-    max-height: 300px;
+    max-height: 350px;
     overflow-y: scroll;
     
 }
@@ -62,7 +61,10 @@
     box-shadow: rgba(61, 47, 16, 0.931) 0px 0px 3px;
     font-size: 1em;
     color: #2d2517;
-
+    cursor: pointer;
+}
+.card:hover {
+    background-color: #e6e6e6;
 }
 .name {
     padding: 5px;
