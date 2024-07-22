@@ -1,12 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import styles from "./App.module.css";
-import Favorite from "./main_routers/Favorite";
-import Rice from "./main_routers/Rice";
-import Dessert from "./main_routers/Dessert";
-import Drinks from "./main_routers/Drinks";
-import Pasta from "./main_routers/Pasta";
-import Noodle from "./main_routers/Noodle";
-import Vegan from "./main_routers/Vegan";
 import Root from "./Root";
 import Home from "./navbar_routers/Home";
 import Cart from "./navbar_routers/Cart";

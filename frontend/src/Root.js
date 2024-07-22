@@ -4,6 +4,7 @@ import { Outlet } from "react-router";
 import Header from "./Header";
 import ShoppingCart from "./components/shoppingCart";
 import Whatsapp from "./components/Whatsapp";
+import Footer from "./Footer";
 const Root = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {
@@ -37,6 +38,7 @@ const Root = () => {
       <div className={styles.footer}></div>
       <ShoppingCart isOpen={isOpen} toggleDrawer={toggleDrawer} />
       <Whatsapp />
+      <Footer />
     </>
   );
 };
