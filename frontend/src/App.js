@@ -1,55 +1,46 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./App.css";
-import Root from "./Root";
+import styles from "./App.module.css";
 import Favorite from "./main_routers/Favorite";
 import Rice from "./main_routers/Rice";
 import Dessert from "./main_routers/Dessert";
 import Drinks from "./main_routers/Drinks";
 import Pasta from "./main_routers/Pasta";
-import Cart from "./navbar_routers/Cart";
 import Noodle from "./main_routers/Noodle";
+import Vegan from "./main_routers/Vegan";
+import Root from "./Root";
+import Home from "./navbar_routers/Home";
+import Cart from "./navbar_routers/Cart";
 import Login from "./navbar_routers/Login";
 import Register from "./navbar_routers/Register";
 import Account from "./navbar_routers/Account";
 import Record from "./navbar_routers/Record";
 import Location from "./navbar_routers/Location";
 import About from "./navbar_routers/About";
-import Vegan from "./main_routers/Vegan";
-import Whatsapp from "./components/Whatsapp";
-
+import BulletinBoard from "./navbar_routers/BulletinBoard";
 const router = createBrowserRouter([
   {
-    // favorite, rice, pasta, noodle, dessert, drink, vegan,
     path: "/",
     element: <Root />,
     children: [
-      { path: "/favorite", element: <Favorite /> },
-      { path: "/rice", element: <Rice /> },
-      { path: "/pasta", element: <Pasta /> },
-      { path: "/noodle", element: <Noodle /> },
-      { path: "/vegan", element: <Vegan /> },
-      { path: "/dessert", element: <Dessert /> },
-      { path: "/drinks", element: <Drinks /> },
+      { path: "/home", element: <Home /> },
+      { path: "/cart", element: <Cart /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/account", element: <Account /> },
+      { path: "/record", element: <Record /> },
+      { path: "/location", element: <Location /> },
+      { path: "/about", element: <About /> },
+      { path: "/bulletinBoard", element: <BulletinBoard /> },
     ],
   },
-  { path: "/cart", element: <Cart /> },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
-  { path: "/account", element: <Account /> },
-  { path: "/record", element: <Record /> },
-  { path: "/location", element: <Location /> },
-  { path: "/about", element: <About /> },
 ]);
-
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <>
+      <div className={styles.App}>
         <RouterProvider router={router} />
-        <Whatsapp />
-      </header>
-    </div>
+      </div>
+    </>
   );
 }
-
 export default App;

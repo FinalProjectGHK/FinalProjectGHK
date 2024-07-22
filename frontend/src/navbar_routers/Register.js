@@ -5,6 +5,9 @@ import React from "react";
 import Alert from "@mui/material/Alert";
 import registerPic from "../image/registerPage.png";
 import Headbar from "../components/Headbar";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../components/firebase";
+import { setDoc, doc } from "firebase/firestore";
 
 function Register() {
   const [input, setInput] = useState({
@@ -17,6 +20,8 @@ function Register() {
 
   const [pwUnmatch, setPwUnmatch] = useState(false);
   const [successReg, setSuccessReg] = useState(false);
+  const [emailInUse, setEmailInUse] = useState(false);
+  const [must6, setMust6] = useState(false);
 
   function handleNameChange(ev) {
     setInput((prevState) => {
@@ -51,17 +56,61 @@ function Register() {
   async function handleSubmit(ev) {
     ev.preventDefault();
     if (input["password"] === input["confirmPassword"]) {
-      setSuccessReg(true);
+      try {
+        await createUserWithEmailAndPassword(
+          auth,
+          input["email"],
+          input["password"]
+        );
+        const user = auth.currentUser;
+        console.log(user);
+        if (user) {
+          await setDoc(doc(db, "Users", user.uid), {
+            email: user.email,
+            name: input["name"],
+            tel: input["tel"],
+          });
+        }
+        console.log("User registered successfully!");
+
+        let result = await fetch("http://localhost:3001/register", {
+          method: "post",
+          body: JSON.stringify(input),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        result = await result.json;
+        localStorage.setItem("members", JSON.stringify(result));
+
+        setMust6(false);
+        setEmailInUse(false);
+        setSuccessReg(true);
+      } catch (error) {
+        console.log(error.message);
+        if (
+          error.message ===
+          "Firebase: Password should be at least 6 characters (auth/weak-password)."
+        ) {
+          setMust6(true);
+          setEmailInUse(false);
+        } else if (
+          error.message === "Firebase: Error (auth/email-already-in-use)."
+        ) {
+          setEmailInUse(true);
+          setMust6(false);
+        }
+      }
       setPwUnmatch(false);
-      let result = await fetch("http://localhost:3001/register", {
-        method: "post",
-        body: JSON.stringify(input),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      result = await result.json;
-      localStorage.setItem("members", JSON.stringify(result));
+      // let result = await fetch("http://localhost:3001/register", {
+      //   method: "post",
+      //   body: JSON.stringify(input),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      // result = await result.json;
+      // localStorage.setItem("members", JSON.stringify(result));
       setInput({
         name: "",
         email: "",
@@ -70,6 +119,8 @@ function Register() {
         confirmPassword: "",
       });
     } else {
+      setMust6(false);
+      setEmailInUse(false);
       setPwUnmatch(true);
       setInput((prevState) => {
         return { ...prevState, password: "", confirmPassword: "" };
@@ -209,8 +260,17 @@ function Register() {
               Register success, you can now Log in.
             </Alert>
           ) : null}
+          {must6 ? (
+            <Alert severity="warning">
+              Password must be at least 6 characters.
+            </Alert>
+          ) : null}
+
+          {emailInUse ? (
+            <Alert severity="warning">Email already in use.</Alert>
+          ) : null}
         </div>
-        <img src={registerPic}></img>
+        <img src={registerPic} alt="registerPic"></img>
       </div>
     </div>
   );
