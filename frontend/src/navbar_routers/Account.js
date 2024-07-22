@@ -1,6 +1,5 @@
 import styles from "./Account.module.css";
 import React, { useEffect, useState } from "react";
-import Headbar from "../components/Headbar";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import accountPic from "../image/accountPage.png";
 import EditIcon from "@mui/icons-material/Edit";
@@ -104,9 +103,6 @@ function Account() {
 
   return (
     <div>
-      <div>
-        <Headbar />
-      </div>
       {userDetails ? (
         <div className={styles.container}>
           <div className={styles.accountBox}>

@@ -5,7 +5,6 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import loginPic from "../image/loginPage.png";
 import { Link } from "react-router-dom";
-import Headbar from "../components/Headbar";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../components/firebase";
 import Alert from "@mui/material/Alert";
@@ -47,9 +46,6 @@ function Login() {
 
   return (
     <div>
-      <div>
-        <Headbar />
-      </div>
       <div className={styles.container}>
         <div className={styles.loginBox}>
           <form onSubmit={handleSubmit} class="space-y-6" action="#">

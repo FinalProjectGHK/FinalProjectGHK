@@ -4,7 +4,6 @@ import RememberMeIcon from "@mui/icons-material/RememberMe";
 import React from "react";
 import Alert from "@mui/material/Alert";
 import registerPic from "../image/registerPage.png";
-import Headbar from "../components/Headbar";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../components/firebase";
 import { setDoc, doc } from "firebase/firestore";
@@ -130,7 +129,6 @@ function Register() {
 
   return (
     <div>
-      <Headbar />
       <div className={styles.container}>
         <div className={styles.regBox}>
           <h1>

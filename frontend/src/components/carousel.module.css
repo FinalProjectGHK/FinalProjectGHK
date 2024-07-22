@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.carousel_container {
+  background-color: transparent;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 17px 10px rgba(0, 0, 0, 0.14),
+    0 3px 14px 10px rgba(0, 0, 0, 0.12), 0 5px 5px -13px rgba(0, 0, 0, 0.2);
+}
