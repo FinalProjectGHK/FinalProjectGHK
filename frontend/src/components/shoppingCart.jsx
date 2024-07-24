@@ -2,6 +2,7 @@ import styles from "./shoppingCart.module.css";
 import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import ShoppingCartList from "./ShoppingCartList";
+
 export default function ShoppingCart({ chosenFoods }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = (open) => (event) => {
@@ -35,13 +36,17 @@ export default function ShoppingCart({ chosenFoods }) {
           onClose={toggleDrawer(false)}
         >
           <div className={styles.drawerContent}>
-            {chosenFoods.map((item) => (
-              <ShoppingCartList
-                chineseName={item["chineseName"]}
-                foodPic={item["foodPic"]}
-                price={item["price"]}
-              />
-            ))}
+            {chosenFoods
+              .filter((item) => item.chineseName && item.foodPic && item.price)
+              .map((item, index) => (
+                <ShoppingCartList
+                  key={index}
+                  chineseName={item.chineseName}
+                  foodPic={item.foodPic}
+                  price={item.price}
+                  quantity={item.quantity}
+                />
+              ))}
           </div>
         </Drawer>
       </div>

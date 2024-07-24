@@ -1,7 +1,14 @@
 import React from "react";
+import { useAuth } from "../components/contexts/AuthContext";
 
-function Record({ isLoggedIn }) {
-  return <div>Status: {isLoggedIn ? "Login" : "Logout"}</div>;
+function Record() {
+  const { currentUser } = useAuth();
+  return (
+    <div>
+      Current User:{" "}
+      {currentUser ? currentUser.email : "No user is currently logged in"}
+    </div>
+  );
 }
 
 export default Record;

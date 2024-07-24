@@ -35,6 +35,15 @@
 .rightContainer {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.leftContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 .cart {
   width: 40px; /* Adjust the size as needed */

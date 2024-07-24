@@ -24,7 +24,7 @@
   height: 100%;
   width: 100%;
   border-radius: 10px;
-  overflow-x: hidden;
+  overflow: scroll;
   scroll-behavior: smooth;
 }
 .div_controlLeft {

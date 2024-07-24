@@ -1,7 +1,7 @@
 import styles from "./ShoppingCartList.module.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-const ShoppingCartList = ({ chineseName, foodPic, price }) => {
+const ShoppingCartList = ({ chineseName, foodPic, price, quantity }) => {
   return (
     <div>
       <div className={styles.shoppingCard}>
@@ -12,7 +12,7 @@ const ShoppingCartList = ({ chineseName, foodPic, price }) => {
             <div className={styles.itemQuantityPrice}>
               <div className={styles.itemQuantity}>
                 <button>-</button>
-                <span>1</span>
+                <span>{quantity}</span>
                 <button>+</button>
               </div>
               <div className={styles.itemPrice}>${price}</div>

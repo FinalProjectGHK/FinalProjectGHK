@@ -36,8 +36,12 @@ function Card({ foodPic, chineseName, englishName, price }) {
               {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </div>
             <Zoom in={true}>
-              <Fab size="small" aria-label="add">
-                <AddIcon onClick={() => addFood(chineseName, price, foodPic)} />
+              <Fab
+                onClick={() => addFood(chineseName, price, foodPic)}
+                size="small"
+                aria-label="add"
+              >
+                <AddIcon />
               </Fab>
             </Zoom>
           </div>
