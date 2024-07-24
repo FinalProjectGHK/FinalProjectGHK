@@ -37,16 +37,6 @@ function Account() {
     fetchUserData();
   }, []);
 
-  async function handleLogout() {
-    try {
-      await auth.signOut();
-      window.location.href = "/login";
-      console.log("User logged out!");
-    } catch (error) {
-      console.log("Error logging out:", error.message);
-    }
-  }
-
   function editName() {
     setCanEditName((prevState) => {
       return !prevState;
@@ -255,12 +245,6 @@ function Account() {
                 Save
               </button>
             </form>
-            <button
-              onClick={handleLogout}
-              class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-            >
-              Log Out
-            </button>
           </div>
           <img src={accountPic} alt="accountPic"></img>
         </div>

@@ -2,6 +2,7 @@ import styles from "./Home.module.css";
 import { useState, useEffect } from "react";
 import FoodMenu from "../components/foodMenu";
 import Carousel from "../components/carousel";
+
 const Home = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {

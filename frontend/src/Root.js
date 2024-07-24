@@ -5,14 +5,9 @@ import Header from "./Header";
 import ShoppingCart from "./components/shoppingCart";
 import Whatsapp from "./components/Whatsapp";
 import Footer from "./Footer";
+import { AuthProvider } from "./components/contexts/AuthContext";
 
 const Root = () => {
-  const [chosenFood, setChosenFood] = useState({
-    chineseName: "",
-    price: "",
-    foodPic: "",
-  });
-
   const [chosenFoods, setChosenFoods] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {
@@ -22,27 +17,31 @@ const Root = () => {
     };
   }, []);
 
-  useEffect(() => {
-    setChosenFoods((prevItem) => {
-      return [...prevItem, chosenFood];
-    });
-  }, [chosenFood]);
-
   function addFood(chineseName, price, foodPic) {
-    console.log(chineseName, price, foodPic);
-    setChosenFood((prevState) => {
-      return {
-        ...prevState,
-        chineseName: chineseName,
-        price: price,
-        foodPic: foodPic,
-      };
+    setChosenFoods((prevFoods) => {
+      const existingFoodIndex = prevFoods.findIndex(
+        (food) => food.chineseName === chineseName
+      );
+
+      if (existingFoodIndex !== -1) {
+        // Chinese name already exists, update the quantity of the existing object
+        const updatedFoods = [...prevFoods];
+        updatedFoods[existingFoodIndex].quantity += 1;
+        return updatedFoods;
+      } else {
+        // Chinese name doesn't exist, add the new object to the array
+        const newFood = {
+          chineseName: chineseName,
+          price: price,
+          foodPic: foodPic,
+          quantity: 1,
+        };
+        return [...prevFoods, newFood];
+      }
     });
-    // setChosenFoods((prevItem) => {
-    //   return [...prevItem, chosenFood];
-    // });
-    console.log(chosenFoods);
   }
+
+  console.log(chosenFoods);
 
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -59,7 +58,7 @@ const Root = () => {
     setIsOpen(open);
   };
   return (
-    <>
+    <AuthProvider>
       <div className={styles.header}>
         <Header scrollPosition_root={scrollPosition} />
       </div>
@@ -74,7 +73,7 @@ const Root = () => {
       />
       <Whatsapp />
       <Footer />
-    </>
+    </AuthProvider>
   );
 };
 export default Root;

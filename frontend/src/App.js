@@ -10,6 +10,7 @@ import Record from "./navbar_routers/Record";
 import Location from "./navbar_routers/Location";
 import About from "./navbar_routers/About";
 import BulletinBoard from "./navbar_routers/BulletinBoard";
+import ForgotPassword from "./components/ForgotPassword";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/location", element: <Location /> },
       { path: "/about", element: <About /> },
       { path: "/bulletinBoard", element: <BulletinBoard /> },
+      { path: "/forgot-password", element: <ForgotPassword /> },
     ],
   },
 ]);

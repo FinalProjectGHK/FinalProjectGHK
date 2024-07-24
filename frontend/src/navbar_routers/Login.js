@@ -126,7 +126,7 @@ function Login() {
                 href="#"
                 class="ms-auto text-sm text-gray-700 hover:underline dark:text-gray-500"
               >
-                Lost Password?
+                <Link to="/forgot-password">Forgot Password?</Link>
               </a>
             </div>
             <button
@@ -143,7 +143,7 @@ function Login() {
               <Alert severity="success">Log In Successfully.</Alert>
             ) : null}
 
-            <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+            <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
               Not registered?{" "}
               <Link
                 to="/register"

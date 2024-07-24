@@ -7,6 +7,7 @@ import registerPic from "../image/registerPage.png";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../components/firebase";
 import { setDoc, doc } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 function Register() {
   const [input, setInput] = useState({
@@ -21,6 +22,7 @@ function Register() {
   const [successReg, setSuccessReg] = useState(false);
   const [emailInUse, setEmailInUse] = useState(false);
   const [must6, setMust6] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function handleNameChange(ev) {
     setInput((prevState) => {
@@ -56,6 +58,7 @@ function Register() {
     ev.preventDefault();
     if (input["password"] === input["confirmPassword"]) {
       try {
+        setLoading(true);
         await createUserWithEmailAndPassword(
           auth,
           input["email"],
@@ -100,16 +103,9 @@ function Register() {
           setMust6(false);
         }
       }
+      setLoading(false);
       setPwUnmatch(false);
-      // let result = await fetch("http://localhost:3001/register", {
-      //   method: "post",
-      //   body: JSON.stringify(input),
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-      // result = await result.json;
-      // localStorage.setItem("members", JSON.stringify(result));
+
       setInput({
         name: "",
         email: "",
@@ -244,11 +240,25 @@ function Register() {
               </label>
             </div>
             <button
+              disabled={loading}
               type="submit"
               className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
             >
               Register new account
             </button>
+
+            <div
+              style={{ marginTop: "20px" }}
+              className="text-sm font-medium text-gray-500 dark:text-gray-300"
+            >
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-gray-700 hover:underline dark:text-gray-500"
+              >
+                Log In
+              </Link>
+            </div>
           </form>
           {pwUnmatch ? (
             <Alert severity="error">Password mismatch, please re-enter.</Alert>

@@ -38,13 +38,13 @@ export default function FoodMenu({ scrollPosition_home }) {
   const [scrollPostion, setScrollPostion] = useState(0);
   const scrollViewRef = useRef();
   const btnContainerRef = useRef();
-  useEffect(() => {
-    if (scrollPosition_home >= 900) {
-      btnContainerRef.current.classList.add(styles.div_btnContainer_bg);
-    } else {
-      btnContainerRef.current.classList.remove(styles.div_btnContainer_bg);
-    }
-  }, [scrollPosition_home]);
+  // useEffect(() => {
+  //   if (scrollPosition_home >= 900) {
+  //     btnContainerRef.current.classList.add(styles.div_btnContainer_bg);
+  //   } else {
+  //     btnContainerRef.current.classList.remove(styles.div_btnContainer_bg);
+  //   }
+  // }, [scrollPosition_home]);
   function changeBtnStyle(categroy) {
     if (selectedCategory === categroy) {
       return `${styles.btn_categroy_pressed} ${styles.btn_categroy}`;
@@ -103,7 +103,7 @@ export default function FoodMenu({ scrollPosition_home }) {
       {/* <div className={styles.categroyBar_container2}> </div>*/}
       <div className={styles.categroyBar_container}>
         <div className={styles.categroyBar}>
-          <div className={styles.div_controlLeft}>
+          {/* <div className={styles.div_controlLeft}>
             <button
               className="flex items-center justify-center cursor-pointer group focus:outline-none"
               onClick={() => {
@@ -128,13 +128,20 @@ export default function FoodMenu({ scrollPosition_home }) {
                 </svg>
               </span>
             </button>
-          </div>
+          </div> */}
           <div ref={scrollViewRef} className={styles.div_scrollView}>
-            <div ref={btnContainerRef} className={styles.div_btnContainer}>
+            <div
+              ref={btnContainerRef}
+              className={
+                scrollPosition_home && scrollPosition_home >= 900
+                  ? `${styles.div_btnContainer_bg} ${styles.div_btnContainer}`
+                  : `${styles.div_btnContainer}`
+              }
+            >
               {showCategroyBar(categoryNameArr)}
             </div>
           </div>
-          <div className={styles.div_controlRight}>
+          {/* <div className={styles.div_controlRight}>
             <button
               className="flex items-center justify-center cursor-pointer group focus:outline-none"
               onClick={() => {
@@ -159,7 +166,7 @@ export default function FoodMenu({ scrollPosition_home }) {
                 </svg>
               </span>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className={styles.foodList_outside}>
