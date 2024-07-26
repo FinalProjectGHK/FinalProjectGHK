@@ -2,8 +2,14 @@ import styles from "./shoppingCart.module.css";
 import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import ShoppingCartList from "./ShoppingCartList";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-export default function ShoppingCart({ chosenFoods }) {
+export default function ShoppingCart({
+  chosenFoods,
+  delFood,
+  addItem,
+  delItem,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = (open) => (event) => {
     if (
@@ -27,7 +33,12 @@ export default function ShoppingCart({ chosenFoods }) {
             className={styles.img_shoppingCart}
             alt="shopping cart"
           />
-          <label className={styles.lbl_shoppingCart}>Shopping Cart</label>
+          <label
+            style={{ fontSize: "28px" }}
+            className={styles.lbl_shoppingCart}
+          >
+            購 物 車
+          </label>
         </button>
         <Drawer
           classes={{ paper: styles.drawerPaper }}
@@ -41,10 +52,14 @@ export default function ShoppingCart({ chosenFoods }) {
               .map((item, index) => (
                 <ShoppingCartList
                   key={index}
+                  id={index}
                   chineseName={item.chineseName}
                   foodPic={item.foodPic}
                   price={item.price}
                   quantity={item.quantity}
+                  delFood={delFood}
+                  addItem={addItem}
+                  delItem={delItem}
                 />
               ))}
           </div>

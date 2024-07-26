@@ -5,10 +5,12 @@ import Alert from "@mui/material/Alert";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "./firebase";
 import { Link } from "react-router-dom";
-import resetPwPic from "../image/resetPwPage.png";
+import resetPw1 from "../image/resetPw1.png";
+import resetPw2 from "../image/resetPw2.png";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [resetPw, setResetPw] = useState(false);
 
   const [checkEmail, setCheckEmail] = useState(false);
   const [noSuchEmail, setNoSuchEmail] = useState(false);
@@ -17,9 +19,10 @@ function ForgotPassword() {
     ev.preventDefault();
 
     try {
-      setCheckEmail(true);
       await sendPasswordResetEmail(auth, email);
       console.log("OK");
+      setCheckEmail(true);
+      setResetPw(true);
     } catch (error) {
       console.log(error.message);
       setNoSuchEmail(true);
@@ -33,8 +36,16 @@ function ForgotPassword() {
     <div>
       <div className={styles.container}>
         <div className={styles.forgotPwBox}>
-          <form class="space-y-6" action="#">
-            <h1>Reset Password</h1>
+          <form onSubmit={handleResetPassword} class="space-y-6" action="#">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h1>重設密碼</h1>
+            </div>
             <div>
               <label
                 style={{ display: "flex" }}
@@ -55,7 +66,7 @@ function ForgotPassword() {
             </div>
 
             <button
-              onClick={handleResetPassword}
+              // onClick={handleResetPassword}
               type="submit"
               class="w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
             >
@@ -88,7 +99,11 @@ function ForgotPassword() {
             </div>
           </form>
         </div>
-        <img src={resetPwPic} alt="resetPic"></img>
+        {resetPw ? (
+          <img src={resetPw2} alt="afterResetPw"></img>
+        ) : (
+          <img src={resetPw1} alt="beforeResetPw"></img>
+        )}
       </div>
     </div>
   );

@@ -6,15 +6,92 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import Zoom from "@mui/material/Zoom";
 import { useOutletContext } from "react-router-dom";
+import { useAuth } from "../components/contexts/AuthContext";
 
 function Card({ foodPic, chineseName, englishName, price }) {
-  const [addFood] = useOutletContext();
+  const [outletContextObj] = useOutletContext();
+  const addFood = outletContextObj["addFood"];
+  // const [userFav, setUserFav] = useState([]);
+  const { currentUser } = useAuth();
   const [isFav, setIsFav] = useState(false);
-  function favFood() {
+  // const [liked, setLiked] = useState(false);
+
+  // useEffect(() => {
+  //   async function fetchUserFav() {
+  //     try {
+  //       const res = await fetch(
+  //         `http://localhost:3001/userFav/?email=${currentUser.email}`
+  //       );
+  //       const result = await res.json();
+  //       setUserFav(result[0]["favouriteItem"]);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   fetchUserFav();
+  // }, []);
+
+  async function favFood() {
     setIsFav((prevState) => {
       return !prevState;
     });
   }
+
+  async function addFav(chineseName, price, foodPic) {
+    try {
+      console.log(chineseName, price, foodPic);
+      let favItem = {
+        email: currentUser.email,
+        chineseName: chineseName,
+        price: price,
+        foodPic: foodPic,
+      };
+      console.log(favItem);
+      let result = await fetch("http://localhost:3001/addFavItem", {
+        method: "PATCH",
+        body: JSON.stringify(favItem),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function removeFav(chineseName, price, foodPic) {
+    try {
+      let favItem = {
+        email: currentUser.email,
+        chineseName: chineseName,
+        price: price,
+        foodPic: foodPic,
+      };
+      let result = await fetch("http://localhost:3001/removeFavItem", {
+        method: "PATCH",
+        body: JSON.stringify(favItem),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // useEffect(() => {
+  //   function checkLiked() {
+  //     for (let i = 0; i < userFav.length; i++) {
+  //       if (userFav[i]["chineseName"] === chineseName) {
+  //         setLiked(true);
+  //       }
+  //     }
+  //   }
+  //   checkLiked();
+  // }, [userFav, chineseName]);
+
   return (
     <div className={styles.container}>
       <div className={styles.productBox}>
@@ -28,13 +105,24 @@ function Card({ foodPic, chineseName, englishName, price }) {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "flex-end",
               alignItems: "flex-end",
+              gap: "30px",
             }}
           >
-            <div onClick={favFood}>
-              {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            </div>
+            {currentUser ? (
+              <div onClick={favFood}>
+                {isFav ? (
+                  <FavoriteIcon
+                    onClick={() => removeFav(chineseName, price, foodPic)}
+                  />
+                ) : (
+                  <FavoriteBorderIcon
+                    onClick={() => addFav(chineseName, price, foodPic)}
+                  />
+                )}
+              </div>
+            ) : null}
             <Zoom in={true}>
               <Fab
                 onClick={() => addFood(chineseName, price, foodPic)}

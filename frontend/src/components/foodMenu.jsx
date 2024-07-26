@@ -1,5 +1,5 @@
 import styles from "./foodMenu.module.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Card from "./Card";
 import Dessert from "../menu/dessert"; // for test
 import Drinks from "../menu/drink"; // for test
@@ -45,6 +45,7 @@ export default function FoodMenu({ scrollPosition_home }) {
   //     btnContainerRef.current.classList.remove(styles.div_btnContainer_bg);
   //   }
   // }, [scrollPosition_home]);
+
   function changeBtnStyle(categroy) {
     if (selectedCategory === categroy) {
       return `${styles.btn_categroy_pressed} ${styles.btn_categroy}`;
@@ -86,18 +87,19 @@ export default function FoodMenu({ scrollPosition_home }) {
     setScrollPostion(newScrollPostion);
     scrollViewRef.current.scrollLeft = newScrollPostion;
   }
-  function showCategroyFood(categoryFoods) {
-    return categoryFoods.map((categoryFoods, index) => (
-      <Card
-        key={index}
-        foodPic={categoryFoods.img_url}
-        chineseName={categoryFoods.name_c}
-        //englishName={dessert.name_e}
-        price={categoryFoods.price}
-        className={styles.card}
-      />
-    ));
-  }
+  // function showCategroyFood(categoryFoods) {
+  //   return categoryFoods.map((categoryFoods, index) => (
+  //     <Card
+  //       key={index}
+  //       foodPic={categoryFoods.img_url}
+  //       chineseName={categoryFoods.name_c}
+  //       //englishName={dessert.name_e}
+  //       price={categoryFoods.price}
+  //       className={styles.card}
+  //     />
+  //   ));
+  // }
+
   return (
     <>
       {/* <div className={styles.categroyBar_container2}> </div>*/}
@@ -170,7 +172,18 @@ export default function FoodMenu({ scrollPosition_home }) {
         </div>
       </div>
       <div className={styles.foodList_outside}>
-        <div className={styles.foodList}>{showCategroyFood(categoryFoods)}</div>
+        <div className={styles.foodList}>
+          {categoryFoods.map((categoryFoods, index) => (
+            <Card
+              key={index}
+              foodPic={categoryFoods.img_url}
+              chineseName={categoryFoods.name_c}
+              //englishName={dessert.name_e}
+              price={categoryFoods.price}
+              className={styles.card}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

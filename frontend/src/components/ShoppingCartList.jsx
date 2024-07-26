@@ -1,7 +1,16 @@
 import styles from "./ShoppingCartList.module.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-const ShoppingCartList = ({ chineseName, foodPic, price, quantity }) => {
+const ShoppingCartList = ({
+  chineseName,
+  foodPic,
+  price,
+  quantity,
+  delFood,
+  addItem,
+  delItem,
+  id,
+}) => {
   return (
     <div>
       <div className={styles.shoppingCard}>
@@ -11,18 +20,21 @@ const ShoppingCartList = ({ chineseName, foodPic, price, quantity }) => {
             <div className={styles.itemName}>{chineseName}</div>
             <div className={styles.itemQuantityPrice}>
               <div className={styles.itemQuantity}>
-                <button>-</button>
+                <button onClick={() => delItem(id)}>-</button>
                 <span>{quantity}</span>
-                <button>+</button>
+                <button onClick={() => addItem(id)}>+</button>
               </div>
-              <div className={styles.itemPrice}>${price}</div>
+              <div className={styles.itemPrice}>${price * quantity}</div>
             </div>
             <div className={styles.favRemove}>
               <button className={styles.favButton}>
                 <FavoriteBorderIcon />
                 Move to Favorites
               </button>
-              <button className={styles.removeButton}>
+              <button
+                onClick={() => delFood(id)}
+                className={styles.removeButton}
+              >
                 <DeleteIcon /> Remove
               </button>
             </div>
