@@ -67,6 +67,7 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
+  border-radius: 20px;
 }
 .div_btnContainer_bg {
   background-color: #bfb4ad7e /* #ffffffd2 */ /* #ede9e3d9 */;
