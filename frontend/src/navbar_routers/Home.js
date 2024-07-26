@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import FoodMenu from "../components/foodMenu";
 import Carousel from "../components/carousel";
 import LuckyDraw from "../components/LuckyDraw";
+import RankTable from "../components/RankTable";
 
 const Home = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -23,6 +24,7 @@ const Home = () => {
         <Carousel />
       </div>
       <div className={styles.rankTable}>
+        <RankTable />
         <LuckyDraw />
       </div>
       <div className={styles.foodMenu}>

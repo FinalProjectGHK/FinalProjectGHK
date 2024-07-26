@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import ShoppingCartList from "./ShoppingCartList";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import emptyCart from "../image/empty.png";
 
 export default function ShoppingCart({
   chosenFoods,
@@ -47,6 +48,34 @@ export default function ShoppingCart({
           onClose={toggleDrawer(false)}
         >
           <div className={styles.drawerContent}>
+            {chosenFoods.length === 0 ? (
+              <div className={styles.emptyCart}>
+                <img src={emptyCart} alt="Empty Cart" />
+                <p>Your Cart is Empty</p>
+                <p>Add items to get started</p>
+                <button onClick={toggleDrawer(false)}>Continue to shop</button>
+              </div>
+            ) : (
+              chosenFoods
+                .filter(
+                  (item) => item.chineseName && item.foodPic && item.price
+                )
+                .map((item, index) => (
+                  <ShoppingCartList
+                    key={index}
+                    id={index}
+                    chineseName={item.chineseName}
+                    foodPic={item.foodPic}
+                    price={item.price}
+                    quantity={item.quantity}
+                    delFood={delFood}
+                    addItem={addItem}
+                    delItem={delItem}
+                  />
+                ))
+            )}
+          </div>
+          {/* <div className={styles.drawerContent}>
             {chosenFoods
               .filter((item) => item.chineseName && item.foodPic && item.price)
               .map((item, index) => (
@@ -62,7 +91,7 @@ export default function ShoppingCart({
                   delItem={delItem}
                 />
               ))}
-          </div>
+          </div> */}
         </Drawer>
       </div>
     </div>
