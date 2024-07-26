@@ -17,3 +17,8 @@
   width: 100%;
   margin: 20px 0;
 }
+
+.rankTable {
+  display: flex;
+  gap: 30px;
+}

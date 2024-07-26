@@ -72,3 +72,38 @@
   border-radius: 30px;
   /* background-color: #ede9e3; */
 }
+
+.emptyCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  font-size: 20px;
+  color: #705b38;
+}
+
+.emptyCart img {
+  width: 60%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.emptyCart p {
+  margin: 10px 0;
+}
+
+.emptyCart button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #8d7a5b;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.emptyCart button:hover {
+  background-color: #705b38;
+}
