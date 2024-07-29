@@ -1,5 +1,6 @@
 import styles from "./shoppingCart.module.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Drawer from "@mui/material/Drawer";
 import ShoppingCartList from "./ShoppingCartList";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -8,6 +9,7 @@ import emptyCart from "../image/empty.png";
 export default function ShoppingCart({
   chosenFoods,
   delFood,
+  delAllFood,
   addItem,
   delItem,
 }) {
@@ -21,6 +23,29 @@ export default function ShoppingCart({
     }
     setIsOpen(open);
   };
+  const handleScrollToTop = (num, str) => {
+    window.scrollTo({
+      top: num,
+      behavior: str
+    });
+  };
+  function handleClose() {
+    setIsOpen(false);
+  }
+  function handleComfirm() {
+    handleScrollToTop(0, 'auto');
+    setIsOpen(false);
+  }
+  function handleClear() {
+    // TODO pop-up window to comfrim delete
+    delAllFood();
+  }
+  function handleToFoodMenu() {
+    setTimeout(() => {
+      handleScrollToTop(900, 'smooth');
+    }, 100) 
+    setIsOpen(false);
+  }
 
   return (
     <div className={styles.bgContainer}>
@@ -48,50 +73,42 @@ export default function ShoppingCart({
           onClose={toggleDrawer(false)}
         >
           <div className={styles.drawerContent}>
-            {chosenFoods.length === 0 ? (
-              <div className={styles.emptyCart}>
+            {chosenFoods.length === 0 ? 
+              (<div className={styles.emptyCart}>
                 <img src={emptyCart} alt="Empty Cart" />
                 <p>Your Cart is Empty</p>
                 <p>Add items to get started</p>
-                <button onClick={toggleDrawer(false)}>Continue to shop</button>
-              </div>
-            ) : (
-              chosenFoods
-                .filter(
-                  (item) => item.chineseName && item.foodPic && item.price
-                )
-                .map((item, index) => (
-                  <ShoppingCartList
-                    key={index}
-                    id={index}
-                    chineseName={item.chineseName}
-                    foodPic={item.foodPic}
-                    price={item.price}
-                    quantity={item.quantity}
-                    delFood={delFood}
-                    addItem={addItem}
-                    delItem={delItem}
-                  />
-                ))
-            )}
+                <Link to="/home">
+                  <button onClick={() => handleToFoodMenu()}>Continue to shop</button>
+                </Link>
+              </div>):
+              (<div className={styles.notEmptyCart}>
+                <div className={styles.CartList}>
+                {chosenFoods
+                  .filter(item => item.chineseName && item.foodPic && item.price)
+                  .map((item, index) => (
+                    <ShoppingCartList
+                      key={index}
+                      id={index}
+                      chineseName={item.chineseName}
+                      foodPic={item.foodPic}
+                      price={item.price}
+                      quantity={item.quantity}
+                      delFood={delFood}
+                      addItem={addItem}
+                      delItem={delItem}
+                    />
+                  ))
+                }
+                </div>
+                {/* <div className={styles.controlPanel}>
+                  <button className={styles.btn_Clear} onClick={() => handleClose()}></button>
+                  <Link to="/cart" className={styles.btnComfirm} onClick={() => handleComfirm()}></Link>
+                  <button className={styles.btn_Clear} onClick={() => handleClear()}></button>
+                  <Link to="/home" className={styles.btn_ToFoodMenu} onClick={() => handleToFoodMenu()}></Link>
+                </div> */}
+              </div>)}
           </div>
-          {/* <div className={styles.drawerContent}>
-            {chosenFoods
-              .filter((item) => item.chineseName && item.foodPic && item.price)
-              .map((item, index) => (
-                <ShoppingCartList
-                  key={index}
-                  id={index}
-                  chineseName={item.chineseName}
-                  foodPic={item.foodPic}
-                  price={item.price}
-                  quantity={item.quantity}
-                  delFood={delFood}
-                  addItem={addItem}
-                  delItem={delItem}
-                />
-              ))}
-          </div> */}
         </Drawer>
       </div>
     </div>

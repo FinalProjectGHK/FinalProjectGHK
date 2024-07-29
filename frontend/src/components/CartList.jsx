@@ -11,8 +11,8 @@ export default function CartList({ chineseName, foodPic, quantity, price }) {
             <span>QTY</span>
             <span>{quantity}</span>
           </div>
-          <div className={styles.itemPrice}>${price * quantity}</div>
         </div>
+        <div className={styles.itemPrice}>$ {price * quantity}</div>
       </div>
     </div>
   );

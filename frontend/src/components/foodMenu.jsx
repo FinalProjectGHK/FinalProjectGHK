@@ -1,80 +1,72 @@
 import styles from "./foodMenu.module.css";
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Card from "./Card";
-import Dessert from "../menu/dessert"; // for test
-import Drinks from "../menu/drink"; // for test
-import Noodle from "../menu/noodle"; // for test
-import Pasta from "../menu/pasta"; // for test
-import Rice from "../menu/rice"; // for test
-const scrollDistance = 220;
-const barMaxWidth = 1270;
-/* const CategoryLinks = (sc) => { */
+
+/* const scrollDistance = 220;
+const barMaxWidth = 1270; */
+
 export default function FoodMenu({ scrollPosition_home }) {
   const categoryNameArr = [
-    "Rice",
-    "Pasta",
-    "Noodle",
-    "Dessert",
-    "Favorite",
-    "Vegan",
-    "Drinks",
+    "favorite",
+    "rice",
+    "pasta",
+    "noodle",
+    "vegan",
+    "dessert",
+    "drink",
   ];
-  const data_allCategory = {
-    Favorite: {},
-    Vegan: {},
-    Rice: Rice,
-    Pasta: Pasta,
-    Noodle: Noodle,
-    Dessert: Dessert,
-    Drinks: Drinks,
-  }; // for test
-  //const data_allCategory = {}
-  /* useEffect(() => {
-        //fecth data here
-        return(data_allCategory)
-    }, []) */
-  const [categoryFoods, setCategoryFoods] = useState(data_allCategory["Rice"]);
-  const [selectedCategory, setSelectedCategory] = useState("Rice");
+ 
+  const [categoryFoods, setCategoryFoods] = useState();
+  const [selectedCategory, setSelectedCategory] = useState("rice");
   const [scrollPostion, setScrollPostion] = useState(0);
   const scrollViewRef = useRef();
   const btnContainerRef = useRef();
-  // useEffect(() => {
-  //   if (scrollPosition_home >= 900) {
-  //     btnContainerRef.current.classList.add(styles.div_btnContainer_bg);
-  //   } else {
-  //     btnContainerRef.current.classList.remove(styles.div_btnContainer_bg);
-  //   }
-  // }, [scrollPosition_home]);
 
-  function changeBtnStyle(categroy) {
-    if (selectedCategory === categroy) {
-      return `${styles.btn_categroy_pressed} ${styles.btn_categroy}`;
-    } else {
-      return styles.btn_categroy;
-    }
-  }
-  function showCategroyBar(categoryName) {
-    return categoryName.map((categoryName, index) => (
-      <button
-        key={index}
-        className={changeBtnStyle(categoryName)}
-        onClick={() =>
-          handleButton(data_allCategory[categoryName], categoryName)
+  useEffect(() => {
+    async function fetchData() {
+      const data = {
+        favorite: [],
+        rice: [],
+        pasta: [],
+        noodle: [],
+        vegan: [],
+        dessert: [],
+        drink: [],
+      }
+      try {
+        const res = await fetch("http://localhost:3001/allproducts");
+        const result = await res.json();
+        for(let i = 0; i < result.length; i++) {
+          for(let l = 0; l < result[i]['category'].length; l++){
+            for(let categoryName of categoryNameArr) {
+              if(result[i]['category'][l] === categoryName) {
+                data[categoryName].push(result[i])
+              } 
+            }
+          }
         }
-      >
-        <label className={styles.lbl_categroy}>{categoryName}</label>
-      </button>
-    ));
-  }
-  function handleButton(categoryFoods, categroy) {
-    setCategoryFoods(categoryFoods);
+        setCategoryFoods(data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [])
+
+  function handleButton(categroy) {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 900,
+        behavior: 'smooth'
+      });
+    }, 100) 
     setSelectedCategory(categroy);
     /* // TODO
-        setScrollPostion(0)
-        scrollViewRef.current.scrollLeft = 0 */
+    setScrollPostion(0)
+    scrollViewRef.current.scrollLeft = 0 */
   }
-  function handleScroll(scrollAmount) {
-    /* let newScrollPostion = scrollPostion + scrollAmount */
+  /* function handleScroll(scrollAmount) {
+    //let newScrollPostion = scrollPostion + scrollAmount
     let newScrollPostion = scrollPostion + scrollAmount;
     if (newScrollPostion < 0) {
       newScrollPostion = 0;
@@ -86,19 +78,7 @@ export default function FoodMenu({ scrollPosition_home }) {
     }
     setScrollPostion(newScrollPostion);
     scrollViewRef.current.scrollLeft = newScrollPostion;
-  }
-  // function showCategroyFood(categoryFoods) {
-  //   return categoryFoods.map((categoryFoods, index) => (
-  //     <Card
-  //       key={index}
-  //       foodPic={categoryFoods.img_url}
-  //       chineseName={categoryFoods.name_c}
-  //       //englishName={dessert.name_e}
-  //       price={categoryFoods.price}
-  //       className={styles.card}
-  //     />
-  //   ));
-  // }
+  } */
 
   return (
     <>
@@ -140,7 +120,16 @@ export default function FoodMenu({ scrollPosition_home }) {
                   : `${styles.div_btnContainer}`
               }
             >
-              {showCategroyBar(categoryNameArr)}
+              {categoryNameArr.map((categoryName, index) => (<>
+                {selectedCategory === categoryName? 
+                  (<button key={index} className={`${styles.btn_categroy_pressed} ${styles.btn_categroy}`} onClick={() => handleButton(categoryName)}>
+                    <label className={styles.lbl_categroy}>{categoryName}</label>
+                  </button>) : 
+                  (<button key={index} className={styles.btn_categroy} onClick={() => handleButton(categoryName)}>
+                    <label className={styles.lbl_categroy}>{categoryName}</label>
+                  </button>)
+                }
+              </>))}
             </div>
           </div>
           {/* <div className={styles.div_controlRight}>
@@ -173,13 +162,14 @@ export default function FoodMenu({ scrollPosition_home }) {
       </div>
       <div className={styles.foodList_outside}>
         <div className={styles.foodList}>
-          {categoryFoods.map((categoryFoods, index) => (
+          {categoryFoods &&
+          categoryFoods[selectedCategory].map((categoryFood, index) => (
             <Card
               key={index}
-              foodPic={categoryFoods.img_url}
-              chineseName={categoryFoods.name_c}
+              foodPic={categoryFood.img_url}
+              chineseName={categoryFood.name_c}
               //englishName={dessert.name_e}
-              price={categoryFoods.price}
+              price={categoryFood.price}
               className={styles.card}
             />
           ))}
@@ -188,4 +178,3 @@ export default function FoodMenu({ scrollPosition_home }) {
     </>
   );
 }
-/* export default CategoryLinks; */
