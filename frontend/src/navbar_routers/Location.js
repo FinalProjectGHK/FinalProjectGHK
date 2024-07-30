@@ -45,6 +45,7 @@ const MapWithMarkers = ({ locations, selectedLocation, handleMarkerClick, handle
             click: () => {
               handleLocationClick(index); 
               handleMarkerClick(index);
+              console.log(location.position)
               map.setView(location.position, map.getZoom());
             },
           }}
@@ -127,7 +128,13 @@ const Location = () => {
           <div
             key={index}
             ref={locationRefs.current[index]}
-            onClick={() => handleLocationClick(index)}
+            position = {locations.position}
+            onClick={() => {
+              handleLocationClick(index) 
+              /* map.setView(location.position, map.getZoom()) */
+              /* MapWithMarkers(position, 
+                selectedLocation, handleMarkerClick) */
+            }}
           >
             <div className={styles.card}>
               <div className={styles.name}>

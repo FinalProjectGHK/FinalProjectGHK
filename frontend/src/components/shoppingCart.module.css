@@ -56,8 +56,7 @@
   right: -60px;
   pointer-events: none;
 }
-.drawerPaper {
-  /* height: fit-content; */
+/* .drawerPaper {
   width: 43%;
   background-color: transparent;
   box-shadow: none;
@@ -70,42 +69,88 @@
   height: 97%;
   width: 97%;
   border-radius: 30px;
+} */
+.drawerPaper {
+  width: 43%;
+  /* background-color: #ede9e3; */
+  padding: 20px 0 20px 20px;
+
+}
+.drawerContent {
+  height: inherit;
+  width: 100%;
   /* background-color: #ede9e3; */
 }
-
 .emptyCart {
+  height: inherit;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   text-align: center;
   font-size: 20px;
   color: #705b38;
 }
-
 .emptyCart img {
-  width: 60%;
+  width: 60%; 
   height: auto;
   margin-bottom: 20px;
 }
-
 .emptyCart p {
   margin: 10px 0;
 }
-
 .emptyCart button {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #8d7a5b;
+  background-color: #8D7A5B;
   color: white;
   border: none;
   border-radius: 15px;
   cursor: pointer;
 }
-
 .emptyCart button:hover {
   background-color: #705b38;
+}
+
+.notEmptyCart {
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.CartList {
+  /* height: inherit; */
+  width: 100%;
+}
+.controlPanel {
+  height: 100%;
+  width: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px 0;
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 20px;
+  right: 0;
+}
+.btnComfirm {
+  height: 60px;
+  width: 60px;
+  background-color: rgb(71, 71, 254);
+}
+.btn_Clear {
+  height: 60px;
+  width: 60px;
+  background-color: rgb(44, 44, 156);
+}
+.btn_ToFoodMenu {
+  height: 60px;
+  width: 60px;
+  background-color: rgb(13, 13, 53);
 }
 
 .cartBtn {

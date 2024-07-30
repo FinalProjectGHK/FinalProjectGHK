@@ -8,13 +8,15 @@ import Footer from "./Footer";
 import { AuthProvider } from "./components/contexts/AuthContext";
 
 const Root = () => {
-  /* const [chosenFood, setChosenFood] = useState({
-    chineseName: "",
-    price: "",
-    foodPic: "",
-    amount: 0,
-  }); */
   const [chosenFoods, setChosenFoods] = useState([]);
+  const [isBlankPage, setIsBlankPage] = useState(false);
+  const [clientSecret, setClientSecret] = useState("");
+  const [shoppingDataPool, setShoppingDataPool] = useState({});
+  const [currentNews, setCurrentNews] = useState("");
+
+  const outletContextObj = { 'addFood': addFood, 'chosenFoods': chosenFoods, 
+    'isBlankPage': [isBlankPage, setIsBlankPage], 'clientSecret': [clientSecret, setClientSecret],
+    'shoppingDataPool': [shoppingDataPool, setShoppingDataPool], 'currentNews': [currentNews, setCurrentNews]};
 
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {
@@ -23,6 +25,10 @@ const Root = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
 
   function addFood(chineseName, price, foodPic) {
     setChosenFoods((prevFoods) => {
@@ -46,82 +52,6 @@ const Root = () => {
       }
     });
   }
-
-  /* // old
-  useEffect(() => {
-    setChosenFoods((prevItem) => {
-      return [...prevItem, chosenFood];
-    });
-    //console.log(chosenFoods); 
-  }, [chosenFood]);
-
-  function addFood(chineseName, price, foodPic) {
-    console.log(chineseName, price, foodPic);
-    console.log(chosenFoods)
-
-    let newArray = []
-    let index = 0
-    const newObject = {'chineseName': chineseName, 'price': price, 'foodPic': foodPic, 'amount': 1};
-
-    chosenFoods.forEach((item, idx) => {
-      //console.log('item[chineseName]' + item['chineseName'])
-      if(item['chineseName'] === chineseName) {
-        index = idx
-      } else {
-        index = -1
-      }
-    })
-    
-    console.log(index)
-    if(index !== -1) {
-      console.log('exist')
-      chosenFoods.forEach(item => {return newArray.push(item)})
-      newArray[index].amount += 1 // setChosenFood() is executed
-      console.log(newArray)
-      //console.log('amount of added item: ' + newArray[index].amount)
-    } else {
-      console.log('no exist')
-      chosenFoods.forEach(item => {return newArray.push(item)})
-      newArray.push(newObject)
-      console.log(newArray)
-      setChosenFood((prevState) => {
-        return {
-          ...prevState,
-          chineseName: chineseName,
-          price: price,
-          foodPic: foodPic,
-          amount: 1,
-        };
-      });
-      console.log('amount of added item: ' + newObject.amount)
-    }
-  } */
-
-  /* // backup
-  useEffect(() => {
-    setChosenFoods((prevItem) => {
-      return [...prevItem, chosenFood];
-    });
-    //console.log(chosenFoods); 
-  }, [chosenFood]);
-
-  function addFood(chineseName, price, foodPic) {
-    console.log(chineseName, price, foodPic);
-    setChosenFood((prevState) => {
-      console.log(chosenFoods)
-      return {
-        ...prevState,
-        chineseName: chineseName,
-        price: price,
-        foodPic: foodPic,
-      };
-    });
-    // setChosenFoods((prevItem) => {
-    //   return [...prevItem, chosenFood];
-    // });
-    // console.log(chosenFoods);
-  } */
-
   function delFood(id) {
     setChosenFoods((prevFoods) => {
       return prevFoods.filter((item, index) => {
@@ -129,30 +59,24 @@ const Root = () => {
       });
     });
   }
+  function delAllFood() {
+    setChosenFoods([])
+  }
   function addItem(id) {
     const updatedFoods = [...chosenFoods];
     updatedFoods[id].quantity += 1;
     setChosenFoods(updatedFoods);
   }
-
   function delItem(id) {
     if (chosenFoods[id].quantity > 1) {
-      setChosenFoods((prevFoods) => {
-        const updatedFoods = [...prevFoods];
-        updatedFoods[id].quantity -= 1;
-        return updatedFoods;
-      });
+      const updatedFoods = [...chosenFoods];
+      updatedFoods[id].quantity -= 1;
+      setChosenFoods(updatedFoods);
     } else {
       delFood(id);
     }
   }
 
-  //console.log(chosenFoods);
-
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-  };
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = (open) => (event) => {
     if (
@@ -164,33 +88,31 @@ const Root = () => {
     setIsOpen(open);
   };
 
-  const outletContextObj = {
-    addFood: addFood,
-    chosenFoods: chosenFoods,
-  };
-
   return (
     <AuthProvider>
-      <div className={styles.header}>
-        <Header
-          scrollPosition_root={scrollPosition}
-          chosenFoods={chosenFoods}
-        />
+      {isBlankPage ? 
+      (<><Outlet context={[outletContextObj]} /></>) :
+      (<><div className={styles.header}>
+        <Header scrollPosition_root={scrollPosition} chosenFoods={chosenFoods} />
       </div>
       <div className={styles.outlet}>
         <Outlet context={[outletContextObj]} />
       </div>
-      <div className={styles.footer}></div>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
       <ShoppingCart
         isOpen={isOpen}
         toggleDrawer={toggleDrawer}
         chosenFoods={chosenFoods}
         delFood={delFood}
+        delAllFood={delAllFood}
         addItem={addItem}
         delItem={delItem}
       />
       <Whatsapp />
-      <Footer />
+      </>)
+      }
     </AuthProvider>
   );
 };

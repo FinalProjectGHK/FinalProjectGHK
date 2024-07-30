@@ -2,6 +2,7 @@ import styles from "./ShoppingCartList.module.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 const ShoppingCartList = ({
+  id,
   chineseName,
   foodPic,
   price,
@@ -9,7 +10,6 @@ const ShoppingCartList = ({
   delFood,
   addItem,
   delItem,
-  id,
 }) => {
   return (
     <div>

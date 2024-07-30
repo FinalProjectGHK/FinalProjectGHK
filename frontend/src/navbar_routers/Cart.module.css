@@ -1,64 +1,199 @@
 .cartContainer {
+  min-height: 100vh;
+  height: fit-content;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 55%;
-  min-height: 70vh;
+  gap: 25px;
+}
+.leftContainer {
+  height: fit-content;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: sticky;
+  top: 12.5%;
+  right: 5%;
+}
+.shoppingCard_container {
+  min-height: 100vh;
+  width: 50%;
+  border-radius: 15px;
+  box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
 }
 .shoppingCard {
+  min-height: 100vh;
+  padding: 20px 10px;
   border-radius: 15px;
+  box-shadow: inset #d0c5bd 0px 0px 40px 25px;
   background-color: white;
-  flex: 1;
-  margin-right: 20px;
-}
-.summaryItem {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 18px;
 }
 
-.orderSummary {
-  position: fixed;
-  top: 15%;
-  right: 5%;
-  width: 40%;
-  max-height: 500px;
-  padding: 20px;
+.pickShop{
+  height: fit-content;
+  width: 100%;
+  padding: 10px 30px;
   border-radius: 15px;
   background-color: white;
   box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
 }
-.orderSummary h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
+.pickShopTitle {
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #918779;
+}
+.dropdownButton {
+  min-height: 35px;
+  max-height: fit-content;
+  width: 100%;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+  color: white;
+  background-color: #8D7A5B;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+  line-height: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.dropdownButton_lbl {
+  width: 95%;
+  overflow-wrap: anywhere;
+  text-align: start;
+}
+.dropdownButton_svg {
+  width: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+} 
+.dropdownButton:hover{
+  background-color: #705b38;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+.dropdownMenu {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 15px; 
+  border-style: solid;
+  border-width: 2px; 
+  border-color: #ebe3d5;
+}
+.dropdownMenu:hover {
+  border-color: #705b38;
+  box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+.dropdownMenu ul {
+  width: 100%;
+}
+.dropdownMenu ul li {
+  width: 100%;
+}
+.btn_location {
+  width: 100%;
+  border-radius: 10px;
+  padding: 3px 10px;
+  font-size: 16px;
+  color: #705b38;
+  overflow-wrap: anywhere;
+}
+.btn_location:hover {
+  background-color: #ede9e3;
+}
+
+.orderSummary {
+  height: fit-content;
+  width: 100%;
+  padding: 10px 30px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
+}
+.orderSummary:hover {
+  hr {
+    border-color: #705b38;
+  }
+}
+.orderSummaryTitle {
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #8f816c;
 }
 .summaryButtons {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   flex-direction: column;
-  margin-top: 20px;
 }
-.summaryItem {
-  font-size: 20px;
+.summaryItem{
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  font-size: 18px;
+}
+.summaryItem:hover {
+  background-color: #ede9e3;
 }
 hr {
-  margin: 20px 0;
+  border-color: #ebe3d5;
+  border-width: 1px;
+  margin: 10px 0;
 }
 .proceedButton {
+  height: 35px;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
   color: white;
-  background-color: #8d7a5b;
+  background-color: #8D7A5B;
   border-radius: 15px;
   cursor: pointer;
-  font-size: 25px;
-  padding: 10px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 25px;
 }
 .proceedButton:hover {
   background-color: #705b38;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 .continueButton {
+  background-color: transparent;
   color: #705b38;
-  font-size: 0.8em;
+  font-size: 18px;
   text-decoration: underline;
 }
+/* .continueButton:hover {
+
+} */
+
+/* .pickPaymentMethod {
+  height: fit-content;
+  padding: 10px 30px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
+}
+.pickPaymentMethod h2 {
+  margin-bottom: 10px;
+}
+.selectContainer {
+  height: fit-content;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+} */
