@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Card.module.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -11,35 +11,38 @@ import { useAuth } from "../components/contexts/AuthContext";
 function Card({ foodPic, chineseName, englishName, price }) {
   const [outletContextObj] = useOutletContext();
   const addFood = outletContextObj["addFood"];
-  // const [userFav, setUserFav] = useState([]);
+  const [userFav, setUserFav] = useState([]);
   const { currentUser } = useAuth();
   const [isFav, setIsFav] = useState(false);
-  // const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(false);
 
-  // useEffect(() => {
-  //   async function fetchUserFav() {
-  //     try {
-  //       const res = await fetch(
-  //         `http://localhost:3001/userFav/?email=${currentUser.email}`
-  //       );
-  //       const result = await res.json();
-  //       setUserFav(result[0]["favouriteItem"]);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   fetchUserFav();
-  // }, []);
+  useEffect(() => {
+    async function fetchUserFav() {
+      try {
+        const res = await fetch(
+          `http://localhost:3001/userFav/?email=${currentUser.email}`
+        );
+        const result = await res.json();
+        setUserFav(result[0]["favouriteItem"]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchUserFav();
+
+    // Logic to check if the current food item is liked
+    const favArr = userFav.map((fav) => fav["chineseName"]);
+    const isLiked = favArr.includes(chineseName);
+    setLiked(isLiked);
+  }, [currentUser, chineseName]);
 
   async function favFood() {
-    setIsFav((prevState) => {
-      return !prevState;
-    });
+    setIsFav((prevState) => !prevState);
   }
 
   async function addFav(chineseName, price, foodPic) {
     try {
-      console.log(chineseName, price, foodPic);
       let favItem = {
         email: currentUser.email,
         chineseName: chineseName,
@@ -47,7 +50,7 @@ function Card({ foodPic, chineseName, englishName, price }) {
         foodPic: foodPic,
       };
       console.log(favItem);
-      let result = await fetch("http://localhost:3001/addFavItem", {
+      const result = await fetch("http://localhost:3001/addFavItem", {
         method: "PATCH",
         body: JSON.stringify(favItem),
         headers: {
@@ -68,7 +71,7 @@ function Card({ foodPic, chineseName, englishName, price }) {
         price: price,
         foodPic: foodPic,
       };
-      let result = await fetch("http://localhost:3001/removeFavItem", {
+      const result = await fetch("http://localhost:3001/removeFavItem", {
         method: "PATCH",
         body: JSON.stringify(favItem),
         headers: {
@@ -80,17 +83,6 @@ function Card({ foodPic, chineseName, englishName, price }) {
       console.log(error);
     }
   }
-
-  // useEffect(() => {
-  //   function checkLiked() {
-  //     for (let i = 0; i < userFav.length; i++) {
-  //       if (userFav[i]["chineseName"] === chineseName) {
-  //         setLiked(true);
-  //       }
-  //     }
-  //   }
-  //   checkLiked();
-  // }, [userFav, chineseName]);
 
   return (
     <div className={styles.container}>

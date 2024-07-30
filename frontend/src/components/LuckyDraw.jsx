@@ -5,31 +5,31 @@ import luckyDrawPic from "../image/luckyDraw.png";
 
 function LuckyDraw() {
   const [allProducts, setAllProducts] = useState([]);
-  const [randomNumber, setRandomNumber] = useState(null);
-  const randomPic = [];
-  const randomName = [];
-  const randomPrice = [];
+  const [randomNumber, setRandomNumber] = useState(0);
+  // const randomPic = [];
+  // const randomName = [];
+  // const randomPrice = [];
 
-  function generatePic() {
-    for (let i = 0; i < allProducts.length; i++) {
-      randomPic.push(allProducts[i]["img_url"]);
-    }
-  }
+  // function generatePic() {
+  //   for (let i = 0; i < allProducts.length; i++) {
+  //     randomPic.push(allProducts[i]["img_url"]);
+  //   }
+  // }
 
-  function generateName() {
-    for (let i = 0; i < allProducts.length; i++) {
-      randomName.push(allProducts[i]["name_c"]);
-    }
-  }
+  // function generateName() {
+  //   for (let i = 0; i < allProducts.length; i++) {
+  //     randomName.push(allProducts[i]["name_c"]);
+  //   }
+  // }
 
-  function generatePrice() {
-    for (let i = 0; i < allProducts.length; i++) {
-      randomPrice.push(allProducts[i]["price"]);
-    }
-  }
-  generatePic();
-  generateName();
-  generatePrice();
+  // function generatePrice() {
+  //   for (let i = 0; i < allProducts.length; i++) {
+  //     randomPrice.push(allProducts[i]["price"]);
+  //   }
+  // }
+  // generatePic();
+  // generateName();
+  // generatePrice();
 
   useEffect(() => {
     async function fetchAllProducts() {
@@ -60,19 +60,22 @@ function LuckyDraw() {
       // .removeEventListener("scroll", handleScroll);
     };
   }, [allProducts]);
-
+  console.log("allProducts: ", allProducts);
   return (
     <div className={styles.container}>
       <div className={styles.cover}>
         <h3>諗唔到食乜？</h3>
         <img src={luckyDrawPic} alt="luckyDrawPic" />
       </div>
-      {allProducts && (
+      {allProducts.length > 0 && (
         <div className={styles.card}>
           <Card
-            foodPic={randomPic[randomNumber]}
-            chineseName={randomName[randomNumber]}
-            price={randomPrice[randomNumber]}
+            //foodPic={randomPic[randomNumber]} // allProducts[randNumber]['img']
+            //chineseName={randomName[randomNumber]} // allProducts[randNumber]['name_c']
+            //price={randomPrice[randomNumber]} // allProducts[randNumber]['price']
+            foodPic={allProducts[randomNumber]["img_url"]}
+            chineseName={allProducts[randomNumber]["name_c"]}
+            price={allProducts[randomNumber]["price"]}
           />
         </div>
       )}
