@@ -142,7 +142,7 @@ export default function Carousel() {
         >
           <img
             src={poster_offer1}
-            className="h-full w-full object-contain absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            className="h-full w-full object-cover absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="Slide 1"
             onClick={handleImg1}
           />
@@ -153,7 +153,7 @@ export default function Carousel() {
         >
           <img
             src={poster_offer2}
-            className="h-full w-full object-contain absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            className="h-full w-full object-cover absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="Slide 2"
             onClick={handleImg2}
           />
@@ -164,7 +164,7 @@ export default function Carousel() {
         >
           <img
             src={poster_offer3}
-            className="h-full w-full object-contain absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            className="h-full w-full object-cover absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="Slide 3"
             onClick={handleImg3}
           />
@@ -175,7 +175,7 @@ export default function Carousel() {
         >
           <img
             src={poster_offer4}
-            className="h-full w-full object-contain absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            className="h-full w-full object-cover absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="Slide 4"
             onClick={handleImg4}
           />
@@ -186,7 +186,7 @@ export default function Carousel() {
         >
           <img
             src={poster_offer5}
-            className="h-full w-full object-contain absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            className="h-full w-full object-cover absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="Slide 5"
             onClick={handleImg5}
           />

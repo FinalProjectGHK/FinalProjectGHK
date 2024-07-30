@@ -1,139 +1,436 @@
-// import React, { useRef } from "https://cdn.skypack.dev/react@17.0.1";
+import React, { useState, useEffect } from "react";
 import styles from "./RankTable.module.css";
+import rankPic from "../image/rankTable.png";
+import Tooltip from "@mui/material/Tooltip";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import AddIcon from "@mui/icons-material/Add";
+import Zoom from "@mui/material/Zoom";
+import Fab from "@mui/material/Fab";
+import { useOutletContext } from "react-router-dom";
+import Button from "@mui/material/Button";
 
-const RankTable = () => {
-    const rank = [
-        {
-            id: 1,
-            name: 'Beef don',
-            image: 'https://illustcenter.com/wp-content/uploads/2023/04/rdesign_15637.png',
-            price: 105,
-           
-        },
-        {
-            id: 1,
-            name: 'Chicken Don',
-            image: 'https://illustcenter.com/wp-content/uploads/2023/02/rdesign_15557.png',
-            price: 188,
-          
-        },
-        {
-            id: 1,
-            name: 'Tin Don',
-            image: 'https://illustcenter.com/wp-content/uploads/2023/02/rdesign_15522.png',
-            price: 165,
-           
-        },
-        {
-            id: 1,
-            name: 'Parent Don',
-            image: 'https://illustcenter.com/wp-content/uploads/2023/02/rdesign_15528.png',
-            price: 138,
-          
-        },
-        {
-            id: 1,
-            name: '5',
-            image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-            price: 16,
-           
-        },
-        {
-            id: 1,
-            name: '6',
-            image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-            price: 16,
-        
-        },
-        {
-            id: 1,
-            name: '7',
-            image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-            price: 16,
-     
-        },
-        {
-            id: 1,
-            name: '8',
-            image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-            price: 16,
-           
-        },
-        {
-            id: 1,
-            name: '9',
-            image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-            price: 16,
-           
-        },
-        {
-            id: 1,
-            name: '10',
-            image: 'https://cdn-icons-png.flaticon.com/512/186/186037.png',
-            price: 16,
-        
-        }
+function RankTable() {
+  const [ranked, setRanked] = useState([]);
+  const [outletContextObj] = useOutletContext();
+  const addFood = outletContextObj["addFood"];
 
-    ];
-    return (
-        <div className={styles.container}>
-           
-                <h1 className={styles.title}>Top Sales</h1>
-                <div className={styles.topLeadersList}>
-                    {rank.map((leader, index) => (
-                        <div className={styles.leader} key={leader.id}>
-                            {index + 1 <= 3 && (
-                                <div className={styles.containerImage}>
-                                    <img className={styles.image} loading="lazy" src={leader.image} alt="" />
-                                    <div className={styles.crown}>
-                                        <svg
-                                            id="crown1"
-                                            fill="#0f74b5"
-                                            data-name="Layer 1"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 100 50"
-                                        >
-                                            <polygon
-                                                className={styles.cls1}
-                                                points="12.7 50 87.5 50 100 0 75 25 50 0 25.6 25 0 0 12.7 50"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div className={styles.leaderName}><strong>{leader.name}</strong></div>
-                                    <div className={styles.leaderPrice}>${leader.price}</div>
-                                    <button className={styles.leaderButton}>Add</button>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-           
-          
-                <div className={styles.playerslist}>
-                    <div className={styles.table}>
-                        <div>#</div>
-                        <div>Food Item</div>
-                        <div>Price</div>
-                        
-                    </div>
-                    <div className={styles.list}>
-                        {rank.slice(3, 11).map((leader, index) => (
-                            <div className={styles.player} key={leader.id}>
-                                <span> {index + 4}</span>
-                                <div className={styles.user}>
-                                    <img className={styles.image} src={leader.image} alt="" />
-                                    <span> {leader.name} </span>
-                                </div>
-                                <span>$ {leader.price} </span>
-                                <button className={styles.button}>Add</button>
-                                <span> {leader.coins} </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+  useEffect(() => {
+    async function fetchRanked() {
+      try {
+        const res = await fetch("http://localhost:3001/rankedProducts");
+        const result = await res.json();
+        setRanked(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchRanked();
+  }, []);
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.leftBox}>
+        <p className={styles.title}>Top 10 銷售量餐點</p>
+        <Tooltip title="Delicious~" arrow>
+          <img className={styles.rankImg} src={rankPic}></img>
+        </Tooltip>
+      </div>
+      <div className={styles.top3Box}>
+        {ranked.length > 0 && (
+          <div className={styles.top1}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "100px", width: "120px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-50 dark:ring-gray-50"
+                src={ranked[0]["img_url"]}
+                alt="Bordered avatar"
+              />
             </div>
-    
-            );
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[0]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[0]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[0]["name_c"],
+                      ranked[0]["price"],
+                      ranked[0]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+        {ranked.length > 0 && (
+          <div className={styles.top2}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "80px", width: "100px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-50 dark:ring-gray-50"
+                src={ranked[1]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[1]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[1]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[1]["name_c"],
+                      ranked[1]["price"],
+                      ranked[1]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+        {ranked.length > 0 && (
+          <div className={styles.top3}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "70px", width: "90px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-50 dark:ring-gray-50"
+                src={ranked[2]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[2]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[2]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[2]["name_c"],
+                      ranked[2]["price"],
+                      ranked[2]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className={styles.restRankBox}>
+        {ranked.length > 0 && (
+          <div className={styles.restRank}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "60px", width: "80px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
+                src={ranked[3]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[3]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[3]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[3]["name_c"],
+                      ranked[3]["price"],
+                      ranked[3]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+        {ranked.length > 0 && (
+          <div className={styles.restRank}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "60px", width: "80px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
+                src={ranked[4]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[4]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[4]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[4]["name_c"],
+                      ranked[4]["price"],
+                      ranked[4]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+        {ranked.length > 0 && (
+          <div className={styles.restRank}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "60px", width: "80px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
+                src={ranked[5]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[5]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[5]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[5]["name_c"],
+                      ranked[5]["price"],
+                      ranked[5]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+        {ranked.length > 0 && (
+          <div className={styles.restRank}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "60px", width: "80px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
+                src={ranked[6]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[6]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[6]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[6]["name_c"],
+                      ranked[6]["price"],
+                      ranked[6]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+        {ranked.length > 0 && (
+          <div className={styles.restRank}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "60px", width: "80px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
+                src={ranked[7]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[7]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[7]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[7]["name_c"],
+                      ranked[7]["price"],
+                      ranked[7]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+        {ranked.length > 0 && (
+          <div className={styles.restRank}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "60px", width: "80px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
+                src={ranked[8]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[8]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[8]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[8]["name_c"],
+                      ranked[8]["price"],
+                      ranked[8]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+        {ranked.length > 0 && (
+          <div className={styles.restRank}>
+            <div className={styles.foodPic}>
+              <img
+                style={{ height: "60px", width: "80px" }}
+                class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
+                src={ranked[9]["img_url"]}
+                alt="Bordered avatar"
+              />
+            </div>
+            <div className={styles.foodName}>
+              <p style={{ fontSize: "20px" }}>{ranked[9]["name_c"]}</p>
+            </div>
+            <div className={styles.sales}>
+              <Button variant="outlined" color="error" size="large">
+                {" "}
+                <WhatshotIcon />
+                {ranked[9]["sales"]}
+              </Button>
+            </div>
+            <div className={styles.addBtn}>
+              <Zoom in={true}>
+                <Fab
+                  onClick={() =>
+                    addFood(
+                      ranked[9]["name_c"],
+                      ranked[9]["price"],
+                      ranked[9]["img_url"]
+                    )
+                  }
+                  size="small"
+                  aria-label="add"
+                >
+                  <AddIcon />
+                </Fab>
+              </Zoom>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
-            export default RankTable;
+export default RankTable;

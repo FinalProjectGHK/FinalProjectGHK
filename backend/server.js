@@ -10,17 +10,32 @@ app.use(express.static("public"));
 app.use(express.json()); // middleware
 app.use(cors());
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const mongodb = require("mongodb");
 const { default: mongoose } = require("mongoose");
 const uri =
   "mongodb+srv://nicholaschui1012:wqymTE5qfESLsFbo@cluster-nick.8xybkon.mongodb.net/?appName=Cluster-Nick";
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
+
+let db;
+const client = new mongodb.MongoClient(
+  uri,
+  {
+    serverApi: {
+      version: mongodb.ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
   },
-});
+  function (err, database) {
+    if (err) throw err;
+    console.log("database: ", database);
+    db = database.db("restaurant_db");
+  }
+);
+async function connectMongoDB() {
+  await client.connect();
+}
+connectMongoDB();
+db = client.db("restaurant_db");
 
 mongoose.connect(
   "mongodb+srv://nicholaschui1012:wqymTE5qfESLsFbo@cluster-nick.8xybkon.mongodb.net/restaurant_db"
@@ -39,13 +54,17 @@ const membersSchema = new mongoose.Schema({
 
 const Members = mongoose.model("members", membersSchema);
 
-const members = client.db("restaurant_db").collection("members");
-const menu = client.db("restaurant_db").collection("menu");
+// const members = client.db("restaurant_db").collection("members");
+// const menu = client.db("restaurant_db").collection("menu");
+const members = db.collection("members");
+const menu = db.collection("menu");
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Getting all the product by category
 async function getProducts(category) {
   try {
-    await client.connect();
-    const db = client.db("restaurant_db");
+    //await client.connect();
+    //const db = client.db("restaurant_db");
     const userResult = await db
       .collection("menu")
       .find({ category: category })
@@ -55,38 +74,7 @@ async function getProducts(category) {
   } catch (error) {
     console.log(error);
   } finally {
-    await client.close();
-  }
-}
-
-async function getFav(userEmail) {
-  try {
-    await client.connect();
-    const db = client.db("restaurant_db");
-    const userFav = await db
-      .collection("members")
-      .find({ email: userEmail })
-      .toArray();
-    console.log(userFav);
-    return userFav;
-  } catch (error) {
-    console.log(error);
-  } finally {
-    await client.close();
-  }
-}
-
-async function getAllProducts() {
-  try {
-    await client.connect();
-    const db = client.db("restaurant_db");
-    const userResult = await db.collection("menu").find().toArray();
-    console.log(userResult);
-    return userResult;
-  } catch (error) {
-    console.log(error);
-  } finally {
-    await client.close();
+    //await client.close();
   }
 }
 
@@ -96,17 +84,56 @@ app.get("/products", async (req, res) => {
   res.json(result);
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Getting all the favItem of the user
+async function getFav(userEmail) {
+  try {
+    //await client.connect();
+    //const db = client.db("restaurant_db");
+    const userFav = await db
+      .collection("members")
+      .find({ email: userEmail })
+      .toArray();
+    // console.log(userFav);
+    return userFav;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    //await client.close();
+  }
+}
+
 // http://localhost:3001/userFav/?email=nicholaschui133@gmail.com
 app.get("/userFav", async (req, res) => {
   const result = await getFav(req.query.email);
   res.json(result);
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Getting all products
+async function getAllProducts() {
+  try {
+    //await client.connect();
+    //const db = client.db("restaurant_db");
+    const userResult = await db.collection("menu").find().toArray();
+    console.log(userResult);
+    return userResult;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    //await client.close();
+  }
+}
+
 // http://localhost:3001/allproducts
 app.get("/allproducts", async (req, res) => {
   const result = await getAllProducts();
   res.json(result);
 });
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Posting member registration details to database
 app.post("/register", async (req, res) => {
@@ -115,72 +142,97 @@ app.post("/register", async (req, res) => {
   res.send(result);
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 app.patch("/addFavItem", async (req, res) => {
-  console.log(req.body);
-  members.updateOne(
-    { email: req.body.email },
-    {
-      $addToSet: {
-        favouriteItem: {
-          chineseName: req.body.chineseName,
-          foodPic: req.body.foodPic,
-          price: req.body.price,
+  console.log("added Fav");
+  try {
+    //await client.connect();
+    await members.updateOne(
+      { email: req.body.email },
+      {
+        $addToSet: {
+          favouriteItem: {
+            chineseName: req.body.chineseName,
+            foodPic: req.body.foodPic,
+            price: req.body.price,
+          },
         },
-      },
-    }
-  );
-  res.send("Updated");
+      }
+    );
+    res.send("Updated");
+  } catch (error) {
+    console.log(error);
+  } finally {
+    //await client.close();
+  }
 });
 
 app.patch("/removeFavItem", async (req, res) => {
-  console.log(req.body);
-  members.updateOne(
-    { email: req.body.email },
-    {
-      $pull: {
-        favouriteItem: {
-          chineseName: req.body.chineseName,
-          foodPic: req.body.foodPic,
-          price: req.body.price,
+  try {
+    //await client.connect();
+    await members.updateOne(
+      { email: req.body.email },
+      {
+        $pull: {
+          favouriteItem: {
+            chineseName: req.body.chineseName,
+            foodPic: req.body.foodPic,
+            price: req.body.price,
+          },
         },
-      },
-    }
-  );
-  res.send("Updated");
+      }
+    );
+    res.send("Updated");
+  } catch (error) {
+    console.log(error);
+  } finally {
+    //await client.close();
+  }
 });
 
 // Sales Ranking part
 
 app.patch("/sales", async (req, res) => {
-  console.log(req.body);
-  for (let i = 0; i < req.body.length; i++) {
-    menu.updateOne(
-      { name_c: req.body[i]["chineseName"] },
-      { $inc: { sales: req.body[i]["quantity"] } }
-    );
-  }
+  try {
+    //await client.connect();
+    for (let i = 0; i < req.body.length; i++) {
+      await menu.updateOne(
+        { name_c: req.body[i]["chineseName"] },
+        { $inc: { sales: req.body[i]["quantity"] } }
+      );
+    }
 
-  res.send("Updated");
+    res.send("Updated");
+  } catch (error) {
+    console.log(error);
+  } finally {
+    //await client.close();
+  }
 });
 
-// async function getRankedProducts() {
-//   try {
-//     await client.connect();
-//     const db = client.db("restaurant_db");
-//     const userResult = await db.collection("menu").aggregate().toArray();
-//     console.log(userResult);
-//     return userResult;
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     await client.close();
-//   }
-// }
+async function getRankedProducts() {
+  try {
+    //await client.connect();
+    //const db = client.db("restaurant_db");
+    const userResult = await db
+      .collection("menu")
+      .aggregate([{ $sort: { sales: -1 } }])
+      .toArray();
+    console.log(userResult);
+    return userResult;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    //await client.close();
+  }
+}
 
-// app.get("/rankedProducts", async (req, res) => {
-//   const result = await getRankedProducts();
-//   res.json(result);
-// });
+// http://localhost:3001/rankedProducts
+app.get("/rankedProducts", async (req, res) => {
+  const result = await getRankedProducts();
+  res.json(result);
+});
 
 // Stripe Payment
 

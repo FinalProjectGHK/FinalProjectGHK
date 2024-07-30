@@ -164,12 +164,18 @@ const Root = () => {
     setIsOpen(open);
   };
 
-  const outletContextObj = { addFood: addFood, chosenFoods: chosenFoods };
+  const outletContextObj = {
+    addFood: addFood,
+    chosenFoods: chosenFoods,
+  };
 
   return (
     <AuthProvider>
       <div className={styles.header}>
-        <Header scrollPosition_root={scrollPosition} />
+        <Header
+          scrollPosition_root={scrollPosition}
+          chosenFoods={chosenFoods}
+        />
       </div>
       <div className={styles.outlet}>
         <Outlet context={[outletContextObj]} />
