@@ -12,6 +12,7 @@ import About from "./navbar_routers/About";
 import BulletinBoard from "./navbar_routers/BulletinBoard";
 import ForgotPassword from "./components/ForgotPassword";
 import Pay from "./navbar_routers/Pay";
+import News from "./navbar_routers/News";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: "/bulletinBoard", element: <BulletinBoard /> },
       { path: "/forgot-password", element: <ForgotPassword /> },
       { path: "/pay", element: <Pay /> },
+      { path: "/news", element: <News /> },
     ],
   },
 ]);

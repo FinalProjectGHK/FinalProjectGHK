@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 /* import { loadStripe } from "@stripe/stripe-js"; */
 /* import { Elements } from "@stripe/react-stripe-js"; */
 import shopLocation from "../JS_Data/shopLocation";
+import { useAuth } from "../components/contexts/AuthContext";
 
 /* import CheckoutForm from "../components/CheckoutForm"; */
 
@@ -42,6 +43,7 @@ const Cart = () => {
   const setIsBlankPage = outletContextObj['isBlankPage'][1];
   const shoppingDataPool = outletContextObj['shoppingDataPool'][0];
   const setShoppingDataPool = outletContextObj['shoppingDataPool'][1];
+  const { currentUser } = useAuth();
 
   let discount = 0;
 
@@ -143,9 +145,11 @@ const Cart = () => {
         'location': selectedLocation,
         'totalPrice': countTotalPrice(chosenFoods),
         'orderDate': getDate(),
+        /* 'email': currentUser.email, */
       }
       setShoppingDataPool(data)
       console.log(shoppingDataPool)
+      console.log(currentUser.email)
       console.log(shoppingDataPool['location'])
       /* setIsBlankPage(true) */
     }

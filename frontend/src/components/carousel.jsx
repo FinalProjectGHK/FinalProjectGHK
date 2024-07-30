@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import styles from "./carousel.module.css";
+import { Link, useOutletContext } from "react-router-dom";
 import shopNews from "../JS_Data/shopNews";
 
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [timer_autoSlide, setTimer_autoSlide] = useState(() => {});
   const [isAutoSlide, setIsAutoSlide] = useState(true);
+  const [outletContextObj] = useOutletContext();
+  const setCurrentNews = outletContextObj['currentNews'][1];
 
   let showingNews = []
   const showingNewss = () => {
@@ -24,6 +27,7 @@ export default function Carousel() {
     }
   }, [currentSlide, isAutoSlide]);
   function handleImg(id) {
+    setCurrentNews(id)
     console.log(id);
   }
   function handleDot(id) {
@@ -48,11 +52,15 @@ export default function Carousel() {
         {showingNews.map((news, index) => {/* "h-full w-full hidden duration-700 ease-in-out" *//* "h-full w-full object-contain absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Slide 1" */
           return (<>
             { currentSlide === index ? 
-              (<div key={index} className={styles.poster} >
-                <img src={news['src']} onClick={() => handleImg(news['id'])}/>
+              (<div key={index} className={styles.poster}>
+                <Link to="/news" className={styles.poster_link}>
+                  <img src={news['src']} onClick={() => handleImg(news['id'])}/>
+                </Link>
               </div>) : 
-              (<div key={index} className={styles.poster_hidden} >
-                <img src={news['src']} onClick={() => handleImg(news['id'])}/>
+              (<div key={index} className={styles.poster_hidden}>
+                <Link to="/news" className={styles.poster_link}>
+                  <img src={news['src']} onClick={() => handleImg(news['id'])}/>
+                </Link>
               </div>)
             }
           </>)

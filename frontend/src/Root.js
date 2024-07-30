@@ -9,13 +9,14 @@ import { AuthProvider } from "./components/contexts/AuthContext";
 
 const Root = () => {
   const [chosenFoods, setChosenFoods] = useState([]);
-  const [isBlankPage, setIsBlankPage] = useState(false)
+  const [isBlankPage, setIsBlankPage] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
   const [shoppingDataPool, setShoppingDataPool] = useState({});
+  const [currentNews, setCurrentNews] = useState("");
 
   const outletContextObj = { 'addFood': addFood, 'chosenFoods': chosenFoods, 
     'isBlankPage': [isBlankPage, setIsBlankPage], 'clientSecret': [clientSecret, setClientSecret],
-    'shoppingDataPool': [shoppingDataPool, setShoppingDataPool]};
+    'shoppingDataPool': [shoppingDataPool, setShoppingDataPool], 'currentNews': [currentNews, setCurrentNews]};
 
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {
