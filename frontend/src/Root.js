@@ -93,7 +93,7 @@ const Root = () => {
       {isBlankPage ? 
       (<><Outlet context={[outletContextObj]} /></>) :
       (<><div className={styles.header}>
-        <Header scrollPosition_root={scrollPosition} />
+        <Header scrollPosition_root={scrollPosition} chosenFoods={chosenFoods} />
       </div>
       <div className={styles.outlet}>
         <Outlet context={[outletContextObj]} />

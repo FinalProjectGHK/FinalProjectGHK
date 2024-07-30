@@ -125,7 +125,7 @@ const Cart = () => {
         'orderDate': orderDate},
     */
 
-    if(selectedLocation !== "") {
+    if(selectedLocation === "") {
       alert('Please select a shop')
       return
     } else {
@@ -149,9 +149,9 @@ const Cart = () => {
       }
       setShoppingDataPool(data)
       console.log(shoppingDataPool)
-      console.log(currentUser.email)
+      /* console.log(currentUser.email) */
       console.log(shoppingDataPool['location'])
-      /* setIsBlankPage(true) */
+      setIsBlankPage(true)
     }
   }
   function handleContinueButton() {
