@@ -20,3 +20,17 @@
   align-items: center;
   gap: 120px;
 }
+
+@media only screen and (max-width: 600px) {
+  .loginBox {
+    width: 350px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .loginPic {
+    display: none;
+  }
+}
