@@ -5,6 +5,9 @@ import Drawer from "@mui/material/Drawer";
 import ShoppingCartList from "./ShoppingCartList";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import emptyCart from "../image/empty.png";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
 
 export default function ShoppingCart({
   chosenFoods,
@@ -47,6 +50,23 @@ export default function ShoppingCart({
     setIsOpen(false);
   }
 
+  function totalQty() {
+    let count = 0;
+    for (let i = 0; i < chosenFoods.length; i++) {
+      count += chosenFoods[i]["quantity"];
+    }
+    return count;
+  }
+
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      right: -3,
+      top: 0,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: "0 4px",
+    },
+  }));
+
   return (
     <div className={styles.bgContainer}>
       <div className={styles.div_shoppingCart}>
@@ -54,11 +74,11 @@ export default function ShoppingCart({
           onClick={toggleDrawer(true)}
           className={styles.btn_shoppingCart}
         >
-          <img
-            src="/cart.png"
-            className={styles.img_shoppingCart}
-            alt="shopping cart"
-          />
+          <IconButton className={styles.cartBtn} aria-label="cart">
+            <StyledBadge badgeContent={totalQty()} color="primary">
+              <ShoppingCartIcon sx={{ fontSize: 30 }} />
+            </StyledBadge>
+          </IconButton>
           <label
             style={{ fontSize: "28px" }}
             className={styles.lbl_shoppingCart}
@@ -101,12 +121,12 @@ export default function ShoppingCart({
                   ))
                 }
                 </div>
-                {/* <div className={styles.controlPanel}>
+                <div className={styles.controlPanel}>
                   <button className={styles.btn_Clear} onClick={() => handleClose()}></button>
                   <Link to="/cart" className={styles.btnComfirm} onClick={() => handleComfirm()}></Link>
                   <button className={styles.btn_Clear} onClick={() => handleClear()}></button>
                   <Link to="/home" className={styles.btn_ToFoodMenu} onClick={() => handleToFoodMenu()}></Link>
-                </div> */}
+                </div>
               </div>)}
           </div>
         </Drawer>

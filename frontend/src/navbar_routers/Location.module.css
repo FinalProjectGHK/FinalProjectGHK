@@ -69,3 +69,33 @@
 .name {
     padding: 5px;
 }
+
+/* Media query for phone sizes */
+@media (max-width: 600px) {
+    .infoContainer {
+        width: 90%;
+        left: 5%;
+        top: 60%;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .location {
+        font-size: 1.2em;
+    }
+
+    .card {
+        padding: 8px;
+        margin: 8px;
+        border-radius: 10px;
+    }
+
+    .name {
+        padding: 3px;
+    }
+
+    .mapContainer {
+        height: 630px;
+        width: 100%;
+    }
+}

@@ -1,0 +1,18 @@
+.orderList {
+  padding: 10px;
+}
+
+.orderItem {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  color: #2d2517;
+  border-radius: 15px;
+  box-shadow: rgba(61, 47, 16, 0.931) 0px 0px 3px;
+  margin: 10px;
+
+}
+
+.orderItem:hover {
+  background-color: #e6e6e6;
+}
