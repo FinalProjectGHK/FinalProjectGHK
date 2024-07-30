@@ -49,13 +49,21 @@ function Login() {
       <div className={styles.container}>
         <div className={styles.loginBox}>
           <form onSubmit={handleSubmit} class="space-y-6" action="#">
-            <h1>
-              Welcome Back
-              <DinnerDiningIcon
-                style={{ marginLeft: "5px" }}
-                fontSize="large"
-              />
-            </h1>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h1>
+                Welcome Back
+                <DinnerDiningIcon
+                  style={{ marginLeft: "5px" }}
+                  fontSize="large"
+                />
+              </h1>
+            </div>
             <div>
               <label
                 style={{ display: "flex" }}
@@ -104,24 +112,7 @@ function Login() {
                 </div>
               </div>
             </div>
-            <div class="flex items-start">
-              <div class="flex items-start">
-                <div class="flex items-center h-5">
-                  <input
-                    id="remember"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-gray-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                    required
-                  />
-                </div>
-                <label
-                  for="remember"
-                  class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                  Remember me
-                </label>
-              </div>
+            <div class="m-0">
               <a
                 href="#"
                 class="ms-auto text-sm text-gray-700 hover:underline dark:text-gray-500"
@@ -129,12 +120,20 @@ function Login() {
                 <Link to="/forgot-password">Forgot Password?</Link>
               </a>
             </div>
-            <button
-              type="submit"
-              class="w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              Login to your account
-            </button>
+              <button
+                type="submit"
+                class="w-6/12 md:w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+              >
+                Login
+              </button>
+            </div>
             {invalidLogin ? (
               <Alert severity="warning">Invalid email / password.</Alert>
             ) : null}
@@ -154,7 +153,7 @@ function Login() {
             </div>
           </form>
         </div>
-        <img src={loginPic} alt="loginPic"></img>
+        <img className={styles.loginPic} src={loginPic} alt="loginPic"></img>
       </div>
     </div>
   );

@@ -27,10 +27,6 @@ const ShoppingCartList = ({
               <div className={styles.itemPrice}>${price * quantity}</div>
             </div>
             <div className={styles.favRemove}>
-              <button className={styles.favButton}>
-                <FavoriteBorderIcon />
-                Move to Favorites
-              </button>
               <button
                 onClick={() => delFood(id)}
                 className={styles.removeButton}

@@ -107,3 +107,27 @@
 .emptyCart button:hover {
   background-color: #705b38;
 }
+
+.cartBtn {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .div_shoppingCart {
+    height: 50px;
+    margin-bottom: 480px;
+    padding: 3px;
+  }
+
+  .lbl_shoppingCart {
+    display: none;
+  }
+
+  .cartBtn {
+    margin-top: 5px;
+  }
+
+  .drawerPaper {
+    width: 90%;
+  }
+}
