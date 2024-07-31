@@ -148,3 +148,40 @@ font-size: 1em;
     margin: 20px;
   }
 
+  @media only screen and (max-width: 600px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .leftPane, .rightPane {
+      width: 95%;
+      margin-left: 10px;
+      height: auto;
+      /* box-shadow: none; */
+    }
+  
+    .leftPane {
+      height: 40vh;
+      overflow: scroll;
+      overflow-x: hidden;
+      margin-bottom: 10px;
+    }
+  
+    .rightPane {
+      height: auto;
+    }
+  
+    h2 {
+      font-size: 1.2em;
+      padding-left: 10px;
+      padding-top: 5px;
+    }
+  
+    .box, .location, .item, .itemDetails, .orderTable, .totalPrice, .noSelection {
+      padding: 5px;
+    }
+  
+    .noSelection img {
+      width: 80%;
+    }
+  }

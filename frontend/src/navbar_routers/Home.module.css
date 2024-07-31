@@ -22,3 +22,13 @@
   display: flex;
   gap: 30px;
 }
+
+@media only screen and (max-width: 600px) {
+  .adsCarousel {
+    height: 150px;
+  }
+
+  .rankTable {
+    height: 150px;
+  }
+}

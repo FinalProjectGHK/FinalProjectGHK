@@ -20,3 +20,45 @@
   align-items: center;
   gap: 120px;
 }
+
+.regBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .regBox {
+    width: 350px;
+    height: 500px;
+    margin-top: 30px;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 0;
+    max-width: 500px;
+  }
+
+  .registerPic {
+    height: 120px;
+  }
+
+  .inputBox {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .inputField > input {
+    width: 170px;
+    height: 30px;
+  }
+
+  .regBtn > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    height: 30px;
+  }
+}

@@ -43,3 +43,15 @@
   border-radius: 30px;
   margin-top: 5px;
 }
+
+@media only screen and (max-width: 600px) {
+  .productBox {
+    width: 140px;
+    margin: 0px;
+  }
+  
+  .container {
+    margin: 0px;
+    padding: 8px;
+  }
+}
