@@ -30,6 +30,23 @@
   background-color: white;
 }
 
+.typeEmail {
+  height: fit-content;
+  width: 100%;
+  padding: 10px 30px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
+} 
+.emailTitle {
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #918779;
+}
+.ipt_email {
+  background-color: aqua;
+}
 .pickShop{
   height: fit-content;
   width: 100%;

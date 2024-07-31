@@ -137,6 +137,32 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
+
+@media only screen and (max-width: 600px) {
+  .foodList { 
+    border-width: 0px;
+    box-shadow: none;
+  }
+
+  .foodList_outside {
+    border-style: none;
+    border-width: 0px;
+    margin: 5px 0;
+    box-shadow: none;
+  }
+
+  .div_btnContainer {
+    padding: 0px;
+    gap: 5px;
+    
+  }
+
+  .categroyBar {
+    height: 50px;
+    margin-top: 10px;
+  }
+  
+}
 /* @keyframes heartbeat {
     from {
       -webkit-transform: scale(1);

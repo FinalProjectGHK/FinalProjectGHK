@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import styles from "./LuckyDraw.module.css";
 import Card from "./Card";
 import luckyDrawPic from "../image/luckyDraw.png";
+import ConfettiExplosion from "react-confetti-explosion";
 
 function LuckyDraw() {
   const [allProducts, setAllProducts] = useState([]);
   const [randomNumber, setRandomNumber] = useState(0);
+  const [isExploding, setIsExploding] = useState(false);
   // const randomPic = [];
   // const randomName = [];
   // const randomPrice = [];
@@ -31,6 +33,11 @@ function LuckyDraw() {
   // generateName();
   // generatePrice();
 
+  function handleTheScroll() {
+    setIsExploding(true);
+  }
+
+  console.log(isExploding);
   useEffect(() => {
     async function fetchAllProducts() {
       try {
@@ -62,13 +69,26 @@ function LuckyDraw() {
   }, [allProducts]);
   console.log("allProducts: ", allProducts);
   return (
-    <div className={styles.container}>
+    <div onScroll={handleTheScroll} className={styles.container}>
       <div className={styles.cover}>
         <h3>諗唔到食乜？</h3>
-        <img src={luckyDrawPic} alt="luckyDrawPic" />
+        <img
+          style={{ marginLeft: "30px" }}
+          src={luckyDrawPic}
+          alt="luckyDrawPic"
+        />
       </div>
       {allProducts.length > 0 && (
         <div className={styles.card}>
+          {isExploding ? (
+            <ConfettiExplosion
+              style={{ position: "relative", left: "150px", top: "100px" }}
+              width={1600}
+              duration={2000}
+              onComplete={() => setIsExploding(false)}
+              particleCount={200}
+            />
+          ) : null}
           <Card
             //foodPic={randomPic[randomNumber]} // allProducts[randNumber]['img']
             //chineseName={randomName[randomNumber]} // allProducts[randNumber]['name_c']

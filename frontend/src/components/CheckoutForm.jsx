@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CheckoutForm.module.css";
-import { useOutletContext } from "react-router-dom";
+import {} from 'react-router-dom';
+import { useOutletContext, useNavigate } from "react-router-dom";
 import {
   PaymentElement,
   useStripe,
@@ -13,6 +14,43 @@ export default function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [outletContextObj] = useOutletContext();
   const shoppingDataPool = outletContextObj['shoppingDataPool'][0];
+  const chosenFoods = outletContextObj['chosenFoods'];
+  const navigate = useNavigate();
+
+  console.log(chosenFoods)
+
+  async function addSales() {
+    try {
+      const result = await fetch("http://localhost:3001/sales", {
+        method: "PATCH",
+        body: JSON.stringify(chosenFoods),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function addPrevOrders() {
+    try {
+      const result = await fetch("http://localhost:3001/addPrevOrders", {
+        method: "PATCH",
+        body: JSON.stringify(shoppingDataPool),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  console.log(shoppingDataPool)
+  
 
   useEffect(() => {
     if (!stripe) {
@@ -29,7 +67,10 @@ export default function CheckoutForm() {
         case "succeeded":
           setMessage("Payment succeeded!");
           //TODO 
-          console.log(shoppingDataPool)
+          addSales()
+          // addPrevOrders()
+      
+
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -45,6 +86,7 @@ export default function CheckoutForm() {
   }, [stripe]);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    addPrevOrders()
     if (!stripe || !elements) {
       // Stripe.js hasn't yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
@@ -55,7 +97,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        return_url: "http://localhost:3000/home",
       },
     });
     // This point will only be reached if there is an immediate error when

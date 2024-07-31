@@ -1,8 +1,8 @@
 import styles from "./Cart.module.css";
 /* import StripeCheckout from '../components/StripeCheckout'; */
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useOutletContext, useNavigate} from "react-router-dom";
 import CartList from "../components/CartList";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 /* import { loadStripe } from "@stripe/stripe-js"; */
 /* import { Elements } from "@stripe/react-stripe-js"; */
 import shopLocation from "../JS_Data/shopLocation";
@@ -37,6 +37,7 @@ const Cart = () => {
   }; */
 
   const [selectedLocation, setSelectedLocation] = useState("");
+  const [typedEmail, setTypedEmail] = useState("");
   const [isOpeneded, setIsOpeneded] = useState(false);
   const [outletContextObj] = useOutletContext();
   const chosenFoods = outletContextObj['chosenFoods'];
@@ -44,6 +45,8 @@ const Cart = () => {
   const shoppingDataPool = outletContextObj['shoppingDataPool'][0];
   const setShoppingDataPool = outletContextObj['shoppingDataPool'][1];
   const { currentUser } = useAuth();
+  const inputEmailRef = useRef();
+  const navigate = useNavigate();
 
   let discount = 0;
 
@@ -63,7 +66,6 @@ const Cart = () => {
     chosenFoods.map((foodItem, index) => {
       totalPrice += foodItem.price * foodItem.quantity
     })
-    console.log(totalPrice)
     return(totalPrice)
   }
   function countTotalItem(chosenFoods) {
@@ -75,13 +77,13 @@ const Cart = () => {
   }
   function getDate() {
     let dateObj = new Date();
+    let year = dateObj.getFullYear();
     let month = String(dateObj.getMonth() + 1).padStart(2, '0');
     let day = String(dateObj.getDate()).padStart(2, '0');
-    let year = dateObj.getFullYear();
-    let hour = dateObj.getHours();
-    let minute = dateObj.getMinutes();
-    let second = dateObj.getSeconds();
-    let output = `${year}-${month}-${day},${hour}:${minute}:${second}`;
+    let hour = String(dateObj.getHours()).padStart(2, '0');;
+    let minute = String(dateObj.getMinutes()).padStart(2, '0');;
+    let second = String(dateObj.getSeconds()).padStart(2, '0');;
+    let output = `${year}-${month}-${day}T${hour}:${minute}:${second}Z`;
     return output
   }
   function handleDropdownButton() {
@@ -117,41 +119,40 @@ const Cart = () => {
     } catch (error) {
       console.log(error);
     } */
-
-    /* 
-        {'order': chosenFoods,
-        'location': selectedLocation,
-        'totalPrice': totalPrice,
-        'orderDate': orderDate},
-    */
-
-    if(selectedLocation === "") {
-      alert('Please select a shop')
+    if(selectedLocation === "" || inputEmailRef.current.value === "") {
+      if(selectedLocation === "" && inputEmailRef.current.value === "") {
+        alert('Please select a shop and type your email')
+      } else if(selectedLocation === "") {
+        alert('Please select a shop')
+      } else if(inputEmailRef.current.value === "") {
+        alert('Please type you email')
+      } 
       return
     } else {
-      /* data['order'] = chosenFoods
-      data['locaion'] = selectedLocation
-      console.log(data)
-      setShoppingDataPool(data) */
-      /* setShoppingDataPool((prevData) => {
-          const updatedData = [...prevData];
-          
-          updatedData['order'] = chosenFoods
-          updatedData['locaion'] = selectedLocation
-          return updatedData;
-      }); */
-      let data = {
-        'order': chosenFoods,
-        'location': selectedLocation,
-        'totalPrice': countTotalPrice(chosenFoods),
-        'orderDate': getDate(),
-        /* 'email': currentUser.email, */
+      if(currentUser) {
+        let data = {
+          'order': chosenFoods,
+          'location': selectedLocation,
+          'totalPrice': countTotalPrice(chosenFoods),
+          'time': getDate(),
+          'email': currentUser.email,
+        }
+        console.log(data)
+        setShoppingDataPool(data)
+        setIsBlankPage(true)
+        navigate('/pay')
+      } else {
+        let data = {
+          'order': chosenFoods,
+          'location': selectedLocation,
+          'totalPrice': countTotalPrice(chosenFoods),
+          'time': getDate(),
+          'email': inputEmailRef.current.value,
+        }
+        setShoppingDataPool(data)
+        setIsBlankPage(true)
+        navigate('/pay')
       }
-      setShoppingDataPool(data)
-      console.log(shoppingDataPool)
-      /* console.log(currentUser.email) */
-      console.log(shoppingDataPool['location'])
-      setIsBlankPage(true)
     }
   }
   function handleContinueButton() {
@@ -164,6 +165,12 @@ const Cart = () => {
     <div>
       <div className={styles.cartContainer}>
         <div className={styles.leftContainer}>
+          
+          <div className={styles.typeEmail}>
+            <h2 className={styles.emailTitle}>Type Your Email</h2>
+            <input ref={inputEmailRef} className={styles.ipt_email}></input>
+          </div>
+          
           <div className={styles.pickShop}>
             <h2 className={styles.pickShopTitle}>Pick a Shop</h2>
             <button onClick={() => handleDropdownButton()} className={styles.dropdownButton}>
@@ -186,7 +193,6 @@ const Cart = () => {
                 ))}
               </ul>
             </div>)}
-            
           </div>
           <div className={styles.orderSummary}>
             <h2 className={styles.orderSummaryTitle}>Order Summary</h2>
@@ -208,14 +214,17 @@ const Cart = () => {
               <span>${countTotalPrice(chosenFoods) - discount}</span>
             </div>
             <div className={styles.summaryButtons}>
-              {selectedLocation === "" ? 
+              <button className={styles.proceedButton} onClick={() => handleProceedButton()}>
+                Proceed to Payment
+              </button>
+              {/* {selectedLocation === "" ? 
               (<button className={styles.proceedButton} onClick={() => handleProceedButton()}>
                 Proceed to Payment
               </button>) :
-              (<Link to="/pay" className={styles.proceedButton} onClick={() => handleProceedButton()}>
+              (<button className={styles.proceedButton} onClick={() => handleProceedButton()}>
                 Proceed to Payment
-              </Link>)
-              }
+              </button>)
+              } */}
               <Link to="/home" className={styles.continueButton} onClick={() => handleContinueButton()}>
                 Continue to Shop
               </Link>

@@ -107,3 +107,23 @@
 img {
   object-fit: cover;
 }
+
+@media (max-width: 600px) {
+  .rankImg {
+    display: none;
+  }
+  .title {
+   display: none;
+  }
+  .top3Box  {
+    width: 100%;
+  }
+  .restRankBox {
+    display: none;
+  }
+  .container {
+    height: 150px;
+    width: 100%;
+    padding: 10px;
+  }
+}

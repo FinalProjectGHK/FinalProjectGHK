@@ -57,20 +57,20 @@ function Login() {
               }}
             >
               <h1>
-                Welcome Back
+                會員登入
                 <DinnerDiningIcon
-                  style={{ marginLeft: "5px" }}
+                  style={{ marginLeft: "5px", marginBottom: "5px" }}
                   fontSize="large"
                 />
               </h1>
             </div>
-            <div>
+            <div className={styles.emailBox}>
               <label
                 style={{ display: "flex" }}
                 for="tel"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Your Email
+                電郵
               </label>
               <input
                 value={email}
@@ -88,7 +88,7 @@ function Login() {
                 for="password"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Your Password
+                密碼
               </label>
               <div
                 style={{
@@ -117,7 +117,7 @@ function Login() {
                 href="#"
                 class="ms-auto text-sm text-gray-700 hover:underline dark:text-gray-500"
               >
-                <Link to="/forgot-password">Forgot Password?</Link>
+                <Link to="/forgot-password">忘記密碼?</Link>
               </a>
             </div>
             <div
@@ -131,24 +131,22 @@ function Login() {
                 type="submit"
                 class="w-6/12 md:w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
               >
-                Login
+                登入
               </button>
             </div>
             {invalidLogin ? (
-              <Alert severity="warning">Invalid email / password.</Alert>
+              <Alert severity="warning">電郵/密碼不正確.</Alert>
             ) : null}
 
-            {successLogin ? (
-              <Alert severity="success">Log In Successfully.</Alert>
-            ) : null}
+            {successLogin ? <Alert severity="success">成功登入 !</Alert> : null}
 
             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-              Not registered?{" "}
+              未係會員?{" "}
               <Link
                 to="/register"
                 className="text-gray-700 hover:underline dark:text-gray-500"
               >
-                Create account
+                注册會員
               </Link>
             </div>
           </form>

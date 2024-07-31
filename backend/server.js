@@ -191,6 +191,30 @@ app.patch("/removeFavItem", async (req, res) => {
   }
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Add current order to prevOrders database
+app.patch("/addPrevOrders", async (req, res) => {
+  try {
+    await members.updateOne(
+      { email: req.body.email },
+      {
+        $push: {
+          prevOrders: {
+            order: req.body.order,
+            time: req.body.time,
+            location: req.body.location,
+            totalPrice: req.body.totalPrice
+          },
+        },
+      }
+    );
+    res.send("Updated");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // Sales Ranking part
 
 app.patch("/sales", async (req, res) => {
@@ -199,7 +223,7 @@ app.patch("/sales", async (req, res) => {
     for (let i = 0; i < req.body.length; i++) {
       await menu.updateOne(
         { name_c: req.body[i]["chineseName"] },
-        { $inc: { sales: req.body[i]["quantity"] } }
+        { $inc: { sales: req.body[i]["quantity"] /2 } }
       );
     }
 

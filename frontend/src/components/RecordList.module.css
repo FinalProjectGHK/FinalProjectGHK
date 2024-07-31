@@ -16,3 +16,14 @@
 .orderItem:hover {
   background-color: #e6e6e6;
 }
+
+@media only screen and (max-width: 600px) {
+  .orderList {
+    padding: 5px;
+  }
+  .orderItem {
+    padding: 5px;
+    margin: 5px;
+    font-size: smaller;
+  }
+}

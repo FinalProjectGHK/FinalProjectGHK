@@ -13,10 +13,12 @@ const Root = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [shoppingDataPool, setShoppingDataPool] = useState({});
   const [currentNews, setCurrentNews] = useState("");
+  const [favouriteFood, setFavouriteFood] = useState();
 
   const outletContextObj = { 'addFood': addFood, 'chosenFoods': chosenFoods, 
     'isBlankPage': [isBlankPage, setIsBlankPage], 'clientSecret': [clientSecret, setClientSecret],
-    'shoppingDataPool': [shoppingDataPool, setShoppingDataPool], 'currentNews': [currentNews, setCurrentNews]};
+    'shoppingDataPool': [shoppingDataPool, setShoppingDataPool], 'currentNews': [currentNews, setCurrentNews],
+    'favouriteFood': [favouriteFood, setFavouriteFood]};
 
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {

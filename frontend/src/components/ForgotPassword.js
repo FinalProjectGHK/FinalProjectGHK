@@ -7,6 +7,7 @@ import { auth } from "./firebase";
 import { Link } from "react-router-dom";
 import resetPw1 from "../image/resetPw1.png";
 import resetPw2 from "../image/resetPw2.png";
+import LockResetIcon from "@mui/icons-material/LockReset";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ function ForgotPassword() {
   const [checkEmail, setCheckEmail] = useState(false);
   const [noSuchEmail, setNoSuchEmail] = useState(false);
 
+  console.log(auth);
   async function handleResetPassword(ev) {
     ev.preventDefault();
 
@@ -44,7 +46,13 @@ function ForgotPassword() {
                 alignItems: "center",
               }}
             >
-              <h1>重設密碼</h1>
+              <h1>
+                重設密碼
+                <LockResetIcon
+                  style={{ marginLeft: "5px", marginBottom: "5px" }}
+                  fontSize="large"
+                />
+              </h1>
             </div>
             <div>
               <label
@@ -52,7 +60,7 @@ function ForgotPassword() {
                 for="tel"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Your Email
+                電郵
               </label>
               <input
                 onChange={handleEmailChange}
@@ -70,7 +78,7 @@ function ForgotPassword() {
               type="submit"
               class="w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
             >
-              Reset Password
+              重設密碼
             </button>
             {checkEmail ? (
               <Alert severity="success">
@@ -92,7 +100,7 @@ function ForgotPassword() {
               <Link to="/login">
                 <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400">
                   <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                    Log In
+                    登入
                   </span>
                 </button>
               </Link>

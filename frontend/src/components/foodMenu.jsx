@@ -1,6 +1,8 @@
 import styles from "./foodMenu.module.css";
 import { useState, useEffect, useRef } from "react";
 import Card from "./Card";
+import { useAuth } from "../components/contexts/AuthContext";
+import { useOutletContext } from "react-router-dom";
 
 /* const scrollDistance = 220;
 const barMaxWidth = 1270; */
@@ -21,6 +23,11 @@ export default function FoodMenu({ scrollPosition_home }) {
   const [scrollPostion, setScrollPostion] = useState(0);
   const scrollViewRef = useRef();
   const btnContainerRef = useRef();
+  const [userFav, setUserFav] = useState([]);
+  const { currentUser } = useAuth();
+  const [isFav, setIsFav] = useState(false);
+  const [outletContextObj] = useOutletContext();
+  const favouriteFood = outletContextObj['favouriteFood'][0];
 
   useEffect(() => {
     async function fetchData() {
@@ -36,22 +43,49 @@ export default function FoodMenu({ scrollPosition_home }) {
       try {
         const res = await fetch("http://localhost:3001/allproducts");
         const result = await res.json();
+        
         for(let i = 0; i < result.length; i++) {
           for(let l = 0; l < result[i]['category'].length; l++){
             for(let categoryName of categoryNameArr) {
-              if(result[i]['category'][l] === categoryName) {
-                data[categoryName].push(result[i])
-              } 
+              if(result[i]['category'][l] !== 'favorite') {
+                if(result[i]['category'][l] === categoryName) {
+                  data[categoryName].push(result[i])
+                } 
+              }
             }
           }
         }
+        data['favorite'] = favouriteFood
+        console.log(data)
         setCategoryFoods(data)
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
-  }, [])
+  }, [favouriteFood])
+
+  /* useEffect(() => {
+    async function fetchUserFav() {
+      try {
+        const res = await fetch(
+          `http://localhost:3001/userFav/?email=${currentUser.email}`
+        );
+        const result = await res.json();
+        setUserFav(result[0]["favouriteItem"]);
+        // Logic to check if the current food item is liked
+        const isLiked = result[0]["favouriteItem"].some(
+          (item) => item.chineseName === chineseName
+        );
+        console.log(result[0]["favouriteItem"])
+        setIsFav(isLiked);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchUserFav();
+  }, [currentUser, chineseName]); */
+
 
   function handleButton(categroy) {
     setTimeout(() => {
