@@ -18,7 +18,6 @@ h1 {
   background: -webkit-linear-gradient(rgba(164, 149, 128, 1),#8D7A5B );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
 }
 .headerBar {
   height: 70px;

@@ -87,7 +87,7 @@ export default function DrawerComponent() {
             <List>
               {currentUser
                 ? logInMenuItems.map((item) => (
-                    <ListItem  key={item.text} className={styles.drawerItem} disablePadding>
+                    <ListItem  key={item.text} /* className={styles.drawerItem} */ disablePadding>
                       <ListItemButton sx={{ borderRadius: "30px" }} /* className={styles.drawerButton} */ component={Link} to={item.path}>
                         <ListItemIcon sx={{ color: "#705B38", fontSize: "30px" }}>
                           {item.icon}
@@ -95,7 +95,7 @@ export default function DrawerComponent() {
                         <ListItemText
                           primary={item.text}
                           sx={{ color: "#705B38" }}
-                          primaryTypographyProps={{ fontSize: "25px", 
+                          primaryTypographyProps={{ fontSize: "25px",
                             /* fontFamily: "LXGW WenKai Mono TC, monospace",
                             fontWeight: "400px",
                             fontStyle: "normal",  */
