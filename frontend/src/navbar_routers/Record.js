@@ -5,6 +5,7 @@ import styles from './Record.module.css';
 import InfoIcon from '@mui/icons-material/Info';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import recordPic from "../image/record.png";
 import receiptImg from '../image/receipt.svg'; // for empty record
 import { useAuth } from "../components/contexts/AuthContext";
 
@@ -82,12 +83,13 @@ const [userPrevOrders, setUserPrevOrders] = useState([]);
           </div>
         ) : (
           <div className={styles.noSelection}>
-            <img src={receiptImg} alt="No record selected" />
             <p>請選擇訂單查看詳細資訊</p>
+            <img src={receiptImg} alt="No record selected" />
           </div>
         )}
       </div>
       </div>
+      <img className={styles.recordPic} src={recordPic} alt="recordPic"></img>
     </div>
   );
 };
