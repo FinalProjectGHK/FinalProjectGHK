@@ -13,7 +13,6 @@ function LuckyDraw() {
     setIsExploding(true);
   }
 
-  console.log(isExploding);
   useEffect(() => {
     async function fetchAllProducts() {
       try {
@@ -43,16 +42,12 @@ function LuckyDraw() {
       // .removeEventListener("scroll", handleScroll);
     };
   }, [allProducts]);
-  console.log("allProducts: ", allProducts);
+  
   return (
     <div onScroll={handleTheScroll} className={styles.container}>
       <div className={styles.cover}>
         <h3>諗唔到食乜？</h3>
-        <img
-          style={{ marginLeft: "30px" }}
-          src={luckyDrawPic}
-          alt="luckyDrawPic"
-        />
+        <img src={luckyDrawPic} alt="luckyDrawPic" />
       </div>
       {allProducts.length > 0 && (
         <div className={styles.card}>

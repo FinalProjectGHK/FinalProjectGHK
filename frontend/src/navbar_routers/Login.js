@@ -48,7 +48,7 @@ function Login() {
     <div>
       <div className={styles.container}>
         <div className={styles.loginBox}>
-          <form onSubmit={handleSubmit} class="space-y-6" action="#">
+          <form onSubmit={handleSubmit} className="space-y-6" action="#">
             <div
               style={{
                 display: "flex",
@@ -68,7 +68,7 @@ function Login() {
               <label
                 style={{ display: "flex" }}
                 for="tel"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 電郵
               </label>
@@ -78,7 +78,7 @@ function Login() {
                 onChange={handleEmailChange}
                 type="email"
                 name="email"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required
               />
             </div>
@@ -86,7 +86,7 @@ function Login() {
               <label
                 style={{ display: "flex" }}
                 for="password"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 密碼
               </label>
@@ -104,7 +104,7 @@ function Login() {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="••••••••"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
                 />
                 <div onClick={togglePwVis} style={{ marginLeft: "10px" }}>
@@ -112,10 +112,10 @@ function Login() {
                 </div>
               </div>
             </div>
-            <div class="m-0">
+            <div className="m-0">
               <a
                 href="#"
-                class="ms-auto text-sm text-gray-700 hover:underline dark:text-gray-500"
+                className="ms-auto text-sm text-gray-700 hover:underline dark:text-gray-500"
               >
                 <Link to="/forgot-password">忘記密碼?</Link>
               </a>
@@ -129,7 +129,7 @@ function Login() {
             >
               <button
                 type="submit"
-                class="w-6/12 md:w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                className="w-6/12 md:w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
               >
                 登入
               </button>

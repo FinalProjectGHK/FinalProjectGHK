@@ -77,60 +77,70 @@ export default function DrawerComponent() {
         onClose={toggleDrawer(false)}
         classes={{ paper: styles.drawerPaper }} // Apply custom CSS class
       >
-        <Box
-          className={styles.sidebar}
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-        >
-          <List>
-            {currentUser
-              ? logInMenuItems.map((item) => (
-                  <ListItem key={item.text} disablePadding>
-                    <ListItemButton component={Link} to={item.path}>
-                      <ListItemIcon sx={{ color: "#705B38", fontSize: "30px" }}>
-                        {item.icon}
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={item.text}
-                        sx={{ color: "#705B38" }}
-                        primaryTypographyProps={{ fontSize: "25px" }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                ))
-              : logOutMenuItems.map((item) => (
-                  <ListItem key={item.text} disablePadding>
-                    <ListItemButton component={Link} to={item.path}>
-                      <ListItemIcon sx={{ color: "#705B38", fontSize: "30px" }}>
-                        {item.icon}
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={item.text}
-                        sx={{ color: "#705B38" }}
-                        primaryTypographyProps={{ fontSize: "25px" }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-          </List>
-        </Box>
-        {currentUser ? (
-          <div className={styles.btnBox}>
-            <button
-              style={{ width: "80%" }}
-              onClick={handleLogout}
-              class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-            >
-              Log Out
-            </button>
-          </div>
-        ) : null}
-        <img
-          style={{ marginTop: "50px" }}
-          src={sideDrawerPic}
-          alt="sideDrawerPic"
-        ></img>
+        <div className={styles.drawerContent}>
+          <Box
+            className={styles.sidebar}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+          >
+            <List>
+              {currentUser
+                ? logInMenuItems.map((item) => (
+                    <ListItem  key={item.text} className={styles.drawerItem} disablePadding>
+                      <ListItemButton sx={{ borderRadius: "30px" }} /* className={styles.drawerButton} */ component={Link} to={item.path}>
+                        <ListItemIcon sx={{ color: "#705B38", fontSize: "30px" }}>
+                          {item.icon}
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={item.text}
+                          sx={{ color: "#705B38" }}
+                          primaryTypographyProps={{ fontSize: "25px", 
+                            /* fontFamily: "LXGW WenKai Mono TC, monospace",
+                            fontWeight: "400px",
+                            fontStyle: "normal",  */
+                          }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  ))
+                : logOutMenuItems.map((item) => (
+                    <ListItem key={item.text} /* className={styles.drawerItem} */ disablePadding>
+                      <ListItemButton /* className={styles.drawerButton} */ component={Link} to={item.path}>
+                        <ListItemIcon sx={{ color: "#705B38", fontSize: "30px" }}>
+                          {item.icon}
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={item.text}
+                          sx={{ color: "#705B38" }}
+                          primaryTypographyProps={{ fontSize: "25px",
+                            /* fontFamily: "LXGW WenKai Mono TC, monospace",
+                            fontWeight: "400px",
+                            fontStyle: "normal", */ 
+                          }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+            </List>
+          </Box>
+          {currentUser ? (
+            <div className={styles.btnBox}>
+              <button
+                style={{ width: "80%" }}
+                onClick={handleLogout}
+                className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+              >
+                Log Out
+              </button>
+            </div>
+          ) : null}
+          <img
+            style={{ marginTop: "50px" }}
+            src={sideDrawerPic}
+            alt="sideDrawerPic"
+          ></img>
+        </div>
       </Drawer>
     </div>
   );

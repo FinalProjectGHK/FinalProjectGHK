@@ -51,14 +51,13 @@ function RankTable() {
           <div className={styles.top1}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "100px", width: "120px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-50 dark:ring-gray-50"
                 src={ranked[0]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[0]["name_c"]}</p>
+              <p>{ranked[0]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -90,14 +89,13 @@ function RankTable() {
           <div className={styles.top2}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "80px", width: "100px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-50 dark:ring-gray-50"
                 src={ranked[1]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[1]["name_c"]}</p>
+              <p>{ranked[1]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -125,18 +123,18 @@ function RankTable() {
             </div>
           </div>
         )}
-        {/**/} {ranked.length > 0 && (
+        {/**/}{" "}
+        {ranked.length > 0 && (
           <div className={styles.top3}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "70px", width: "90px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-50 dark:ring-gray-50"
                 src={ranked[2]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[2]["name_c"]}</p>
+              <p>{ranked[2]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -170,14 +168,13 @@ function RankTable() {
           <div className={styles.restRank}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "60px", width: "80px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
                 src={ranked[3]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[3]["name_c"]}</p>
+              <p>{ranked[3]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -209,14 +206,13 @@ function RankTable() {
           <div className={styles.restRank}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "60px", width: "80px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
                 src={ranked[4]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[4]["name_c"]}</p>
+              <p>{ranked[4]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -248,14 +244,13 @@ function RankTable() {
           <div className={styles.restRank}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "60px", width: "80px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
                 src={ranked[5]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[5]["name_c"]}</p>
+              <p>{ranked[5]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -287,14 +282,13 @@ function RankTable() {
           <div className={styles.restRank}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "60px", width: "80px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
                 src={ranked[6]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[6]["name_c"]}</p>
+              <p>{ranked[6]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -326,14 +320,13 @@ function RankTable() {
           <div className={styles.restRank}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "60px", width: "80px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
                 src={ranked[7]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[7]["name_c"]}</p>
+              <p>{ranked[7]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -365,14 +358,13 @@ function RankTable() {
           <div className={styles.restRank}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "60px", width: "80px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
                 src={ranked[8]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[8]["name_c"]}</p>
+              <p>{ranked[8]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -404,14 +396,13 @@ function RankTable() {
           <div className={styles.restRank}>
             <div className={styles.foodPic}>
               <img
-                style={{ height: "60px", width: "80px" }}
                 class="w-10 h-10 p-1 rounded-full ring-2 ring-gray-800 dark:ring-gray-800"
                 src={ranked[9]["img_url"]}
                 alt="Bordered avatar"
               />
             </div>
             <div className={styles.foodName}>
-              <p style={{ fontSize: "20px" }}>{ranked[9]["name_c"]}</p>
+              <p>{ranked[9]["name_c"]}</p>
             </div>
             <div className={styles.sales}>
               <Button variant="outlined" color="error" size="large">
@@ -438,7 +429,7 @@ function RankTable() {
               </Zoom>
             </div>
           </div>
-        )} {/**/}
+        )}
       </div>
     </div>
   );
