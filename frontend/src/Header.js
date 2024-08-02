@@ -3,7 +3,8 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import DrawerComponent from "./components/DrawerComponent";
 import Avatar from "@mui/material/Avatar";
-import HomeIcon from "@mui/icons-material/Home";
+// import HomeIcon from "@mui/icons-material/Home";
+import HomeIcon from "./image/fav.png"
 import { grey } from "@mui/material/colors";
 import { useAuth } from "./components/contexts/AuthContext";
 import { auth } from "./components/firebase";
@@ -16,9 +17,10 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
-
+import 'animate.css';
 
 const Header = ({ scrollPosition_root, chosenFoods }) => {
+  const [animate, setAnimate] = useState(false);
   const { currentUser } = useAuth();
   const headerBarRef = useRef();
   const headerBarContentRef = useRef();
@@ -41,6 +43,11 @@ const Header = ({ scrollPosition_root, chosenFoods }) => {
     }
   }
 
+  const handleAnimationClick = () => {
+    setAnimate(true);
+    setTimeout(() => setAnimate(false), 1000); // Reset animation class after 1 second
+  };
+
   return (
     <div>
       <div
@@ -61,11 +68,22 @@ const Header = ({ scrollPosition_root, chosenFoods }) => {
         >
           <div className={styles.leftContainer}>
             <Link to="/home">
-              <HomeIcon fontSize="large" />
+              <div
+                className={`animate__animated ${animate ? 'animate__headShake' : ''}`}
+                onClick={handleAnimationClick}
+              >
+                <div className={styles.flexContainer}>
+                  <img src={HomeIcon} alt="Home" style={{ width: '50px', height: '50px' }} />
+                  <h1 className="animate__animated animate__headShake">
+                    Grab & Go
+                  </h1>
+                </div>
+              </div>
             </Link>
           </div>
+
           <div className={styles.rightContainer}>
-          {currentUser ? (
+            {currentUser ? (
               <div>
                 <Box
                   sx={{

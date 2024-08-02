@@ -10,7 +10,8 @@
   justify-content: center;
 }
 .adsCarousel {
-  height: 400px;
+  aspect-ratio : 2.97508896797153 / 1;
+  /* height: 400px; */
   width: 100%;
   margin: 10px 0 35px 0;
 }
@@ -31,12 +32,17 @@
 
 @media only screen and (max-width: 600px) {
   .adsCarousel {
-    height: 180px;
+    aspect-ratio : 2.97508896797153 / 1;
+    /* height: 180px; */
+    width: 100%;
     margin: 10px 0 10px 0;
   }
 
   .rankTable {
-    height: 200px;
+    height: auto;
     margin: 10px 0 10px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 }

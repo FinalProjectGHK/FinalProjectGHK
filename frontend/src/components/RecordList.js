@@ -57,8 +57,16 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const RecordList = ({ orders, onSelectOrder }) => {
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-    return new Date(dateString).toLocaleDateString('en-CA', options).replace(',', '');
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true, // Use 12-hour clock
+      timeZone: 'UTC' // Specify the time zone as UTC
+    };
+    return new Date(dateString).toLocaleString('en-CA', options).replace(',', '');
   };
 
   return (

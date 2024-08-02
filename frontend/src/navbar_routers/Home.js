@@ -25,12 +25,11 @@ const Home = () => {
       </div>
       <div className={styles.rankTable}>
         <RankTable />
-        
+        <LuckyDraw />
       </div>
       <div className={styles.foodMenu}>
         <FoodMenu scrollPosition_home={scrollPosition} />
       </div>
-      <LuckyDraw />
     </div>
   </>);
 };
