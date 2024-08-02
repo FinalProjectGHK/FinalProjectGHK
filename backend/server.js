@@ -153,8 +153,8 @@ app.patch("/addFavItem", async (req, res) => {
       {
         $addToSet: {
           favouriteItem: {
-            chineseName: req.body.chineseName,
-            foodPic: req.body.foodPic,
+            name_c: req.body.chineseName,
+            img_url: req.body.foodPic,
             price: req.body.price,
           },
         },
@@ -176,8 +176,8 @@ app.patch("/removeFavItem", async (req, res) => {
       {
         $pull: {
           favouriteItem: {
-            chineseName: req.body.chineseName,
-            foodPic: req.body.foodPic,
+            name_c: req.body.chineseName,
+            img_url: req.body.foodPic,
             price: req.body.price,
           },
         },
