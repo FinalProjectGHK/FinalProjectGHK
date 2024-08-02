@@ -8,6 +8,9 @@ import emptyCart from "../image/empty.png";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 export default function ShoppingCart({
   chosenFoods,
@@ -57,13 +60,22 @@ export default function ShoppingCart({
     }
     return count;
   }
+  function countTotalItem(chosenFoods) {
+    let totalItem = 0;
+    chosenFoods.map((foodItem, index) => {
+      totalItem += foodItem.quantity
+    })
+    return(totalItem)
+  }
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
-      right: -3,
-      top: 0,
+      right: "3px",
+      top: '0px',
       border: `2px solid ${theme.palette.background.paper}`,
       padding: "0 4px",
+      backgroundColor: "#ffa1a1",
+      color: "#000000",
     },
   }));
 
@@ -75,17 +87,15 @@ export default function ShoppingCart({
           className={styles.btn_shoppingCart}
         >
           <IconButton className={styles.cartBtn} aria-label="cart">
-            <StyledBadge badgeContent={totalQty()} color="primary">
-              <ShoppingCartIcon sx={{ fontSize: 30 }} />
+            <StyledBadge badgeContent={totalQty()} /* color="primary" */ >
+              <ShoppingCartIcon sx={{ fontSize: 30 }} className={styles.img_cartBtn}/>
             </StyledBadge>
           </IconButton>
-          <label
-            style={{ fontSize: "28px" }}
-            className={styles.lbl_shoppingCart}
-          >
-            購 物 車
-          </label>
+          <label className={styles.lbl_shoppingCart}>購</label>
+          <label className={styles.lbl_shoppingCart}>物</label>
+          <label className={styles.lbl_shoppingCart}>車</label>
         </button>
+      </div>
         <Drawer
           classes={{ paper: styles.drawerPaper }}
           anchor="right"
@@ -103,6 +113,28 @@ export default function ShoppingCart({
                 </Link>
               </div>):
               (<div className={styles.notEmptyCart}>
+                <div className ={styles.header}>
+                  <div className ={styles.shoppingCartInfo}>
+                    <label className={styles.infoTitle}>共</label>
+                    <div className={styles.infoNum}>{countTotalItem(chosenFoods)}</div>
+                    <label className={styles.infoTitle}>件</label>
+                  </div>
+                  <div className={styles.controlPanel}>
+                    <Link to="/cart" className={styles.btnComfirm} onClick={() => handleComfirm()}>
+                      <ShoppingCartCheckoutIcon className={styles.img_btnComfirm}/>
+                      <label className={styles.lbl_btnComfirm}>下單</label>
+                    </Link>
+                    <button className={styles.btnClear} onClick={() => handleClear()}>
+                      <DeleteForeverIcon className={styles.img_btnClear}/>
+                      <label className={styles.lbl_btnClear}>全部清除</label>
+                    </button>
+                    <button className={styles.btnClose} onClick={() => handleClose()}>
+                      <HighlightOffIcon className={styles.img_btnClose}/>
+                      <label className={styles.lbl_btnClose}>關閉</label>
+                    </button>
+                    {/* <Link to="/home" className={styles.btn_ToFoodMenu} onClick={() => handleToFoodMenu()}></Link> */}
+                  </div>
+                </div>
                 <div className={styles.CartList}>
                 {chosenFoods
                   .filter(item => item.chineseName && item.foodPic && item.price)
@@ -121,16 +153,10 @@ export default function ShoppingCart({
                   ))
                 }
                 </div>
-                <div className={styles.controlPanel}>
-                  <button className={styles.btn_Clear} onClick={() => handleClose()}></button>
-                  <Link to="/cart" className={styles.btnComfirm} onClick={() => handleComfirm()}></Link>
-                  <button className={styles.btn_Clear} onClick={() => handleClear()}></button>
-                  <Link to="/home" className={styles.btn_ToFoodMenu} onClick={() => handleToFoodMenu()}></Link>
-                </div>
               </div>)}
           </div>
         </Drawer>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

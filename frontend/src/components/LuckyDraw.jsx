@@ -8,30 +8,6 @@ function LuckyDraw() {
   const [allProducts, setAllProducts] = useState([]);
   const [randomNumber, setRandomNumber] = useState(0);
   const [isExploding, setIsExploding] = useState(false);
-  // const randomPic = [];
-  // const randomName = [];
-  // const randomPrice = [];
-
-  // function generatePic() {
-  //   for (let i = 0; i < allProducts.length; i++) {
-  //     randomPic.push(allProducts[i]["img_url"]);
-  //   }
-  // }
-
-  // function generateName() {
-  //   for (let i = 0; i < allProducts.length; i++) {
-  //     randomName.push(allProducts[i]["name_c"]);
-  //   }
-  // }
-
-  // function generatePrice() {
-  //   for (let i = 0; i < allProducts.length; i++) {
-  //     randomPrice.push(allProducts[i]["price"]);
-  //   }
-  // }
-  // generatePic();
-  // generateName();
-  // generatePrice();
 
   function handleTheScroll() {
     setIsExploding(true);
@@ -90,9 +66,6 @@ function LuckyDraw() {
             />
           ) : null}
           <Card
-            //foodPic={randomPic[randomNumber]} // allProducts[randNumber]['img']
-            //chineseName={randomName[randomNumber]} // allProducts[randNumber]['name_c']
-            //price={randomPrice[randomNumber]} // allProducts[randNumber]['price']
             foodPic={allProducts[randomNumber]["img_url"]}
             chineseName={allProducts[randomNumber]["name_c"]}
             price={allProducts[randomNumber]["price"]}

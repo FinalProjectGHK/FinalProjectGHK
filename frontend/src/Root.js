@@ -1,5 +1,6 @@
 import styles from "./Root.module.css";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router";
 import Header from "./Header";
 import ShoppingCart from "./components/shoppingCart";
@@ -14,6 +15,9 @@ const Root = () => {
   const [shoppingDataPool, setShoppingDataPool] = useState({});
   const [currentNews, setCurrentNews] = useState("");
   const [favouriteFood, setFavouriteFood] = useState();
+  const navigate = useNavigate();
+  
+  /* navigate('/home') */
 
   const outletContextObj = { 'addFood': addFood, 'chosenFoods': chosenFoods, 
     'isBlankPage': [isBlankPage, setIsBlankPage], 'clientSecret': [clientSecret, setClientSecret],

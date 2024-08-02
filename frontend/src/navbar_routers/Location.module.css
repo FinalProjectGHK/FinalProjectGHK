@@ -1,3 +1,9 @@
+.bg_container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
 .mapContainer {
     height: 630px;
     width: 100%;
@@ -6,51 +12,50 @@
     /* filter: hue-rotate(5deg); */
 }
 
-.infoContainer {
-    margin-top: 20px;
-    padding: 30px;
+.locationInfo_container {
+    height: 40%;
+    width: 40%;
     border-radius: 30px;
     background-color: #f9f9f9;
-    text-align: left;
-    width: 40%;
-    position: fixed;
-    top: 20%;
-    left: 5%;
+    box-shadow: rgba(61, 47, 16, 0.649) 0px 0px 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
     z-index: 1000;
-    box-shadow: rgba(61, 47, 16, 0.649) 5px 10px 10px;
+}
+.locationInfo {
+    height: 95%;
+    width: 95%;
+    padding: 10px 30px 30px 30px;
+    background-color: transparent;
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-}
-
-.infoContainer {
-    max-height: 350px;
     overflow-y: scroll;
-    
 }
-
-.infoContainer::-webkit-scrollbar {
+.locationInfo::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
-
-.infoContainer::-webkit-scrollbar-track {
+.locationInfo::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
 }
-
-.infoContainer::-webkit-scrollbar-thumb {
+.locationInfo::-webkit-scrollbar-thumb {
     background: #a69a86;
     border-radius: 10px;
 }
-
-.infoContainer::-webkit-scrollbar-thumb:hover {
+.locationInfo::-webkit-scrollbar-thumb:hover {
     background: #705b38;
 }
-
-.location {
-    padding: 10px;
-    font-size: 1.5em;
+.locationInfoTitle {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .card {
@@ -59,7 +64,7 @@
     padding: 10px;
     margin: 10px;
     box-shadow: rgba(61, 47, 16, 0.931) 0px 0px 3px;
-    font-size: 1em;
+    font-size: 20px;
     color: #2d2517;
     cursor: pointer;
 }
@@ -72,7 +77,23 @@
 
 /* Media query for phone sizes */
 @media (max-width: 600px) {
-    .infoContainer {
+    .bg_container {
+        height: 91vh;
+        width: 100%;
+    }
+    .mapContainer {
+        height: inherit;
+        width: inherit;
+    }
+    .locationInfo_container {
+        height: 40%;
+        width: 90%;
+        bottom: 35px;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    /* .locationInfo {
         width: 90%;
         left: 5%;
         top: 60%;
@@ -97,5 +118,5 @@
     .mapContainer {
         height: 630px;
         width: 100%;
-    }
+    } */
 }

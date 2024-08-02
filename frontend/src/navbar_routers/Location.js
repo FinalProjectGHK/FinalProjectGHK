@@ -105,7 +105,7 @@ const Location = () => {
   };
 
   return (
-    <div>
+    <div className={styles.bg_container}>
       <MapContainer
         center={initialPosition}
         zoom={10.5} // larger zoom in
@@ -122,37 +122,39 @@ const Location = () => {
           handleLocationClick={handleLocationClick}
         />
       </MapContainer>
-      <div className={styles.infoContainer}>
-        <div className={styles.location}>分店位置</div>
-        {locations.map((location, index) => (
-          <div
-            key={index}
-            ref={locationRefs.current[index]}
-            position = {locations.position}
-            onClick={() => {
-              handleLocationClick(index) 
-              /* map.setView(location.position, map.getZoom()) */
-              /* MapWithMarkers(position, 
-                selectedLocation, handleMarkerClick) */
-            }}
-          >
-            <div className={styles.card}>
-              <div className={styles.name}>
-                <strong>{location.name}</strong>{" "}
-              </div>
-              <div>
-                <LocationOnIcon style={{ color: "#705b38" }} />{" "}
-                {location.address}
-              </div>
-              <div>
-                <AccessTimeIcon style={{ color: "#705b38" }} /> {location.hours}
-              </div>
-              <div>
-                <CallIcon style={{ color: "#705b38" }} /> {location.phone}
+      <div className={styles.locationInfo_container}>
+        <div className={styles.locationInfo}>
+          <h2 className={styles.locationInfoTitle}>分店位置</h2>
+          {locations.map((location, index) => (
+            <div
+              key={index}
+              ref={locationRefs.current[index]}
+              position = {locations.position}
+              onClick={() => {
+                handleLocationClick(index) 
+                /* map.setView(location.position, map.getZoom()) */
+                /* MapWithMarkers(position, 
+                  selectedLocation, handleMarkerClick) */
+              }}
+            >
+              <div className={styles.card}>
+                <div className={styles.name}>
+                  <strong>{location.name}</strong>{" "}
+                </div>
+                <div>
+                  <LocationOnIcon style={{ color: "#705b38" }} />{" "}
+                  {location.address}
+                </div>
+                <div>
+                  <AccessTimeIcon style={{ color: "#705b38" }} /> {location.hours}
+                </div>
+                <div>
+                  <CallIcon style={{ color: "#705b38" }} /> {location.phone}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

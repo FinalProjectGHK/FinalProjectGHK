@@ -45,7 +45,7 @@
 .itemQuantity {
   display: flex;
   align-items: center;
-  background-color: #ede9e3;
+  background-color: #ffffff;
   border-radius: 10px;
   font-weight: bold;
   margin-right: 40px;
@@ -81,28 +81,35 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
-
 .favButton {
   color: #705b38;
   cursor: pointer;
   border: none;
   margin-right: 30px;
 }
-
 .favButton:hover {
   text-decoration: underline;
 }
 .removeButton {
+  height: 35px;
+  width: 100px;
   background-color: rgb(188, 135, 135);
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
-
 .removeButton:hover {
   background-color: rgb(180, 112, 112);
+}
+.lbl_removeButton {
+  font-size: 15px;
+  pointer-events: none;
 }
 
 @media only screen and (max-width: 600px) {
@@ -128,10 +135,17 @@
   }
 
   .removeButton {
-    height: 30px;
+    height: 20px;
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .img_removeButton {
+    height: 15px;
+    width: 15px;
+  }
+  .lbl_removeButton {
     font-size: 0px;
   }
 

@@ -27,11 +27,9 @@ const ShoppingCartList = ({
               <div className={styles.itemPrice}>${price * quantity}</div>
             </div>
             <div className={styles.favRemove}>
-              <button
-                onClick={() => delFood(id)}
-                className={styles.removeButton}
-              >
-                <DeleteIcon /> Remove
+              <button onClick={() => delFood(id)} className={styles.removeButton}>
+                <DeleteIcon className={styles.img_removeButton}/>
+                <label className={styles.lbl_removeButton}>刪除</label>
               </button>
             </div>
           </div>
