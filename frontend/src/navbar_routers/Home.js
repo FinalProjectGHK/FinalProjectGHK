@@ -18,19 +18,20 @@ const Home = () => {
     setScrollPosition(position);
   };
 
-  return (
-    <>
+  return (<>
+    <div className={styles.bg_container}>
       <div className={styles.adsCarousel}>
         <Carousel />
       </div>
       <div className={styles.rankTable}>
         <RankTable />
-        <LuckyDraw />
+        
       </div>
       <div className={styles.foodMenu}>
         <FoodMenu scrollPosition_home={scrollPosition} />
       </div>
-    </>
-  );
+      <LuckyDraw />
+    </div>
+  </>);
 };
 export default Home;

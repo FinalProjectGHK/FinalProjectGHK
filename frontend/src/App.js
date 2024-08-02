@@ -13,6 +13,7 @@ import BulletinBoard from "./navbar_routers/BulletinBoard";
 import ForgotPassword from "./components/ForgotPassword";
 import Pay from "./navbar_routers/Pay";
 import News from "./navbar_routers/News";
+import PayLoadPage from "./components/PayLoadPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: "/forgot-password", element: <ForgotPassword /> },
       { path: "/pay", element: <Pay /> },
       { path: "/news", element: <News /> },
+      { path: "/payLoad", element: <PayLoadPage /> },
     ],
   },
 ]);

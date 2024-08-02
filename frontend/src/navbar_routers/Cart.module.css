@@ -16,21 +16,8 @@
   top: 12.5%;
   right: 5%;
 }
-.shoppingCard_container {
-  min-height: 100vh;
-  width: 50%;
-  border-radius: 15px;
-  box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
-}
-.shoppingCard {
-  min-height: 100vh;
-  padding: 20px 10px;
-  border-radius: 15px;
-  box-shadow: inset #d0c5bd 0px 0px 40px 25px;
-  background-color: white;
-}
 
-.typeEmail {
+/* .typeEmail {
   height: fit-content;
   width: 100%;
   padding: 10px 30px;
@@ -46,7 +33,7 @@
 }
 .ipt_email {
   background-color: aqua;
-}
+} */
 .pickShop{
   height: fit-content;
   width: 100%;
@@ -54,6 +41,11 @@
   border-radius: 15px;
   background-color: white;
   box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
+}
+.pickShop:hover {
+  .dropdownButton_S {
+    border-color: #705b38;
+  }
 }
 .pickShopTitle {
   margin-bottom: 10px;
@@ -70,7 +62,6 @@
   color: white;
   background-color: #8D7A5B;
   border-radius: 15px;
-  cursor: pointer;
   font-size: 18px;
   text-align: center;
   line-height: 25px;
@@ -79,12 +70,13 @@
   align-items: center;
   justify-content: space-between;
 }
-.dropdownButton_lbl {
+.lbl_dropdownButton {
   width: 95%;
   overflow-wrap: anywhere;
   text-align: start;
+  pointer-events: none;
 }
-.dropdownButton_svg {
+.svg_dropdownButton {
   width: 5%;
   display: flex;
   align-items: center;
@@ -92,6 +84,43 @@
 } 
 .dropdownButton:hover{
   background-color: #705b38;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+.dropdownButton_S {
+  min-height: 35px;
+  max-height: fit-content;
+  width: 100%;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+  color: #705b38;
+  background-color: transparent;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: #e0d8ca;
+  font-size: 18px;
+  text-align: center;
+  line-height: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.lbl_dropdownButton_S {
+  width: 95%;
+  overflow-wrap: anywhere;
+  text-align: start;
+  pointer-events: none;
+}
+.svg_dropdownButton_S {
+  width: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+} 
+.dropdownButton_S:hover{
+  background-color: #ede9e3;
   transform: translateY(-3px);
   box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
     0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
@@ -137,8 +166,9 @@
   box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
 }
 .orderSummary:hover {
-  hr {
-    border-color: #705b38;
+  .hr {
+    border-top-width: 2px;
+    border-top-color: #705b38;
   }
 }
 .orderSummaryTitle {
@@ -163,10 +193,10 @@
 .summaryItem:hover {
   background-color: #ede9e3;
 }
-hr {
-  border-color: #ebe3d5;
-  border-width: 1px;
-  margin: 10px 0;
+.hr {
+  border-top-color: #e0d8ca;
+  border-top-width: 2px;
+  margin: 10px 10px;
 }
 .proceedButton {
   height: 35px;
@@ -214,3 +244,49 @@ hr {
   flex-direction: row;
   gap: 30px;
 } */
+
+.shoppingCard_container {
+  min-height: 100vh;
+  width: 50%;
+  border-radius: 15px;
+  box-shadow: rgba(61, 47, 16, 0.429) 5px 5px 5px;
+}
+.shoppingCard {
+  min-height: 100vh;
+  padding: 20px 10px;
+  border-radius: 15px;
+  box-shadow: inset #d0c5bd 0px 0px 40px 25px;
+  background-color: white;
+}
+.shoppingCardTitle {
+  margin-left: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #8f816c;
+}
+
+@media only screen and (max-width: 600px) {
+  .cartContainer {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  .leftContainer {
+    width: 100%;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+  .pickShop {
+    width: 100%;
+    
+  }
+  .orderSummary {
+    width: 100%;
+  }
+  .shoppingCard_container {
+    width: 100%;
+  }
+}

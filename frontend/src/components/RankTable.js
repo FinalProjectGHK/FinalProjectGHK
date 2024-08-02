@@ -8,6 +8,17 @@ import Zoom from "@mui/material/Zoom";
 import Fab from "@mui/material/Fab";
 import { useOutletContext } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { useSpring, animated } from "react-spring";
+
+function Number({ n }) {
+  const { number } = useSpring({
+    from: { number: 0 },
+    number: n,
+    delay: 200,
+    config: { mass: 1, tension: 20, friction: 10 },
+  });
+  return <animated.div>{number.to((n) => n.toFixed(0))}</animated.div>;
+}
 
 function RankTable() {
   const [ranked, setRanked] = useState([]);
@@ -53,7 +64,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[0]["sales"]}
+                <Number n={ranked[0]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -92,7 +103,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[1]["sales"]}
+                <Number n={ranked[1]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -114,7 +125,7 @@ function RankTable() {
             </div>
           </div>
         )}
-        {ranked.length > 0 && (
+        {/**/} {ranked.length > 0 && (
           <div className={styles.top3}>
             <div className={styles.foodPic}>
               <img
@@ -131,7 +142,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[2]["sales"]}
+                <Number n={ranked[2]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -172,7 +183,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[3]["sales"]}
+                <Number n={ranked[3]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -211,7 +222,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[4]["sales"]}
+                <Number n={ranked[4]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -250,7 +261,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[5]["sales"]}
+                <Number n={ranked[5]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -289,7 +300,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[6]["sales"]}
+                <Number n={ranked[6]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -328,7 +339,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[7]["sales"]}
+                <Number n={ranked[7]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -367,7 +378,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[8]["sales"]}
+                <Number n={ranked[8]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -406,7 +417,7 @@ function RankTable() {
               <Button variant="outlined" color="error" size="large">
                 {" "}
                 <WhatshotIcon />
-                {ranked[9]["sales"]}
+                <Number n={ranked[9]["sales"]} />
               </Button>
             </div>
             <div className={styles.addBtn}>
@@ -427,7 +438,7 @@ function RankTable() {
               </Zoom>
             </div>
           </div>
-        )}
+        )} {/**/}
       </div>
     </div>
   );

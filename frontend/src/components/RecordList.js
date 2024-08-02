@@ -65,7 +65,7 @@ const RecordList = ({ orders, onSelectOrder }) => {
     <div className={styles.orderList}>
       {orders.map((order, index) => (
         <div key={index} className={styles.orderItem} onClick={() => onSelectOrder(order)}>
-          <div><AccessTimeIcon style={{ color: "#705b38" }} />{" "}{formatDate(order.orderDate)}</div>
+          <div><AccessTimeIcon style={{ color: "#705b38" }} />{" "}{formatDate(order.time)}</div>
           <div><LocationOnIcon style={{ color: "#705b38" }} />{" "}{order.location}</div>
           <div><AttachMoneyIcon style={{ color: "#705b38" }} />{" "}{order.totalPrice}</div>
         </div>

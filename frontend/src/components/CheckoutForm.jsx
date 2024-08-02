@@ -49,9 +49,8 @@ export default function CheckoutForm() {
     }
   }
 
-  console.log(shoppingDataPool)
+  //console.log(shoppingDataPool)
   
-
   useEffect(() => {
     if (!stripe) {
       return;
@@ -68,9 +67,6 @@ export default function CheckoutForm() {
           setMessage("Payment succeeded!");
           //TODO 
           addSales()
-          // addPrevOrders()
-      
-
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -97,7 +93,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/home",
+        return_url: "http://localhost:3000/payLoad",
       },
     });
     // This point will only be reached if there is an immediate error when
