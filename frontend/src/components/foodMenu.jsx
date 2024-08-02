@@ -86,7 +86,24 @@ export default function FoodMenu({ scrollPosition_home }) {
     fetchUserFav();
   }, [currentUser, chineseName]); */
 
-
+  function showChineseName(categoryName) {
+    switch (categoryName) {
+      case 'favorite':
+        return "喜愛"
+      case 'rice':
+        return "飯"
+      case 'pasta':
+        return "意粉"
+      case 'noodle':
+        return "麵"
+      case 'vegan':
+        return "素食"
+      case 'dessert':
+        return "甜品"
+      case 'drink':
+        return "飲品"
+    } 
+  }
   function handleButton(categroy) {
     setTimeout(() => {
       window.scrollTo({
@@ -157,10 +174,10 @@ export default function FoodMenu({ scrollPosition_home }) {
               {categoryNameArr.map((categoryName, index) => (<>
                 {selectedCategory === categoryName? 
                   (<button key={index} className={`${styles.btn_categroy_pressed} ${styles.btn_categroy}`} onClick={() => handleButton(categoryName)}>
-                    <label className={styles.lbl_categroy}>{categoryName}</label>
+                    <label className={styles.lbl_categroy}>{showChineseName(categoryName)}</label>
                   </button>) : 
                   (<button key={index} className={styles.btn_categroy} onClick={() => handleButton(categoryName)}>
-                    <label className={styles.lbl_categroy}>{categoryName}</label>
+                    <label className={styles.lbl_categroy}>{showChineseName(categoryName)}</label>
                   </button>)
                 }
               </>))}
