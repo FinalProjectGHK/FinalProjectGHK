@@ -12,7 +12,8 @@
   width: 100%;
   padding: 0 15px;
   margin-bottom: 20px;
-  background-color: aqua;
+  background-color: #bfb4ad7e /* #ffffffd2 */ /* #ede9e3d9 */;
+  transition: background-color 0.3s, color 0.3s;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,10 +21,148 @@
   position: sticky;
   top: 68px;
 }
+
+/* --- tag bar --- */
 .tagBar {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
+.btn_tagBar1 {
+  height: 50px;
+  min-width: 140px;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 30px;
+  border-color: #ff8686;
+  border-width: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.btn_tagBar1:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.btn_tagBar1>div {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spn_tagBar1 {
+  width: 80%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff8686;
+}
+.ipt_tagBar1 {
+  border-width: 0;
+  border-radius: 20px;
+  background-color: #ff8686;
+  transform: scale(1.6);
+  pointer-events: none;
+}
+.ipt_tagBar1:checked {
+  background-color: #ff8686;
+}
+.ipt_tagBar1:focus {
+  box-shadow: none;
+}
+
+.btn_tagBar2 {
+  height: 50px;
+  min-width: 140px;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 30px;
+  border-color: #60ca56;
+  border-width: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.btn_tagBar2:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.btn_tagBar2>div {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spn_tagBar2 {
+  width: 80%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #60ca56;
+}
+.ipt_tagBar2 {
+  border-width: 0;
+  border-radius: 20px;
+  background-color: #60ca56;
+  transform: scale(1.6);
+  pointer-events: none;
+}
+.ipt_tagBar2:checked {
+  background-color: #60ca56;
+}
+.ipt_tagBar2:focus {
+  box-shadow: none;
+}
+
+.btn_tagBar3 {
+  height: 50px;
+  min-width: 140px;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 30px;
+  border-color: #86acff;
+  border-width: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.btn_tagBar3:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.btn_tagBar3>div {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spn_tagBar3 {
+  width: 80%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #86acff;
+}
+.ipt_tagBar3 {
+  border-width: 0;
+  border-radius: 20px;
+  background-color: #86acff;
+  transform: scale(1.6);
+  pointer-events: none;
+}
+.ipt_tagBar3:checked {
+  background-color: #86acff;
+}
+.ipt_tagBar3:focus {
+  box-shadow: none;
+}
+
+/* --- time bar --- */
 .timeBar {
+  height: 100%;
+  width: 50%;
 }
+
+/* Card */
 .adsCard_container {
   height: 100%;
   width: 100%;
@@ -31,4 +170,43 @@
 .adsCard {
   box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
     0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+.tagName1 {
+  height: 40px;
+  min-width: 100px;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 30px;
+  border-color: #ff8686;
+  border-width: 5px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 18px;
+  color: #ff8686;
+}
+.tagName2 {
+  height: 40px;
+  min-width: 100px;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 30px;
+  border-color: #60ca56;
+  border-width: 5px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 18px;
+  color: #60ca56;
+}
+.tagName3 {
+  height: 40px;
+  min-width: 100px;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 30px;
+  border-color: #86acff;
+  border-width: 5px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 18px;
+  color: #86acff;
 }

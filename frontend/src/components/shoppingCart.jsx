@@ -106,10 +106,12 @@ export default function ShoppingCart({
             {chosenFoods.length === 0 ? 
               (<div className={styles.emptyCart}>
                 <img src={emptyCart} alt="Empty Cart" />
-                <p>Your Cart is Empty</p>
-                <p>Add items to get started</p>
+                <strong>
+                  <p>購物車內未有任何項目</p>
+                  <p>立即選購心水食品</p>
+                </strong>
                 <Link to="/home">
-                  <button onClick={() => handleToFoodMenu()}>Continue to shop</button>
+                  <button onClick={() => handleToFoodMenu()}>瀏覽餐牌</button>
                 </Link>
               </div>):
               (<div className={styles.notEmptyCart}>

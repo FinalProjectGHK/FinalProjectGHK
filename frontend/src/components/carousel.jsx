@@ -79,9 +79,9 @@ export default function Carousel() {
       { isAutoSlide === true ?
       (<></>) :
       (<><div className="absolute top-1/2 left-3 -translate-y-1/2 z-1">
-        <button onClick={() => handlePrev()} className="flex items-center justify-center cursor-pointer group focus:outline-none">
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-            <svg aria-hidden="true" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <button onClick={() => handlePrev()} className="flex items-center justify-center cursor-pointer group focus:outline-none ">
+          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/60 ring-[2px] ring-gray-500 group-hover:bg-white group-focus:bg-gray-500 group-focus:ring-[6px] group-focus:ring-white group-focus:outline-none">
+            <svg aria-hidden="true" className="w-6 h-6 text-gray-500 group-focus:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
             </svg>
             <span className="sr-only">Carousel Previous</span>
@@ -90,8 +90,8 @@ export default function Carousel() {
       </div>
       <div className="absolute top-1/2 right-3 -translate-y-1/2 z-1">
           <button onClick={() => handleNext()} className=" flex items-center justify-center cursor-pointer group focus:outline-none">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-              <svg aria-hidden="true" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/60 ring-[2px] ring-gray-500 group-hover:bg-white group-focus:bg-gray-500 group-focus:ring-[6px] group-focus:ring-white group-focus:outline-none">
+              <svg aria-hidden="true" className="w-6 h-6 text-gray-500 group-focus:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
               </svg>
               <span className="sr-only">Carousel Next</span>
