@@ -182,6 +182,7 @@
   text-align: center;
   line-height: 20px;
   font-size: 18px;
+  font-weight: bold;
   color: #ff8686;
 }
 .tagName2 {
@@ -195,10 +196,11 @@
   text-align: center;
   line-height: 20px;
   font-size: 18px;
+  font-weight: bold;
   color: #60ca56;
 }
 .tagName3 {
-  height: 40px;
+  height: 40px; 
   min-width: 100px;
   width: fit-content;
   padding: 5px;
@@ -208,5 +210,6 @@
   text-align: center;
   line-height: 20px;
   font-size: 18px;
+  font-weight: bold;
   color: #86acff;
 }
