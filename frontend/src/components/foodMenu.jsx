@@ -4,8 +4,8 @@ import Card from "./Card";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useOutletContext } from "react-router-dom";
 
-/* const scrollDistance = 220;
-const barMaxWidth = 1270; */
+//const scrollDistance = 220;
+//const barMaxWidth = 1270;
 
 export default function FoodMenu({ scrollPosition_home }) {
   const categoryNameArr = [
@@ -20,12 +20,9 @@ export default function FoodMenu({ scrollPosition_home }) {
  
   const [categoryFoods, setCategoryFoods] = useState();
   const [selectedCategory, setSelectedCategory] = useState("rice");
-  const [scrollPostion, setScrollPostion] = useState(0);
+  //const [scrollPostion, setScrollPostion] = useState(0);
   const scrollViewRef = useRef();
   const btnContainerRef = useRef();
-  const [userFav, setUserFav] = useState([]);
-  const { currentUser } = useAuth();
-  const [isFav, setIsFav] = useState(false);
   const [outletContextObj] = useOutletContext();
   const favouriteFood = outletContextObj['favouriteFood'][0];
 
@@ -43,7 +40,6 @@ export default function FoodMenu({ scrollPosition_home }) {
       try {
         const res = await fetch("http://localhost:3001/allproducts");
         const result = await res.json();
-        
         for(let i = 0; i < result.length; i++) {
           for(let l = 0; l < result[i]['category'].length; l++){
             for(let categoryName of categoryNameArr) {
@@ -65,26 +61,16 @@ export default function FoodMenu({ scrollPosition_home }) {
     fetchData();
   }, [favouriteFood])
 
-  /* useEffect(() => {
-    async function fetchUserFav() {
-      try {
-        const res = await fetch(
-          `http://localhost:3001/userFav/?email=${currentUser.email}`
-        );
-        const result = await res.json();
-        setUserFav(result[0]["favouriteItem"]);
-        // Logic to check if the current food item is liked
-        const isLiked = result[0]["favouriteItem"].some(
-          (item) => item.chineseName === chineseName
-        );
-        console.log(result[0]["favouriteItem"])
-        setIsFav(isLiked);
-      } catch (error) {
-        console.log(error);
+  function checkIsFav(name_c) {
+    for(let i = 0; i< favouriteFood.length; i++) {
+      console.log(favouriteFood[i]['name_c'])
+      console.log(name_c)
+      if(favouriteFood[i]['name_c'] === name_c) {
+        return true
       }
     }
-    fetchUserFav();
-  }, [currentUser, chineseName]); */
+    return false
+  }
 
   function showChineseName(categoryName) {
     switch (categoryName) {
@@ -216,12 +202,13 @@ export default function FoodMenu({ scrollPosition_home }) {
           {categoryFoods &&
           categoryFoods[selectedCategory].map((categoryFood, index) => (
             <Card
+              className={styles.card}
               key={index}
               foodPic={categoryFood.img_url}
               chineseName={categoryFood.name_c}
               //englishName={dessert.name_e}
               price={categoryFood.price}
-              className={styles.card}
+              isFav_P={checkIsFav(categoryFood.name_c)}
             />
           ))}
         </div>

@@ -14,15 +14,16 @@ const Root = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [shoppingDataPool, setShoppingDataPool] = useState({});
   const [currentNews, setCurrentNews] = useState("");
-  const [favouriteFood, setFavouriteFood] = useState();
-  const navigate = useNavigate();
-  
-  /* navigate('/home') */
-
+  const [favouriteFood, setFavouriteFood] = useState([]);
   const outletContextObj = { 'addFood': addFood, 'chosenFoods': chosenFoods, 
     'isBlankPage': [isBlankPage, setIsBlankPage], 'clientSecret': [clientSecret, setClientSecret],
     'shoppingDataPool': [shoppingDataPool, setShoppingDataPool], 'currentNews': [currentNews, setCurrentNews],
     'favouriteFood': [favouriteFood, setFavouriteFood]};
+  
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate('/home')
+  },[])
 
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {

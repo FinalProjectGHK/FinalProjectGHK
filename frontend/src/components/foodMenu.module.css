@@ -20,13 +20,48 @@
   display: flex;
   flex-direction: row;
 }
+/* orginal
 .div_scrollView {
   height: 100%;
   width: 100%;
   border-radius: 10px;
   overflow: scroll;
   scroll-behavior: smooth;
+} */
+.div_scrollView {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
 }
+.div_scrollView::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.div_scrollView::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.div_scrollView::-webkit-scrollbar-thumb {
+  background: #a69a86;
+  border-radius: 10px;
+}
+.div_scrollView::-webkit-scrollbar-thumb:hover {
+  background: #705b38;
+}
+/* no scroll bar 
+.div_scrollView {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.div_scrollView::-webkit-scrollbar {
+  display: none;
+} */
 .div_controlLeft {
   height: 100%;
   width: 60px;
@@ -161,7 +196,7 @@
     height: 50px;
     margin-top: 10px;
   }
-  
+
 }
 /* @keyframes heartbeat {
     from {

@@ -8,22 +8,22 @@ import Zoom from "@mui/material/Zoom";
 import { useOutletContext } from "react-router-dom";
 import { useAuth } from "../components/contexts/AuthContext";
 
-function Card({ foodPic, chineseName, englishName, price }) {
+function Card({ foodPic, chineseName, englishName, price, isFav_P }) {
+  const { currentUser } = useAuth();
   const [outletContextObj] = useOutletContext();
   const addFood = outletContextObj["addFood"];
   const setFavouriteFood = outletContextObj['favouriteFood'][1];
-  const [userFav, setUserFav] = useState([]);
-  const { currentUser } = useAuth();
   const [isFav, setIsFav] = useState(false);
+  //const [userFav, setUserFav] = useState([]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     async function fetchUserFav() {
       try {
         const res = await fetch(
           `http://localhost:3001/userFav/?email=${currentUser.email}`
         );
         const result = await res.json();
-        /* setUserFav(result[0]["favouriteItem"]); */
+        //setUserFav(result[0]["favouriteItem"]);
         // Logic to check if the current food item is liked
         const isLiked = result[0]["favouriteItem"].some(
           (item) => item.chineseName === chineseName
@@ -36,11 +36,31 @@ function Card({ foodPic, chineseName, englishName, price }) {
       }
     }
     fetchUserFav();
-  }, [currentUser/* ,chineseName */]);
-
-  async function favFood() {
+  }, [currentUser, chineseName]); */
+  /* async function favFood() {
+    console.log(isFav)
     setIsFav((prevState) => !prevState);
-  }
+  }*/
+
+  useEffect(() => {
+    async function fetchUserFav() {
+      try {
+        const res = await fetch(
+          `http://localhost:3001/userFav/?email=${currentUser.email}`
+        );
+        const result = await res.json();
+        console.log(result[0]["favouriteItem"])
+        setFavouriteFood(result[0]["favouriteItem"])
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchUserFav();
+  }, [isFav]);
+
+  useEffect(() => {
+    setIsFav(isFav_P);
+  }, [isFav_P])
 
   async function addFav(chineseName, price, foodPic) {
     try {
@@ -50,7 +70,6 @@ function Card({ foodPic, chineseName, englishName, price }) {
         price: price,
         foodPic: foodPic,
       };
-      console.log(favItem);
       const result = await fetch("http://localhost:3001/addFavItem", {
         method: "PATCH",
         body: JSON.stringify(favItem),
@@ -58,6 +77,7 @@ function Card({ foodPic, chineseName, englishName, price }) {
           "Content-Type": "application/json",
         },
       });
+      setIsFav(!isFav);
       console.log(result);
     } catch (error) {
       console.log(error);
@@ -79,6 +99,7 @@ function Card({ foodPic, chineseName, englishName, price }) {
           "Content-Type": "application/json",
         },
       });
+      setIsFav(!isFav);
       console.log(result);
     } catch (error) {
       console.log(error);
@@ -104,7 +125,7 @@ function Card({ foodPic, chineseName, englishName, price }) {
             }}
           >
             {currentUser ? (
-              <div onClick={favFood}>
+              <div /* onClick={favFood} */>
                 {isFav ? (
                   <FavoriteIcon
                     onClick={() => removeFav(chineseName, price, foodPic)}

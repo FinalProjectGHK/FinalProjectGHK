@@ -69,6 +69,11 @@
   padding: 10px;
   border-radius: 20px;
   background-color: #8d7a5b;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.restRankBox::-webkit-scrollbar {
+  display: none;
 }
 
 .restRank {
