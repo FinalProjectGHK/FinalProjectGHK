@@ -42,11 +42,11 @@ export default function DrawerComponent() {
       icon: <CelebrationOutlinedIcon />,
     },
     { text: "分店位置", path: "/location", icon: <LocationOnIcon /> },
-    { text: "關於我們", path: "/about", icon: <InfoIcon /> },
+    /* { text: "關於我們", path: "/about", icon: <InfoIcon /> }, */
   ];
 
   const logInMenuItems = [
-    { text: "帳戶資料", path: "/account", icon: <ManageAccountsIcon /> },
+    /* { text: "帳戶資料", path: "/account", icon: <ManageAccountsIcon /> }, */
     { text: "訂單紀錄", path: "/record", icon: <ContentPasteIcon /> },
     {
       text: "公告欄",
@@ -54,7 +54,7 @@ export default function DrawerComponent() {
       icon: <CelebrationOutlinedIcon />,
     },
     { text: "分店位置", path: "/location", icon: <LocationOnIcon /> },
-    { text: "關於我們", path: "/about", icon: <InfoIcon /> },
+    /* { text: "關於我們", path: "/about", icon: <InfoIcon /> }, */
   ];
 
   async function handleLogout() {
@@ -131,7 +131,7 @@ export default function DrawerComponent() {
                 onClick={handleLogout}
                 className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
               >
-                Log Out
+                登出
               </button>
             </div>
           ) : null}

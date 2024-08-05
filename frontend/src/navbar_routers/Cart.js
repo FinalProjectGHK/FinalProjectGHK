@@ -199,6 +199,7 @@ const Cart = () => {
             <span>總數:</span>
             <span>${countTotalPrice(chosenFoods) - countDiscount(chosenFoods)}</span>
           </div>
+          <div className={styles.summaryItem}>*美食於付款確定後15分鐘可取</div>
           <div className={styles.summaryButtons}>
             <button className={styles.proceedButton} onClick={() => handleProceedButton()}>
               前住付款

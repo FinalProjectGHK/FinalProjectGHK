@@ -88,6 +88,7 @@ function Register() {
         setMust6(false);
         setEmailInUse(false);
         setSuccessReg(true);
+        setTimeout(() => (window.location.href = "/home"), 2000);
       } catch (error) {
         console.log(error.message);
         if (
@@ -96,23 +97,33 @@ function Register() {
         ) {
           setMust6(true);
           setEmailInUse(false);
+          setInput((prevState) => {
+            return { ...prevState, password: "", confirmPassword: "" };
+          });
         } else if (
           error.message === "Firebase: Error (auth/email-already-in-use)."
         ) {
           setEmailInUse(true);
           setMust6(false);
+          setInput({
+            name: "",
+            email: "",
+            tel: "",
+            password: "",
+            confirmPassword: "",
+          });
         }
       }
       setLoading(false);
       setPwUnmatch(false);
 
-      setInput({
-        name: "",
-        email: "",
-        tel: "",
-        password: "",
-        confirmPassword: "",
-      });
+      // setInput({
+      //   name: "",
+      //   email: "",
+      //   tel: "",
+      //   password: "",
+      //   confirmPassword: "",
+      // });
     } else {
       setMust6(false);
       setEmailInUse(false);
@@ -266,7 +277,7 @@ function Register() {
             <Alert severity="error">密碼不相符, 請重新輸入.</Alert>
           ) : null}
           {successReg ? <Alert severity="success">成功注册 !</Alert> : null}
-          {must6 ? <Alert severity="warning">密碼最少要有6個字.</Alert> : null}
+          {must6 ? <Alert severity="error">密碼最少要有6個字.</Alert> : null}
 
           {emailInUse ? <Alert severity="warning">電郵已使用.</Alert> : null}
         </div>

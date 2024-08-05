@@ -1,15 +1,16 @@
 import React from "react";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import "./Whatsapp.css";
+import avatarImage from "../image/fav.png";
 const Whatsapp = () => {
   return (
     <FloatingWhatsApp
       phoneNumber="+85266055193"
-      accountName="Support"
-      avatar="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-      statusMessage="Typically replies within 5 minutes"
-      chatMessage="Hello! How can we help you today?"
-      placeholder="Type a message..."
+      accountName="Grab & Go"
+      avatar={avatarImage}
+      statusMessage="在線"
+      chatMessage="你好，有咩可以幫到你？"
+      placeholder="輸入訊息"
       allowClickAway={true}
       //allowEsc={true}
       chatboxHeight={285}

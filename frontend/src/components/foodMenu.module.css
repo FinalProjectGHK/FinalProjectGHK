@@ -41,7 +41,7 @@
   height: 10px;
 }
 .div_scrollView::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: transparent;
   border-radius: 10px;
 }
 .div_scrollView::-webkit-scrollbar-thumb {
@@ -123,6 +123,7 @@
     0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 .btn_categroy_pressed {
+  background-color: #ada89d;
   border-top-width: 3px;
   border-right-width: 1px;
   border-left-width: 1px;
@@ -130,6 +131,7 @@
   border-color: #6b6b6b;
   box-shadow: none;
   transform: scale(0.95, 0.95) translateY(3px);
+  color: #ffffff;
 }
 .btn_categroy:hover {
   border-width: 0px;
@@ -178,25 +180,20 @@
     border-width: 0px;
     box-shadow: none;
   }
-
   .foodList_outside {
     border-style: none;
     border-width: 0px;
     margin: 5px 0;
     box-shadow: none;
   }
-
-  .div_btnContainer {
-    padding: 0px;
-    gap: 5px;
-    
-  }
-
+  
   .categroyBar {
-    height: 50px;
+    height: 80px;
     margin-top: 10px;
   }
-
+  .div_btnContainer {
+    gap: 20px;
+  }
 }
 /* @keyframes heartbeat {
     from {

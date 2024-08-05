@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import Card from "./Card";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useOutletContext } from "react-router-dom";
+import noFavPic from "../image/noFav.png";
+import Tooltip from "@mui/material/Tooltip";
 
 //const scrollDistance = 220;
 //const barMaxWidth = 1270;
@@ -211,6 +213,22 @@ export default function FoodMenu({ scrollPosition_home }) {
               isFav_P={checkIsFav(categoryFood.name_c)}
             />
           ))}
+          {categoryFoods && categoryFoods[selectedCategory].length == 0 ? (
+            <div>
+              <Tooltip
+                title="未加我的最愛，加左就會係呢度見到"
+                arrow
+                placement="right"
+              >
+                <img
+                  style={{ height: "300px" }}
+                  className={styles.noFavPic}
+                  src={noFavPic}
+                  alt="noFavPic"
+                ></img>
+              </Tooltip>
+            </div>
+          ) : null}
         </div>
       </div>
     </>

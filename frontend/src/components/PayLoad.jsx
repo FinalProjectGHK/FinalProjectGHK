@@ -71,7 +71,7 @@ export default function PayLoad() {
   return (
     <div className={StyleSheet.payLoadBox}>
       <CircularProgressWithLabel value={progress} size={100} />
-      {success ? <h1>成功付款</h1> : null}
+      {success ? <h2>成功付款</h2> : null}
       {isExploding ? (
         <ConfettiExplosion
           style={{ position: "relative", left: "50px", top: "-80px" }}

@@ -24,10 +24,10 @@ const router = createBrowserRouter([
       { path: "/cart", element: <Cart />,},
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
-      { path: "/account", element: <Account /> },
+      /* { path: "/account", element: <Account /> }, */
       { path: "/record", element: <Record /> },
       { path: "/location", element: <Location /> },
-      { path: "/about", element: <About /> },
+      /* { path: "/about", element: <About /> }, */
       { path: "/bulletinBoard", element: <BulletinBoard /> },
       { path: "/forgot-password", element: <ForgotPassword /> },
       { path: "/pay", element: <Pay /> },

@@ -16,7 +16,10 @@
 }
 
 .orderItem:hover {
-  background-color: #e6e6e6;
+  background-color: #e3dfd9;
+}
+.selected {
+  background-color: #e3dfd9; 
 }
 
 @media only screen and (max-width: 600px) {
