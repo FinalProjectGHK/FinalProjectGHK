@@ -120,7 +120,8 @@ export default function CheckoutForm() {
       <PaymentElement id="payment-element" options={paymentElementOptions} className={styles.paymentElement}/>
       <button disabled={isLoading || !stripe || !elements} id="submit"  className={styles.submitButton}>
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+          {/* {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"} */}
+          {isLoading ? <div className="spinner" id="spinner"></div> : `確認付款 $${shoppingDataPool['totalPrice']}`}
         </span>
       </button>
       {/* Show any error or success messages */}

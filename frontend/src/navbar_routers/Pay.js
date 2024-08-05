@@ -16,7 +16,6 @@ export default function Pay() {
     const clientSecret = outletContextObj['clientSecret'][0];
     const setClientSecret = outletContextObj['clientSecret'][1];
     const chosenFoods = outletContextObj['chosenFoods'];
-    const shoppingDataPool = outletContextObj['shoppingDataPool'][0];
 
     const appearance = {
         theme: "stripe",
@@ -56,10 +55,7 @@ export default function Pay() {
     }
     return (<>
         <div className={styles.bg_container}>
-            <div>Logo Here</div>
-            <div className={styles.payInfo}>
-                付款 $ {shoppingDataPool['totalPrice']}
-            </div>
+            
             <div className={styles.payForm_container}>
                 {clientSecret && (<>
                     <Elements options={options} stripe={stripePromise}>

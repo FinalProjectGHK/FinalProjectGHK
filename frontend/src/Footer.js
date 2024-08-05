@@ -13,13 +13,12 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <button className={styles.backToTop} onClick={scrollToTop}>
-        Back to top ↑
+        回到頂端 ↑
       </button>
       <div className={styles.links}>
-        <a href="/privacy">Privacy & Terms of Use</a>
-        <a href="/location">Location</a>
-        <a href="/about">About Us</a>
-        <a href="/faqs">FAQs</a>
+        <a href="/privacy">條款及細則</a>
+        <a href="/location">分店位置</a>
+        <a href="/about">聯絡我們: 24567289</a>
       </div>
       <div className={styles.socialIcons}>
         <a
@@ -37,8 +36,25 @@ const Footer = () => {
           <InstagramIcon />
         </a>
       </div>
+      <div className={styles.paymentMethods}>
+        <img
+          src="https://order.sen-ryo.com.hk/_next/static/media/Icon_VISA@3x.3ca71c8e.png?w=384&q=100"
+          alt="Visa"
+          className={styles.paymentLogo}
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg"
+          alt="MasterCard"
+          className={styles.paymentLogo}
+        />
+        <img
+          src="https://order.sen-ryo.com.hk/_next/static/media/Icon_AE@3x.b4f550b9.png?w=256&q=100"
+          alt="American Express"
+          className={styles.paymentLogo}
+        />
+      </div>
       <div className={styles.copyright}>
-        &copy; {currentYear} Our Company. All rights reserved.
+        &copy; {currentYear} Grab & Go. 
       </div>
     </footer>
   );

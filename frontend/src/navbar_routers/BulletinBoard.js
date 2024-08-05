@@ -97,16 +97,17 @@ export default function BulletinBoard() {
     <div className={styles.bgContainer}>
       <div className={styles.filterBar}>
         <div className={styles.tagBar}>
-          <button className={styles.btn_tagBar1} onClick={() => handleTagBarBtn_all()}>
+          <button className={styles.btn_tagBar0} onClick={() => handleTagBarBtn_all()}>
             <div>
               {isChecked_allTag ?
-                (<input type="checkbox" className={styles.ipt_tagBar1} checked></input>) :
-                (<input type="checkbox" className={styles.ipt_tagBar1}></input>)
+                (<input type="checkbox" className={styles.ipt_tagBar0} checked></input>) :
+                (<input type="checkbox" className={styles.ipt_tagBar0}></input>)
               }
             </div>
-            <span className={styles.spn_tagBar1}>全選</span>
+            <span className={styles.spn_tagBar0}>全選</span>
           </button>
-          {tagBarCollection.map((item, index) => {
+          <div style={{height: "75%", width: "2px", margin: "0 10px", backgroundColor: "#767676"}}></div>
+          <>{tagBarCollection.map((item, index) => {
             return (<>
               <button key={index} className={item.btnStyle} onClick={() => handleTagBarBtn(item.name)}>
                 <div>
@@ -119,9 +120,9 @@ export default function BulletinBoard() {
                 <span className={item.spnStyle}>{item.name}</span>
               </button>
             </>)
-          })}
+          })}</>
         </div>
-        <div className={styles.timeBar}>time bar here</div>
+        {/* <div className={styles.timeBar}>time bar here</div> */}
       </div>
       <div className={styles.adsCard_container}>
         {/* {shopNews.map((news, index) => { */}
@@ -136,7 +137,7 @@ export default function BulletinBoard() {
                   <div className="flex items-center justify-between">
                     <p className="font-normal text-lg text-gray-700">{news['release_time']}</p>
                     <Link to="/news" onClick={() => handleReadMore(news['id'])} className="inline-flex items-center px-3 py-2 text-lg font-medium text-center text-[#8D7A5B] rounded-lg hover:bg-[#D1CABD]">
-                      Read more
+                      閱讀更多
                       <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                       </svg>

@@ -20,10 +20,10 @@ const Root = () => {
     'shoppingDataPool': [shoppingDataPool, setShoppingDataPool], 'currentNews': [currentNews, setCurrentNews],
     'favouriteFood': [favouriteFood, setFavouriteFood]};
   
-  const navigate = useNavigate();
+  /* const navigate = useNavigate();
   useEffect(() => {
     navigate('/home')
-  },[])
+  },[]) */
 
   const [scrollPosition, setScrollPosition] = useState(0);
   useEffect(() => {

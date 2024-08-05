@@ -5,7 +5,7 @@
   border: 1px solid #ccc;
   border-radius: 15px !important;
   background-color: white;
-  box-shadow: rgba(61, 47, 16, 0.649) 5px 10px 10px !important;
+  box-shadow: rgba(44, 34, 10, 0.649) 10px 15px 15px !important;
  
 }
 
@@ -21,6 +21,12 @@
   padding: 10px 20px;
   border-radius: 15px !important;
   cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.submitButton:hover {
+  background-color: #6b5c44;
 }
 
 .submitButtonDisabled {

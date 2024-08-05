@@ -12,7 +12,8 @@
   width: 100%;
   padding: 0 15px;
   margin-bottom: 20px;
-  background-color: #bfb4ad7e /* #ffffffd2 */ /* #ede9e3d9 */;
+  border-radius: 20px;
+  background-color: #bfb4adda /* #ffffffd2 */ /* #ede9e3d9 */;
   transition: background-color 0.3s, color 0.3s;
   display: flex;
   flex-direction: row;
@@ -20,23 +21,67 @@
   justify-content: space-between;
   position: sticky;
   top: 68px;
+  /* flex-wrap: wrap; */
 }
 
 /* --- tag bar --- */
 .tagBar {
   height: 100%;
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
 }
+
+.btn_tagBar0 {
+  height: 50px;
+  min-width: 90px;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.btn_tagBar0:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.btn_tagBar0>div {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spn_tagBar0 {
+  width: 70%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #767676;
+}
+.ipt_tagBar0 {
+  border-width: 0;
+  border-radius: 20px;
+  background-color: #767676;
+  transform: scale(1.6);
+  pointer-events: none;
+}
+.ipt_tagBar0:checked {
+  background-color: #767676;
+}
+.ipt_tagBar0:focus {
+  box-shadow: none;
+}
+
 .btn_tagBar1 {
   height: 50px;
   min-width: 140px;
   width: fit-content;
   padding: 5px;
+  margin-right: 10px;
   border-radius: 30px;
-  border-color: #ff8686;
+  border-color: #954e4e;
   border-width: 5px;
   display: flex;
   flex-direction: row;
@@ -56,17 +101,17 @@
   width: 80%;
   font-size: 20px;
   font-weight: bold;
-  color: #ff8686;
+  color: #954e4e;
 }
 .ipt_tagBar1 {
   border-width: 0;
   border-radius: 20px;
-  background-color: #ff8686;
+  background-color: #954e4e;
   transform: scale(1.6);
   pointer-events: none;
 }
 .ipt_tagBar1:checked {
-  background-color: #ff8686;
+  background-color: #954e4e;
 }
 .ipt_tagBar1:focus {
   box-shadow: none;
@@ -77,8 +122,9 @@
   min-width: 140px;
   width: fit-content;
   padding: 5px;
+  margin-right: 10px;
   border-radius: 30px;
-  border-color: #60ca56;
+  border-color: #377431;
   border-width: 5px;
   display: flex;
   flex-direction: row;
@@ -98,17 +144,17 @@
   width: 80%;
   font-size: 20px;
   font-weight: bold;
-  color: #60ca56;
+  color: #377431;
 }
 .ipt_tagBar2 {
   border-width: 0;
   border-radius: 20px;
-  background-color: #60ca56;
+  background-color: #377431;
   transform: scale(1.6);
   pointer-events: none;
 }
 .ipt_tagBar2:checked {
-  background-color: #60ca56;
+  background-color: #377431;
 }
 .ipt_tagBar2:focus {
   box-shadow: none;
@@ -119,8 +165,9 @@
   min-width: 140px;
   width: fit-content;
   padding: 5px;
+  margin-right: 10px;
   border-radius: 30px;
-  border-color: #86acff;
+  border-color: #50689b;
   border-width: 5px;
   display: flex;
   flex-direction: row;
@@ -140,17 +187,17 @@
   width: 80%;
   font-size: 20px;
   font-weight: bold;
-  color: #86acff;
+  color: #50689b;
 }
 .ipt_tagBar3 {
   border-width: 0;
   border-radius: 20px;
-  background-color: #86acff;
+  background-color: #50689b;
   transform: scale(1.6);
   pointer-events: none;
 }
 .ipt_tagBar3:checked {
-  background-color: #86acff;
+  background-color: #50689b;
 }
 .ipt_tagBar3:focus {
   box-shadow: none;
@@ -159,7 +206,7 @@
 /* --- time bar --- */
 .timeBar {
   height: 100%;
-  width: 50%;
+  width: 40%;
 }
 
 /* Card */
@@ -177,13 +224,13 @@
   width: fit-content;
   padding: 5px;
   border-radius: 30px;
-  border-color: #ff8686;
+  border-color: #954e4e;
   border-width: 5px;
   text-align: center;
   line-height: 20px;
   font-size: 18px;
   font-weight: bold;
-  color: #ff8686;
+  color: #954e4e;
 }
 .tagName2 {
   height: 40px;
@@ -191,13 +238,13 @@
   width: fit-content;
   padding: 5px;
   border-radius: 30px;
-  border-color: #60ca56;
+  border-color: #377431;
   border-width: 5px;
   text-align: center;
   line-height: 20px;
   font-size: 18px;
   font-weight: bold;
-  color: #60ca56;
+  color: #377431;
 }
 .tagName3 {
   height: 40px; 
@@ -205,11 +252,18 @@
   width: fit-content;
   padding: 5px;
   border-radius: 30px;
-  border-color: #86acff;
+  border-color: #50689b;
   border-width: 5px;
   text-align: center;
   line-height: 20px;
   font-size: 18px;
   font-weight: bold;
-  color: #86acff;
+  color: #50689b;
+}
+
+@media only screen and (max-width: 600px) {
+  .filterBar {
+    height: fit-content;
+    padding: 10px 10px;
+  }
 }
